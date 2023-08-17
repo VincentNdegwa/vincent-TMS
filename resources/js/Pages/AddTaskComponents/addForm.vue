@@ -11,7 +11,8 @@ export default {
             user_id: 3,
             dueDate: "",
             priority: 0,
-            unique_id:Date.now(),
+            unique_id: Date.now(),
+            taskFile:"",
         });
         return {form}
     },
@@ -29,16 +30,10 @@ export default {
             this.form.description = ""
             this.form.user_id = ""
             this.form.dueDate = ""
-            // this.form.post("/tasks/add", {
-            //     preserveScroll: true,
-            //     onFinish: () => {
-            //         this.form.name=""
-            //         this.form.description= ""
-            //         this.form.user_id=""
-            //         this.form.dueDate= ""
-            //     }
-            // });
         },
+        filechange(ev) {
+            this.form.taskFile = ev.target.files[0];
+        }
     }
 }
 </script>
@@ -70,7 +65,7 @@ export default {
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Task file</label>
-            <input class="form-control form-control-sm" id="formFileSm" type="file">
+            <input class="form-control form-control-sm" id="formFileSm" type="file" @change="filechange">
         </div>
         <button type="submit" class="btn btn-primary submit-btn">Create</button>
     </form>

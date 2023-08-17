@@ -15,6 +15,7 @@ export default {
 <template>
     <div class="task-list task-assigning">
         <div class="assigning-table-holder">
+            <span>Tasks Assigning</span>
             <table class="assigning-table">
                 <thead>
                     <tr>

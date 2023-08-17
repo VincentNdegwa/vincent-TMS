@@ -1,27 +1,27 @@
-
-.view-task-display{
+.view-task-display {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 70% 30%;
 }
 
-.left-task-display,.right-task-display{
+.left-task-display,
+.right-task-display {
     /* border: 1px solid; */
     width: 100%;
     height: 100%;
     display: grid;
     place-items: center;
-    color: #ACB1D6;
+    color: #acb1d6;
 }
 /* left */
-.tasks-container{
+.tasks-container {
     height: 30rem;
     width: 90%;
     border: 1px solid;
     border-radius: 0.3em;
 }
-.task-holder-display{
+.task-holder-display {
     width: 100%;
     height: 100%;
     background: white;
@@ -29,15 +29,15 @@
     grid-template-rows: 10% 90%;
     /* background: #4E31AA; */
 }
-.tasks-header{
+.tasks-header {
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: #ACB1D6;
-    color: #4E31AA;
+    background: #acb1d6;
+    color: #4e31aa;
 }
-.tasks-body{
+.tasks-body {
     height: 100%;
     display: grid;
     /* align-items: center; */
@@ -45,47 +45,47 @@
     grid-template-rows: repeat(5, auto);
     overflow-y: scroll;
 }
-.tasks-body::-webkit-scrollbar{
+.tasks-body::-webkit-scrollbar {
     display: none;
 }
 .task-item-display {
     height: 4em;
-    color: white;
-    background: #4E31AA;
+    color: #4e31aa;
+    background: #ffba86;
     border-radius: 0.3em;
     /* display: flex;
     align-items: center; */
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     place-items: center;
     /* color: #4E31AA; */
-    border: 1px solid #ACB1D6;
+    border: 1px solid #acb1d6;
 }
-.task-item-display:hover{
-    background: #452c97;
+.task-item-display:hover {
+    background: #dfa375;
 }
 /* right */
 
-.left-assigning{
+.left-assigning {
     width: 90%;
     height: 25rem;
     border: 1px solid;
 }
-.left-task-continer{
+.left-task-continer {
     width: 100%;
     height: 100%;
     display: grid;
     place-items: center;
 }
-.left-assigning{
+.left-assigning {
     display: grid;
     grid-template-rows: 10% 90%;
 }
-.header-assigning{
+.header-assigning {
     background: white;
     color: #452c97;
 }
-.task-assigning-body{
+.task-assigning-body {
     height: 100%;
     display: grid;
     grid-template-rows: repeat(5, auto);
@@ -93,17 +93,17 @@
     padding: 0.2em;
     background: white;
 }
-.task-assigning-body::-webkit-scrollbar{
+.task-assigning-body::-webkit-scrollbar {
     display: none;
 }
-.task-assigning-items{
+.task-assigning-items {
     height: 3em;
-    background: #ACB1D6;
-    color: #452c97;
+    background: #4e31aa;
+    color: #ffba86;
     border: 1px solid white;
     border-radius: 0.3em;
 }
-.display-task{
+.display-task {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -112,10 +112,9 @@
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.6);
     display: grid;
-    place-items: center
-    ;
+    place-items: center;
 }
-.see-tasks{
+.see-tasks {
     width: 80%;
     height: 80%;
     display: grid;
@@ -124,43 +123,43 @@
     color: white;
     border-radius: 0.4em;
 }
-.header-with-cancel{
+.header-with-cancel {
     height: 100%;
-    background-color: #ACB1D6;
+    background-color: #acb1d6;
     color: #452c97;
 }
-.see-task-main{
+.see-task-main {
     display: grid;
     grid-template-columns: 60% 40%;
 }
-.task-read{
+.task-read {
     padding: 1em;
-    color: #ACB1D6;
+    color: #acb1d6;
     border-radius: 0.3em;
 }
-.task-read>h1{
+.task-read > h1 {
     font-size: 3em;
 }
-.task-read>h3{
+.task-read > h3 {
     height: 50%;
     overflow-y: scroll;
 }
-.task-read>h3::-webkit-scrollbar{
+.task-read > h3::-webkit-scrollbar {
     display: none;
 }
-.task-reply{
+.task-reply {
     padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 0.3em;
 }
-.reply-textarea{
+.reply-textarea {
     height: 50%;
     resize: none;
     color: black;
 }
-.task-reply>button{
-    background: #ACB1D6;
+.task-reply > button {
+    background: #acb1d6;
     margin-top: 3%;
     padding: 0.5em;
     border-radius: 0.4em;

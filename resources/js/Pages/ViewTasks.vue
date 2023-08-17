@@ -4,7 +4,7 @@ import HeaderHome from './HomeComponents/HeaderHome.vue';
 import LeftViewTask from './ViewTasksComponents/leftViewTask.vue'
 import RightViewTask from "./ViewTasksComponents/rightViewTask.vue"
 import { router } from '@inertiajs/vue3';
-import { watch, ref, reactive } from 'vue';
+import { watch, ref, reactive,computed } from 'vue';
 
 export default {
     props: ["auth", "tasks", "taskAssigning", "taskSorted"],
@@ -18,7 +18,7 @@ export default {
             display: false,
             taskData: this.tasks,
             taskid: "",
-            form: ""
+            form: "",
         }
     },
     methods: {
@@ -43,7 +43,7 @@ export default {
             })
         },
         updateFilter(data) {
-                router.get(`/tasks/?sort=${data.filter}`)
+            router.get(`/tasks/?sort=${data.filter}`)
         }
     },
     setup(props) {
@@ -53,8 +53,8 @@ export default {
             task_reply: "",
             id: "",
             date_submit: Date.now(),
+            // fileUrl:'/storage/' + this.taskData.taskFile 
         });
-        console.log(reactiveProps)
 
         watch(() => reactiveProps.tasks, (newTasks) => {
             if (newTasks) {
@@ -63,7 +63,7 @@ export default {
         });
         return {
             taskData,
-            form
+            form,
         };
     },
 }
@@ -84,6 +84,9 @@ export default {
                         <div class="task-read">
                             <h1>{{ taskData.name }} </h1>
                             <h3>{{ taskData.description }}</h3>
+                        </div>
+                        <div class="files-display">
+                              <a :href="taskData.taskFile" target="_blank">View File</a>         
                         </div>
                         <div class="task-reply">
                             <textarea class="form-control reply-textarea" v-model="form.task_reply"></textarea>

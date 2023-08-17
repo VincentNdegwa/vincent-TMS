@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\taskController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +30,14 @@ Route::prefix("/tasks")->group(function () {
     Route::get("/", [taskController::class, "sortTask"])->name('sortTask');
 });
 require __DIR__ . '/auth.php';
+
+
+Route::get('storage/{filename}', function ($filename) {
+    $path = '../storage' . $filename;
+
+    if (Storage::exists($path)) {
+        return Storage::response($path);
+    }
+
+    abort(404);
+})->where('filename', '.*');

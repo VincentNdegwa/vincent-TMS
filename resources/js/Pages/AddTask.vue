@@ -16,19 +16,21 @@ export default {
                 dueDate: "",
                 priority: 0,
                 unique_id: Date.now(),
+                taskFile: "",
             }
         }
     },
     methods: {
         handleSending(data) {
             this.showSelect = true
-            let { name, description, dueDate, priority, unique_id } = data
+            let { name, description, dueDate, priority, unique_id, taskFile } = data
             this.form.name = name
             this.form.description = description
             this.form.dueDate = dueDate
             this.form.priority = priority
             this.form.unique_id = unique_id
-            // console.log(this.users)
+            this.form.taskFile = taskFile
+            console.log(this.form.taskFile)
         },
         getId(id) {
             if (Number.isInteger(+id)) {

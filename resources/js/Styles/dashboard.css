@@ -1,7 +1,7 @@
 .dashboard {
     width: 100%;
     min-height: 100vh;
-    background: #4E31AA;
+    background: #4e31aa;
     display: grid;
     color: white;
     grid-template-rows: 10% 90%;
@@ -19,7 +19,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    background: #ACB1D6;
+    background: #acb1d6;
 }
 
 nav {
@@ -30,17 +30,17 @@ nav {
     justify-content: flex-end;
 }
 
-nav>a {
-    background: #4E31AA;
+nav > a {
+    background: #4e31aa;
     color: white;
     border-radius: 0.2em;
     padding: 0.2em;
 }
 
-nav>a:hover {
+nav > a:hover {
     background: transparent;
-    color: #4E31AA;
-    border: 1px solid #4E31AA;
+    color: #4e31aa;
+    border: 1px solid #4e31aa;
     transition: all ease 2s;
 }
 
@@ -57,9 +57,9 @@ nav>a:hover {
     border: 1px solid;
 } */
 
-
 .left-main {
     display: grid;
+    width: 100%;
     /* border: 1px solid; */
     grid-template-rows: 55% 45%;
 }
@@ -70,22 +70,25 @@ nav>a:hover {
 
 .user-groups {
     display: grid;
-    place-items: center;
+    /* justify-content: center; */
+    /* place-items: center; */
     width: 100%;
+    height: 100%;
 }
 
 .groups-holder {
-    width: 90%;
-    height: 70%;
+    width: 100%;
+    height: 300px;
     display: grid;
     grid-template-rows: 10% 90%;
-    background: #ACB1D6;
+    background: white;
 }
 
 .group-header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background: #ffba86;
     /* border: 1px solid; */
 }
 
@@ -104,8 +107,9 @@ nav>a:hover {
 }
 
 .group-item {
-    background: #4E31AA;
-    border-radius: 0.4em;
+    background: #4e31aa;
+    border-radius: 0.1em;
+    padding: 0.3em;
 }
 
 .user-task-display {
@@ -137,18 +141,17 @@ nav>a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    color: white;
+    color: #ffba86;
 }
 
-.task-item>h1 {
+.task-item > h1 {
     font-size: 1.3em;
     font-weight: bold;
-    color: white;
+    color: #f6635c;
     text-indent: 10%;
-
 }
 
-.task-item>p {
+.task-item > p {
     text-indent: 10%;
 }
 
@@ -160,7 +163,7 @@ nav>a:hover {
 .task-holder {
     width: 90%;
     height: 90%;
-    background: #ACB1D6;
+    background: #ffba86;
     border-radius: 0.4em;
 }
 
@@ -171,8 +174,8 @@ nav>a:hover {
     grid-template-rows: 20% 80%;
 }
 
-thead>tr,
-tbody>tr {
+thead > tr,
+tbody > tr {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     text-align: center;
@@ -189,15 +192,15 @@ tbody>tr {
     height: 100% !important;
     display: grid;
     grid-template-rows: 20% 80%;
-    border: 1px solid #ACB1D6;
+    border: 1px solid #acb1d6;
     border-radius: 0.3em;
 }
 
 thead {
-    background: #4E31AA;
-    border-top: 1px solid #ACB1D6;
-    border-left: 1px solid #ACB1D6;
-    border-right: 1px solid #ACB1D6;
+    background: #4e31aa;
+    border-top: 1px solid #acb1d6;
+    border-left: 1px solid #acb1d6;
+    border-right: 1px solid #acb1d6;
     border-top-right-radius: 0.4em;
     border-top-left-radius: 0.4em;
 }
@@ -219,9 +222,8 @@ thead {
 
 .assigning-table-holder {
     /* border: 1px solid; */
-    height: 100%;
+    height: 200px;
     width: 100%;
-   
 }
 
 .assigning-table {
@@ -229,37 +231,43 @@ thead {
     height: 100%;
     display: grid;
     grid-template-rows: 10% 90%;
+    overflow-y: scroll;
+    position: relative;
 }
 
-.assigning-table>thead {
-    background: #4E31AA;
+.assigning-table > thead {
+    background: #4e31aa;
+    position: sticky;
+    top: 0;
 }
 
-.assigning-table>tbody {
+.assigning-table > tbody {
     background: white;
     display: grid;
     grid-template-rows: repeat(5, 15%);
     padding-left: 0.3em;
     padding-right: 0.3em;
+    gap: 0.3em;
 }
 
-.table-group-divider>tr>th,
-.table-group-divider>tr>td {
+.table-group-divider > tr > th,
+.table-group-divider > tr > td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.table-group-divider>tr,
-.assigning-table>thead>tr{
-display: grid;
-grid-template-columns: repeat(3,1fr);
+.table-group-divider > tr,
+.assigning-table > thead > tr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
-.table-group-divider>tr{
-    background-color: #4E31AA;
+.table-group-divider > tr {
+    background-color: #ffba86;
     margin-top: 1.5%;
-    color: white;
+    color: #4e31aa;
     border-radius: 0.2em;
+    height: 1.5em;
 }
-.table-group-divider{
+.table-group-divider {
     height: 90%;
 }
