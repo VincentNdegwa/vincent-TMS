@@ -1,0 +1,265 @@
+.dashboard {
+    width: 100%;
+    min-height: 100vh;
+    background: #4E31AA;
+    display: grid;
+    color: white;
+    grid-template-rows: 10% 90%;
+}
+
+header,
+main {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    background: #ACB1D6;
+}
+
+nav {
+    display: flex;
+    padding: 0.4em;
+    gap: 1em;
+    /* border: 1px solid; */
+    justify-content: flex-end;
+}
+
+nav>a {
+    background: #4E31AA;
+    color: white;
+    border-radius: 0.2em;
+    padding: 0.2em;
+}
+
+nav>a:hover {
+    background: transparent;
+    color: #4E31AA;
+    border: 1px solid #4E31AA;
+    transition: all ease 2s;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid; */
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+/* .user-groups,
+.user-task-display {
+    border: 1px solid;
+} */
+
+
+.left-main {
+    display: grid;
+    /* border: 1px solid; */
+    grid-template-rows: 55% 45%;
+}
+
+/* .task-assigning {
+    border: 1px solid;
+} */
+
+.user-groups {
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+.groups-holder {
+    width: 90%;
+    height: 70%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    background: #ACB1D6;
+}
+
+.group-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 1px solid; */
+}
+
+.groups-items {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    overflow-y: scroll;
+    gap: 0.2em;
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+}
+
+.groups-items::-webkit-scrollbar {
+    display: none;
+}
+
+.group-item {
+    background: #4E31AA;
+    border-radius: 0.4em;
+}
+
+.user-task-display {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.task-display {
+    /* border: 1px solid; */
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 60% 40%;
+}
+
+.main-task-displays {
+    /* border: 1px solid; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 3%;
+    margin-top: 1em;
+}
+
+.task-item {
+    border-radius: 0.3em;
+    box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+}
+
+.task-item>h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    text-indent: 10%;
+
+}
+
+.task-item>p {
+    text-indent: 10%;
+}
+
+.task-list {
+    display: grid;
+    place-items: center;
+}
+
+.task-holder {
+    width: 90%;
+    height: 90%;
+    background: #ACB1D6;
+    border-radius: 0.4em;
+}
+
+.table {
+    width: 100% !important;
+    height: 100% !important;
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+thead>tr,
+tbody>tr {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+}
+
+.assigning-tr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.asssigning-table {
+    width: 100% !important;
+    height: 100% !important;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    border: 1px solid #ACB1D6;
+    border-radius: 0.3em;
+}
+
+thead {
+    background: #4E31AA;
+    border-top: 1px solid #ACB1D6;
+    border-left: 1px solid #ACB1D6;
+    border-right: 1px solid #ACB1D6;
+    border-top-right-radius: 0.4em;
+    border-top-left-radius: 0.4em;
+}
+
+.ellipsis {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ////////////////// */
+.task-assigning {
+    /* border: 1px solid; */
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.assigning-table-holder {
+    /* border: 1px solid; */
+    height: 100%;
+    width: 100%;
+   
+}
+
+.assigning-table {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+
+.assigning-table>thead {
+    background: #4E31AA;
+}
+
+.assigning-table>tbody {
+    background: white;
+    display: grid;
+    grid-template-rows: repeat(5, 15%);
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+.table-group-divider>tr>th,
+.table-group-divider>tr>td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-group-divider>tr,
+.assigning-table>thead>tr{
+display: grid;
+grid-template-columns: repeat(3,1fr);
+}
+.table-group-divider>tr{
+    background-color: #4E31AA;
+    margin-top: 1.5%;
+    color: white;
+    border-radius: 0.2em;
+}
+.table-group-divider{
+    height: 90%;
+}
