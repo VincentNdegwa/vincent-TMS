@@ -82,17 +82,20 @@ export default {
                     </div>
                     <div class="see-task-main">
                         <div class="task-read">
-                            <h1>{{ taskData.name }} </h1>
-                            <h3>{{ taskData.description }}</h3>
+                            <h3>{{ taskData.name }} </h3>
+                            <h2>{{ taskData.description }}</h2>
+                            <div class="task-reply">
+                                <textarea class="form-control reply-textarea" v-model="form.task_reply"></textarea>
+                                <input type="file" name="" id="">
+                                <button @click="submiTask">Submit</button>
+                            </div>
                         </div>
                         <div class="files-display">
-                              <a :href="taskData.taskFile" target="_blank">View File</a>         
+                            <p>Task File</p>
+                            <object :data="`storage/${taskData.taskFile}`"></object>
+                            <a :href="`storage/${taskData.taskFile}`" target="_blank" class="file-preview-btn">Preview File</a>               
                         </div>
-                        <div class="task-reply">
-                            <textarea class="form-control reply-textarea" v-model="form.task_reply"></textarea>
-                            <input type="file" name="" id="">
-                            <button @click="submiTask">Submit</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

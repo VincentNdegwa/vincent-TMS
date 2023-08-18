@@ -104,7 +104,7 @@
     border-radius: 0.3em;
 }
 .display-task {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     top: 50%;
@@ -113,47 +113,58 @@
     background-color: rgba(0, 0, 0, 0.6);
     display: grid;
     place-items: center;
+    overflow-y: scroll;
 }
 .see-tasks {
     width: 80%;
     height: 80%;
     display: grid;
     grid-template-rows: 10% 90%;
-    background-color: #452c97;
+    background-color: #4e31aa;
     color: white;
     border-radius: 0.4em;
 }
 .header-with-cancel {
     height: 100%;
+    font-size: 1.2em;
     background-color: #acb1d6;
     color: #452c97;
 }
 .see-task-main {
+    /* display: grid; */
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: 60% 40%;
+    /* grid-template-rows: repeat(2, 1fr); */
 }
 .task-read {
     padding: 1em;
     color: #acb1d6;
+    height: 100%;
     border-radius: 0.3em;
 }
-.task-read > h1 {
-    font-size: 3em;
-}
 .task-read > h3 {
+    color: #ffba86;
+}
+.task-read > h2 {
     height: 50%;
+    border: 1px solid #acb1d6;
     overflow-y: scroll;
 }
-.task-read > h3::-webkit-scrollbar {
+.task-read > h2::-webkit-scrollbar {
     display: none;
 }
 .task-reply {
-    padding: 1em;
+    /* padding: 1em; */
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.3em;
+    margin-top: 0.3em;
 }
 .reply-textarea {
+    border-radius: 0.3em;
     height: 50%;
     resize: none;
     color: black;
@@ -164,4 +175,24 @@
     padding: 0.5em;
     border-radius: 0.4em;
     color: #452c97;
+}
+.files-display{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+object{
+    height: 200px!important;
+    width: 100%;
+  overflow-y: hidden !important;
+}
+.file-preview-btn{
+    margin-top: 2em;
+    padding: 0.4em;
+    background: #ffba86;
+    color: #4e31aa;
+    text-align: center;
+    border-radius: 0.4em;
 }
