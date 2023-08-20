@@ -24,6 +24,7 @@ class Task extends Model
         'date_submit',
         'priority',
         'taskFile',
+        'response_file'
     ];
 
     public function user(): BelongsTo

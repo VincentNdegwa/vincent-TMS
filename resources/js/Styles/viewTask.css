@@ -40,9 +40,9 @@
 .tasks-body {
     height: 100%;
     display: grid;
-    /* align-items: center; */
+    align-items: start;
     padding: 0.2em;
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(5, 4em);
     overflow-y: scroll;
 }
 .tasks-body::-webkit-scrollbar {
@@ -120,7 +120,7 @@
     height: 80%;
     display: grid;
     grid-template-rows: 10% 90%;
-    background-color: #4e31aa;
+    background: linear-gradient(45deg, #4e31aa, #ffba86);
     color: white;
     border-radius: 0.4em;
 }
@@ -176,19 +176,19 @@
     border-radius: 0.4em;
     color: #452c97;
 }
-.files-display{
+.files-display {
     width: 100%;
     height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-object{
-    height: 200px!important;
+object {
+    height: 200px !important;
     width: 100%;
-  overflow-y: hidden !important;
+    overflow-y: hidden !important;
 }
-.file-preview-btn{
+.file-preview-btn {
     margin-top: 2em;
     padding: 0.4em;
     background: #ffba86;

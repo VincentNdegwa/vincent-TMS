@@ -49,6 +49,10 @@ export default {
                <input type="password" class="form-control" id="exampleFormControlInput1" v-model="form.password_confirmation" >
              </div>
              <button type="submit" class="btn btn-primary login-btn">Register</button>
+
+             <a :href="(route('login'))">
+                           You have an account?
+                    </a>
             </form>
         </div>
     </section>

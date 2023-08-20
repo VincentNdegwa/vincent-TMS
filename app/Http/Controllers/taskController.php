@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class taskController extends Controller
 {
@@ -18,8 +19,14 @@ class taskController extends Controller
     public function getAllTask()
     {
         return Inertia::render("ViewTasks", [
-            "tasks" => auth()->user()->tasks()->where('user_id', auth()->id())->get(),
-            "taskAssigning" => Task::where('assigner', auth()->id())->orderBy("created_at", "ASC")->get(),
+            "tasks" => auth()->user()
+                ->tasks()
+                ->where('user_id', auth()->id())
+                ->where('completed', 0)
+                ->get(),
+            "taskAssigning" => Task::where('assigner', auth()->id())
+                ->orderBy("created_at", "ASC")
+                ->get(),
         ]);
     }
 
@@ -47,7 +54,9 @@ class taskController extends Controller
         }
 
         return Inertia::render("ViewTasks", [
-            "tasks" => auth()->user()->tasks()->where('user_id', auth()->id())->orderBy($key, "desc")->get(),
+            "tasks" => auth()->user()->tasks()->where('user_id', auth()->id())
+                ->where('completed', 0)
+                ->orderBy($key, "desc")->get(),
             "taskAssigning" => Task::where('assigner', auth()->id())->orderBy("created_at", "DESC")->get(),
         ]);
         // return response()->json($query);
@@ -67,9 +76,9 @@ class taskController extends Controller
                 "priority" => $request->input('priority'),
                 "due_date" => Carbon::parse($request->input('due_date'))->timestamp,
                 'description' => $request->input("description"),
-                'taskFile'=> $path,
+                'taskFile' => $path,
             ]);
-        }else{
+        } else {
             Task::create([
                 "name" => $request->input('name'),
                 "unique_id" => $request->input('unique_id'),
@@ -78,7 +87,7 @@ class taskController extends Controller
                 "priority" => $request->input('priority'),
                 "due_date" => Carbon::parse($request->input('due_date'))->timestamp,
                 'description' => $request->input("description"),
-            ]); 
+            ]);
         }
 
         return Inertia::render('AddTask');
@@ -109,14 +118,32 @@ class taskController extends Controller
     {
         $taskid = $request->input('id');
         $task = Task::find($taskid);
-        $update = [
-            "completed" => 1,
-            "task_reply" => $request->input("task_reply"),
-            "date_submit" => $request->input("date_submit"),
-        ];
-        $task->update($update);
-        return Inertia::render('AddTask', [
-            'tasks' => Task::where('user_id', auth()->id())->orderBy("created_at", "DESC")->get(),
-        ]);
+
+        if ($request->hasFile('response_file')) {
+            $file = $request->file('response_file');
+            $filepath = $file->store('responseFiles', 'public');
+            $update = [
+                "completed" => 1,
+                "task_reply" => $request->input("task_reply"),
+                "date_submit" => $request->input("date_submit"),
+                'response_file' => $filepath
+            ];
+            $task->update($update);
+            // return Inertia::render('AddTask', [
+            //     'tasks' => Task::where('user_id', auth()->id())->orderBy("created_at", "DESC")->get(),
+            // ]);
+            return Redirect::route('viewTasks');
+        } else {
+            $update = [
+                "completed" => 1,
+                "task_reply" => $request->input("task_reply"),
+                "date_submit" => $request->input("date_submit"),
+            ];
+            $task->update($update);
+            // return Inertia::render('ViewTasks', [
+            //     'tasks' => Task::where('user_id', auth()->id())->orderBy("created_at", "DESC")->get(),
+            // ]);
+            return Redirect::route('viewTasks');
+        }
     }
 }

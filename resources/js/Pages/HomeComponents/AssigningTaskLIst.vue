@@ -7,7 +7,7 @@ export default {
         }
     },
     created() {
-        console.log(this.tasksAssigning)
+        // console.log(this.tasksAssigning)
     }
 }
 </script>

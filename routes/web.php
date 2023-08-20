@@ -15,8 +15,8 @@ Route::get("/", [taskController::class, "getUserTasks"])->name('getUserTasks');
 
 Route::prefix("/")->group(function () {
     Route::get('createTask', [taskController::class, "storeUserTask"])->name('createTask');
-    Route::get("viewTasks",[taskController::class, "getAllTask"])->name("viewTasks");
-    Route::get("PlayGround",[pageController::class, 'getPlayGround'])->name('getPlayGround');
+    Route::get("viewTasks", [taskController::class, "getAllTask"])->name("viewTasks");
+    Route::get("PlayGround", [pageController::class, 'getPlayGround'])->name('getPlayGround');
 });
 
 
@@ -26,7 +26,7 @@ Route::prefix("/")->group(function () {
 Route::prefix("/tasks")->group(function () {
     Route::post('add', [taskController::class, "addTask"])->name('addTask');
     Route::get('all', [taskController::class, "getAllTask"])->name('getAllTask');
-    Route::put("update", [taskController::class, "updateTask"])->name('updateTask');
+    Route::post("update", [taskController::class, "updateTask"])->name('updateTask');
     Route::get("/", [taskController::class, "sortTask"])->name('sortTask');
 });
 require __DIR__ . '/auth.php';

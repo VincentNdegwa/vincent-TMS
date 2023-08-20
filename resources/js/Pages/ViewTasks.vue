@@ -4,10 +4,11 @@ import HeaderHome from './HomeComponents/HeaderHome.vue';
 import LeftViewTask from './ViewTasksComponents/leftViewTask.vue'
 import RightViewTask from "./ViewTasksComponents/rightViewTask.vue"
 import { router } from '@inertiajs/vue3';
-import { watch, ref, reactive,computed } from 'vue';
+import { watch, ref, reactive, computed } from 'vue';
 
 export default {
     props: ["auth", "tasks", "taskAssigning", "taskSorted"],
+
     components: {
         HeaderHome,
         LeftViewTask,
@@ -18,7 +19,6 @@ export default {
             display: false,
             taskData: this.tasks,
             taskid: "",
-            form: "",
         }
     },
     methods: {
@@ -30,20 +30,25 @@ export default {
                 task_reply: "",
                 id: id,
                 date_submit: Date.now(),
+                response_file: "",
             })
         },
         exitView() {
             this.display = false
         },
         submiTask() {
-            router.put("/tasks/update", this.form, {
+            this.$inertia.post("/tasks/update", this.form, {
                 onFinish: () => {
-                    this.display = false
                 }
-            })
+            });
+            this.exitView()
+
         },
         updateFilter(data) {
             router.get(`/tasks/?sort=${data.filter}`)
+        },
+        handleFileResponse(ev) {
+            this.form.response_file = ev.target.files[0];
         }
     },
     setup(props) {
@@ -53,9 +58,8 @@ export default {
             task_reply: "",
             id: "",
             date_submit: Date.now(),
-            // fileUrl:'/storage/' + this.taskData.taskFile 
+            response_file: "",
         });
-
         watch(() => reactiveProps.tasks, (newTasks) => {
             if (newTasks) {
                 taskData.value = newTasks
@@ -66,6 +70,7 @@ export default {
             form,
         };
     },
+
 }
 </script>
 
@@ -84,18 +89,19 @@ export default {
                         <div class="task-read">
                             <h3>{{ taskData.name }} </h3>
                             <h2>{{ taskData.description }}</h2>
-                            <div class="task-reply">
+                            <form @submit.prevent="submiTask" class="task-reply">
                                 <textarea class="form-control reply-textarea" v-model="form.task_reply"></textarea>
-                                <input type="file" name="" id="">
-                                <button @click="submiTask">Submit</button>
-                            </div>
+                                <input type="file" name="response_file" id="" @input="handleFileResponse">
+                                <button type="submit">Submit</button>
+                            </form>
                         </div>
                         <div class="files-display">
                             <p>Task File</p>
                             <object :data="`storage/${taskData.taskFile}`"></object>
-                            <a :href="`storage/${taskData.taskFile}`" target="_blank" class="file-preview-btn">Preview File</a>               
+                            <a :href="`storage/${taskData.taskFile}`" target="_blank" class="file-preview-btn">Preview
+                                File</a>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
