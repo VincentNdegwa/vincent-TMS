@@ -28,7 +28,7 @@ export default {
                     <tr v-for="(item, index) in tasksAssigning" :key="index">
                         <th scope="row"> {{item.name}}</th>
                         <td>{{ item.user_id }} </td>
-                        <td>{{item.status? "completed": "pending"}}</td>
+                        <td>{{item.completed? "completed": "pending"}}</td>
                     </tr>
                 </tbody>
             </table>

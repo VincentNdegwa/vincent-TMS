@@ -1,7 +1,50 @@
-.playGround-container{
+.playGround-container {
     width: 100%;
     height: 100%;
     /* border: 1px solid; */
     display: grid;
     grid-template-columns: 55% 45%;
+}
+.task-to-comment {
+    /* background-color: gray; */
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5em;
+}
+.task-nav {
+    width: 100%;
+    background: #dfa375;
+    color: #4e31aa;
+}
+.article-tasks {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 1.2em;
+}
+.article-task-item {
+    width: 100%;
+    height: 3.8em;
+    background: linear-gradient(30deg, #4e31aa, #ffba86);
+    display: flex;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    position: relative;
+    border-radius: 0.3em;
+}
+.task-h1 {
+    font-size: 1.3em;
+}
+.task-p {
+    font-size: 0.8em;
+}
+.task-date-p {
+    position: absolute;
+    color: #4e31aa;
+    right: 0.3em;
+    bottom: 0;
+    font-size: 0.9em;
 }
