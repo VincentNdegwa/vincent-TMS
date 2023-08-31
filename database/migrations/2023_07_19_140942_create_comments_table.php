@@ -16,9 +16,9 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('task_id')->nullable()->constrained('tasks')->onDelete('cascade');
-            $table->integer('assigner_id')->nullable();
+            $table->integer('receiver_id')->nullable();
             $table->string('text');
-            $table->integer('assingee_id')->nullable();
+            $table->integer('sender_id')->nullable();
             $table->string('assigner_name')->nullable();
             $table->string('assignee_name')->nullable();
             $table->timestamps();

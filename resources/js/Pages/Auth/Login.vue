@@ -1,7 +1,11 @@
 <template>
     <section>
         <div class="form-container">
-            <ValidationErrorsVue class="mb-4"/>
+            <div class="logo-diplay">
+                <p>Login To TMS</p>
+                <img src="../../../images/icon.jpg" alt="logo display">
+            </div>
+            <ValidationErrorsVue class="mb-4" />
             <form action="" method="post" @submit.prevent="submit">
 
                 <div class="mb-3 input-holder">
@@ -18,11 +22,11 @@
                 <button type="submit" class="btn btn-primary login-btn">Login</button>
             </form>
             <div class="user-links">
-               <a :href="(route('password.request'))">
-                   Forgot password?
+                <a :href="(route('password.request'))">
+                    Forgot password?
                 </a> &nbsp; <br>
                 <a :href="(route('register'))">
-                       You don't have an account?
+                    You don't have an account?
                 </a>
             </div>
         </div>
@@ -31,7 +35,7 @@
 
 <script>
 // import { useForm, Link } from "@inertiajs/inertia-vue3";
-import {useForm} from "@inertiajs/vue3"
+import { useForm } from "@inertiajs/vue3"
 import ValidationErrorsVue from "@/Components/ValidationErrors.vue";
 
 export default {

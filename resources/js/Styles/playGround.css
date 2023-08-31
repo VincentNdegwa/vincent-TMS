@@ -4,6 +4,7 @@
     /* border: 1px solid; */
     display: grid;
     grid-template-columns: 55% 45%;
+    gap: 1%;
 }
 .task-to-comment {
     /* background-color: gray; */
@@ -24,6 +25,13 @@
     height: 100%;
     overflow-y: scroll;
     padding: 1.2em;
+}
+.article-tasks::-webkit-scrollbar-thumb {
+    background-color: #4e31aa;
+    border-radius: 1.3em;
+}
+.article-tasks::-webkit-scrollbar {
+    width: 10px;
 }
 .article-task-item {
     width: 100%;
@@ -47,4 +55,101 @@
     right: 0.3em;
     bottom: 0;
     font-size: 0.9em;
+}
+
+/* ////////////////// */
+
+.header {
+    height: 3em;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background: #4e31aa;
+    border-bottom-right-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.header > p {
+    text-transform: capitalize;
+    font-size: 1.2em;
+}
+.article-messages {
+    margin-top: 1em;
+    position: relative;
+    overflow-y: scroll;
+}
+.article-messages::-webkit-scrollbar {
+    width: 2px;
+}
+.article-messages::-webkit-scrollbar-thumb {
+    background-color: white;
+}
+.files-display {
+    width: 100%;
+    height: 4em;
+    margin-top: 0.3em;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+.files-display > a {
+    background-color: #dfa375;
+    color: white;
+    margin-left: 0.3em;
+    padding: 0.3em;
+    border-radius: 0.3em;
+}
+.message-conversation-display {
+    width: 100%;
+    height: 100%;
+    /* min-height: 65%; */
+    /* background-color: #4e31aa; */
+    padding: 0.4em;
+}
+.reply-box {
+    width: 100% !important;
+}
+.text-input-holder {
+    width: 100% !important;
+    position: relative;
+    display: flex;
+}
+.text-input-holder > input {
+    width: 96%;
+    height: 100%;
+    color: black;
+    border: 0px;
+    outline: none;
+    border-top-left-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+}
+.text-input-holder > label {
+    color: #4e31aa;
+    background: white;
+    /* background: #dfa375; */
+}
+.text-input-holder > label > i {
+    font-size: 2em;
+}
+.reply-box {
+    position: sticky;
+    bottom: 0;
+}
+.message-box {
+    width: 20rem;
+    font-size: 0.8em;
+    padding: 0.3em;
+    background: linear-gradient(20deg, #4e31aa, #ffba86);
+    border-radius: 0.3em;
+    color: white;
+    font-weight: bold;
+}
+
+.message-box > p {
+    width: 100%;
+    white-space: pre-wrap;
 }

@@ -10,9 +10,11 @@ class Comments extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
+    protected $fillable = [
         'text',
-        'task_id'
+        'task_id',
+        'receiver_id',
+        'sender_id',
     ];
 
     public function myTasks(): BelongsTo

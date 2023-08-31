@@ -22,7 +22,7 @@ export default {
         }
     },
     components: {
-       ValidationErrorsVue,
+        ValidationErrorsVue,
     }
 }
 </script>
@@ -30,29 +30,34 @@ export default {
 <template>
     <section>
         <div class="form-container">
-            <ValidationErrorsVue class="mb-4"/>
+            <div class="logo-diplay">
+                <p>Register To TMS</p>
+                <img src="../../../images/icon.jpg" alt="logo display">
+            </div>
+            <ValidationErrorsVue class="mb-4" />
             <form action="" method="post" @submit.prevent="submit">
-              <div class="mb-3 input-holder">
-                 <label for="exampleFormControlInput1" class="form-label">Name:</label>
-                 <input type="text" class="form-control" id="exampleFormControlInput1" v-model="form.name" >
-              </div>
-             <div class="mb-3 input-holder">
-               <label for="exampleFormControlInput1" class="form-label">Email:</label>
-               <input type="email" class="form-control" id="exampleFormControlInput1" v-model="form.email" >
-             </div>
-             <div class="mb-3 input-holder">
-               <label for="exampleFormControlInput1" class="form-label">Password:</label>
-               <input type="password" class="form-control" id="exampleFormControlInput1" v-model="form.password" >
-             </div>
-             <div class="mb-3 input-holder">
-               <label for="exampleFormControlInput1" class="form-label">Confirm password:</label>
-               <input type="password" class="form-control" id="exampleFormControlInput1" v-model="form.password_confirmation" >
-             </div>
-             <button type="submit" class="btn btn-primary login-btn">Register</button>
+                <div class="mb-3 input-holder">
+                    <label for="exampleFormControlInput1" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" v-model="form.name">
+                </div>
+                <div class="mb-3 input-holder">
+                    <label for="exampleFormControlInput1" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" v-model="form.email">
+                </div>
+                <div class="mb-3 input-holder">
+                    <label for="exampleFormControlInput1" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput1" v-model="form.password">
+                </div>
+                <div class="mb-3 input-holder">
+                    <label for="exampleFormControlInput1" class="form-label">Confirm password:</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                        v-model="form.password_confirmation">
+                </div>
+                <button type="submit" class="btn btn-primary login-btn">Register</button>
 
-             <a :href="(route('login'))">
-                           You have an account?
-                    </a>
+                <a :href="(route('login'))">
+                    You have an account?
+                </a>
             </form>
         </div>
     </section>

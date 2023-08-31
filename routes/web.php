@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\commentController;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\pageController;
@@ -19,15 +20,13 @@ Route::prefix("/")->group(function () {
     Route::get("PlayGround", [pageController::class, 'getPlayGround'])->name('getPlayGround');
 });
 
-
-
-
 // main data routes
 Route::prefix("/tasks")->group(function () {
     Route::post('add', [taskController::class, "addTask"])->name('addTask');
     Route::get('all', [taskController::class, "getAllTask"])->name('getAllTask');
     Route::post("update", [taskController::class, "updateTask"])->name('updateTask');
     Route::get("/", [taskController::class, "sortTask"])->name('sortTask');
+    Route::post("/comment", [commentController::class, "create"])->name('createComment');
 });
 require __DIR__ . '/auth.php';
 
