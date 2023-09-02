@@ -1,15 +1,16 @@
 <script>
 import HeaderHome from './HomeComponents/HeaderHome.vue';
-import moment from 'moment'
-import { useForm } from '@inertiajs/vue3';
+import moment from 'moment';
+import { useForm, router } from '@inertiajs/vue3';
+import axios from 'axios';
+
 export default {
-    props: ['allTasks', 'userTask', 'conversation'],
+    props: ['allTasks', 'userTask', 'conversation', 'auth'],
     setup() {
-        const formData = JSON.parse(localStorage.getItem('selected'));
         const form = useForm({
-            task_id: formData.id,
-            receiver: formData.assigner,
-            sender: formData.assignee,
+            task_id: null,
+            receiver: null,
+            sender: null,
             text: '',
         });
         return {
@@ -21,41 +22,79 @@ export default {
     },
     data() {
         return {
+            id_task: null,
             allTasks: this.allTasks,
-            selectedData: JSON.parse(localStorage.getItem('selected'))
+            selectedData: null,
+            messages: this.conversation,
+            selectedMessages: [],
         }
     },
     methods: {
         convertTime(timestamp) {
             return moment(timestamp).fromNow()
-        }
-        , popConversation(id) {
-            localStorage.setItem('selected', JSON.stringify(this.allTasks.find((item) => item.id === id)))
-            this.selectedData = JSON.parse(localStorage.getItem('selected'));
+        },
+        popConversation(id) {
+            this.id_task = id
+            location.reload
+            this.selectedData = this.allTasks.find((item) => item.id === id)
+            this.selectedMessages = this.conversation.filter((item) => item.task_id === id)
             this.form.task_id = this.selectedData.id;
             this.form.receiver = this.selectedData.assigner;
-            this.form.sender = this.selectedData.assignee;
-            console.log(this.selectedData)
+            this.form.sender = this.auth;
+
+            // console.log(this.selectedMessages);
+
+            localStorage.setItem('selectedData', JSON.stringify(this.selectedData));
+            localStorage.setItem('selectedMessages', JSON.stringify(this.selectedMessages));
         },
-        sendText() {
-            if (this.form.text == '' && this.form.task_id == null && this.form.sender == null) {
-                alert('Please click the Task')
+        sendText(event) {
+            if (this.form.text === '' || this.form.task_id === null || this.form.sender === null) {
+                alert('Please fill in all required fields');
             } else {
-
-                this.form.post('/tasks/comment', {
-                    onFinish: () => {
-                        this.form.text = ''
-                    }
+                axios.post('/tasks/comment', {
+                    text: this.form.text,
+                    task_id: this.form.task_id,
+                    sender: this.form.sender,
+                    receiver: this.form.receiver,
                 })
+                    .then(response => {
+                        this.form.text = '';
+                        let newText = []
+                        newText.push(response.data.data)
+                        let newArray = this.selectedMessages.concat(newText)
+                        this.selectedMessages = newArray;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                event.preventDefault();
             }
-        }
-
+        },
     },
     created() {
-        // console.log(this.allTasks)
+        const selectedData = localStorage.getItem('selectedData');
+        const selectedMessages = localStorage.getItem('selectedMessages');
+        // const selectedId = localStorage.getItem('stored_id')
+
+        if (selectedData) {
+            this.selectedData = JSON.parse(selectedData);
+        }
+
+        if (selectedMessages) {
+            this.selectedMessages = JSON.parse(selectedMessages);
+        }
+    },
+    watch: {
+        selectedMessages(newMessage, oldMessage) {
+            this.selectedMessages = newMessage
+        }
     }
+
 }
 </script>
+
+
+
 
 <template>
     <section class="dashboard">
@@ -81,37 +120,40 @@ export default {
                             <p class="task-p">{{ item.email }}</p>
                         </div>
                         <p class="task-date-p">{{ convertTime(item.created_at) }}</p>
-                        <!-- <span>
-                            <p>Task receiver</p>
-                            <p>Date submited</p>
-                        </span> -->
                     </div>
                 </article>
 
 
             </div>
-            <article class="article-messages" v-if="selectedData">
-                <div class="header">
+            <article class="article-messages" v-if="id_task">
+                <div class=" header">
                     <p>{{ selectedData.name }} </p>
                     <span>{{ selectedData.email }}</span>
                 </div>
-                <div class="files-display">
-                    <a href="">
-                        <button>Assignement File</button>
-                    </a>
-                    <a href="">
-                        <button>Response File</button>
-                    </a>
+                <div class="header-conv">
+                    <div class="files-display">
+                        <a href="">
+                            <button>Assignement File</button>
+                        </a>
+                        <a href="">
+                            <button>Response File</button>
+                        </a>
+
+                    </div>
+
+                    <div class="like-diplay">
+                        <p> {{ selectedData.likes }} </p>
+                        <i class='bx bxs-like'></i>
+                    </div>
+
                 </div>
                 <div class="message-conversation-display">
-                    <div class="message-box">
-                        <p>{{ conversation }} </p>
+
+                    <div class="message-box" v-for="(item, index) in   selectedMessages  " :key="index"
+                        :class="{ 'message-box-owner ': item.sender_id === auth }">
+                        <p>{{ item.text }} </p>
                     </div>
-                    <div class="message-box">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto officia cum delectus tenetur, sit
-                            magni sapiente saepe ea nesciunt molestias accusamus ratione facilis laborum, incidunt vero
-                            consectetur autem. Molestiae, nemo? </p>
-                    </div>
+
                 </div>
                 <form action="" class="reply-box" @keydown.enter="sendText">
 

@@ -1,3 +1,4 @@
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
 .dashboard {
     width: 100%;
     min-height: 100vh;
@@ -30,6 +31,11 @@ nav {
     gap: 1em;
     /* border: 1px solid; */
     justify-content: flex-end;
+}
+.left-nav {
+    display: flex;
+    align-items: center;
+    gap: 1em;
 }
 
 nav > a {

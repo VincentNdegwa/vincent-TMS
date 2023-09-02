@@ -16,8 +16,9 @@ class commentController extends Controller
             'sender_id' => $request->input('sender'),
             'receiver_id' => $request->input('receiver'),
         ]);
-        return Inertia::render('Playground', [
-            'created' => $createdComment
+        return response()->json([
+            "status" => "200",
+            "data" => $createdComment
         ]);
     }
 

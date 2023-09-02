@@ -79,19 +79,17 @@
 .article-messages {
     margin-top: 1em;
     position: relative;
-    overflow-y: scroll;
 }
-.article-messages::-webkit-scrollbar {
+.message-conversation-display::-webkit-scrollbar {
     width: 2px;
 }
-.article-messages::-webkit-scrollbar-thumb {
+.message-conversation-display::-webkit-scrollbar-thumb {
     background-color: white;
 }
 .files-display {
     width: 100%;
     height: 4em;
     margin-top: 0.3em;
-    background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     gap: 0.3em;
@@ -105,10 +103,13 @@
 }
 .message-conversation-display {
     width: 100%;
-    height: 100%;
+    height: 63vh;
     /* min-height: 65%; */
     /* background-color: #4e31aa; */
     padding: 0.4em;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 .reply-box {
     width: 100% !important;
@@ -141,9 +142,11 @@
 }
 .message-box {
     width: 20rem;
+    margin-top: 0.3em;
     font-size: 0.8em;
     padding: 0.3em;
-    background: linear-gradient(20deg, #4e31aa, #ffba86);
+    background: #593aa1;
+    /* background: linear-gradient(20deg, #4e31aa, #ffba86); */
     border-radius: 0.3em;
     color: white;
     font-weight: bold;
@@ -152,4 +155,28 @@
 .message-box > p {
     width: 100%;
     white-space: pre-wrap;
+}
+.message-box {
+    align-self: flex-start;
+    height: fit-content;
+}
+.message-box-owner {
+    align-self: flex-end;
+    height: fit-content;
+    background: #ffba86;
+    color: #4e31aa;
+}
+.like-diplay {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+}
+.like-diplay > i {
+    font-size: 2em;
+}
+.header-conv {
+    width: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.1);
+    align-items: center;
 }

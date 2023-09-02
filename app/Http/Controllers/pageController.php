@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Comments;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class pageController extends Controller
 {
     public function getPlayGround()
     {
-        $conversation = Comments::all();
+        $conversation = Comments::
+            // ->where('receiver_id', auth()->id())
+            leftJoin('tasks', 'tasks.id', '=', 'comments.task_id')
+            ->where('tasks.user_id', auth()->id())
+            ->orWhere('tasks.assigner', auth()->id())
+            ->get();
         return Inertia::render(
             'Playground',
             [
@@ -31,7 +37,8 @@ class pageController extends Controller
                     ->join('users', 'users.id', '=', 'tasks.assigner')
                     ->join('users as user', 'user.id', '=', 'tasks.user_id')
                     ->get(),
-                'conversation' => $conversation
+                'conversation' => $conversation,
+                'auth' => auth()->id()
             ]
 
         );
