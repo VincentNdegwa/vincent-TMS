@@ -3,13 +3,28 @@ import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
-    setup() {
-
+    data() {
+        return {
+            openMenu: false,
+            width: window.innerWidth,
+            menuClicked: false
+        }
     },
     components: {
         BreezeDropdownLink
     },
-    props: ['userName']
+    props: ['userName'],
+    methods: {
+        handleMenu() {
+            if (this.openMenu) {
+                // this.menuClicked = false
+                this.openMenu = false
+            } else {
+                // this.menuClicked = true
+                this.openMenu = true
+            }
+        }
+    }
 }
 
 </script>
@@ -17,7 +32,8 @@ export default {
 <template>
     <header>
         <div class="avatar">{{ userName }} </div>
-        <div class="left_header">
+        <div :class="openMenu ? 'left_header openMenu' : 'left_header'">
+            <i v-if="openMenu" class='bx bx-x' @click="handleMenu"></i>
             <nav>
                 <a :href="route('getUserTasks')">Home</a>
                 <a :href="route('createTask')">Task Create</a>
@@ -30,6 +46,7 @@ export default {
                 <a :href="route('logout')">logout</a>
             </div>
         </div>
+        <i class="bx bx-menu" @click="handleMenu"></i>
     </header>
 </template>
 <style>

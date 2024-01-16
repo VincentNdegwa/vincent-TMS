@@ -31,11 +31,29 @@ header {
     /* background: #a67598; */
     background-color: var(--white);
     border-bottom: 1px solid var(--orange);
+    display: fixed;
+    top: 0;
 }
 header .avatar {
     color: var(--dark);
     font-size: 2rem;
     font-weight: bold;
+}
+header .bx-menu {
+    display: none;
+}
+header .bx-menu,
+.bx-x {
+    color: var(--orange);
+    font-size: 2.5rem;
+    position: sticky;
+    top: 0;
+}
+.bx-x {
+    position: absolute;
+    top: 2.5%;
+    right: 5%;
+    z-index: 100 !important;
 }
 .left_header {
     display: flex;
@@ -80,11 +98,11 @@ nav > a:hover {
 
 .main-container {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     /* border: 1px solid; */
     display: grid;
     grid-template-columns: 40% 60%;
-    /* height: 90vh; */
+    height: 90vh;
 }
 
 /* .user-groups,
@@ -98,10 +116,6 @@ nav > a:hover {
     height: 100%;
 }
 
-.user-task-display,
-.left-main {
-    height: 90vh !important;
-}
 /* .task-assigning {
     border: 1px solid;
 } */
@@ -121,7 +135,7 @@ nav > a:hover {
     grid-template-rows: 10% 90%;
     background: var(--light-dark);
     margin-top: 0.8em;
-    position: relative;
+    /* position: relative; */
     overflow-y: scroll;
 }
 
@@ -211,7 +225,8 @@ nav > a:hover {
     height: 90%;
     background: var(--light-dark);
     border-radius: 0.4em;
-    position: relative;
+    /* position: relative; */
+    /* z-index: 0 !important; */
 }
 .task-holder thead tr {
     border: 1px solid var(--orange);
@@ -221,10 +236,6 @@ nav > a:hover {
     color: var(--dark);
 }
 .no-task-row {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     color: var(--white);
     width: 100%;
     font-size: 2rem;
@@ -303,12 +314,12 @@ thead {
     display: grid;
     grid-template-rows: 10% 90%;
     overflow-y: scroll;
-    position: relative;
+    /* position: relative; */
 }
 
 .assigning-table > thead {
     background: var(--light-dark);
-    position: sticky;
+    /* position: sticky; */
     top: 0;
 }
 
@@ -341,4 +352,78 @@ thead {
 }
 .table-group-divider {
     height: 90%;
+}
+/* media query */
+@media screen and (max-width: 960px) {
+    header .bx-menu {
+        display: block;
+    }
+    .left_header {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-color: var(--light-dark) !important;
+        z-index: 10 !important;
+        padding: 1rem;
+        opacity: 0;
+        transition: all ease-in-out 1s;
+    }
+
+    .openMenu {
+        transform: translateX(0);
+        background-color: var(--light-dark) !important;
+        z-index: 10 !important;
+        opacity: 1;
+        transition: all ease-in-out 1s;
+    }
+    .openMenu > nav {
+        margin-top: 10vh;
+    }
+    .left_header nav {
+        display: block;
+    }
+    .left_header nav a {
+        margin-top: 1rem;
+        /* font-size: 1.5rem; */
+        font-weight: bold;
+    }
+    .main-container {
+        display: flex;
+        flex-direction: column-reverse;
+        height: fit-content !important;
+        width: 100%;
+        padding: 0.8rem !important;
+        height: max-content;
+    }
+    .user-task-display {
+        height: 1000px;
+    }
+    .dashboard {
+        min-height: none;
+        height: max-content;
+    }
+    .main-container > * {
+        width: 100% !important;
+    }
+    .user-task-display > *,
+    .task-holder {
+        width: 100%;
+    }
+    header {
+        position: sticky;
+        top: 0;
+    }
+}
+@media screen and (max-width: 500px) {
+    .main-task-displays {
+        display: flex;
+        flex-direction: column;
+    }
+    .main-task-displays > * {
+        height: 200px;
+    }
 }
