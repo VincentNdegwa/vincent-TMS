@@ -6,7 +6,7 @@ export default {
         // console.log(JSON.parse(JSON.stringify(this.userTasks)))
         this.myData = JSON.parse(JSON.stringify(this.userTasks))
     }
-    
+
 }
 </script>
 
@@ -23,18 +23,19 @@ export default {
                         <th scope="col">Date done</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="(item, index) in myData" :key="index" v-if="myData.length>0">
+                <tbody v-if="myData.length > 0">
+                    <tr v-for="(item, index) in myData" :key="index">
                         <th scope="row" class="ellipsis">{{ item.name }}</th>
                         <td class="ellipsis">{{ item.assigner }} </td>
-                        <td class="ellipsis">{{ item.completed? "completed": "incomplete" }} </td>
+                        <td class="ellipsis">{{ item.completed ? "completed" : "incomplete" }} </td>
                         <td class="ellipsis">{{ new Date(item.created_at).toLocaleDateString() }} </td>
-                        <td class="ellipsis">{{item.due_date? new Date(item.due_date).toLocaleDateString(): "No due"}}</td>
-                    </tr>
-                    <tr v-else class="no-task-row">
-                       You have no tasks
+                        <td class="ellipsis">{{ item.due_date ? new Date(item.due_date).toLocaleDateString() : "No due" }}
+                        </td>
                     </tr>
                 </tbody>
+                <div v-else class="no-task-row">
+                    You have no tasks
+                </div>
             </table>
         </div>
     </div>

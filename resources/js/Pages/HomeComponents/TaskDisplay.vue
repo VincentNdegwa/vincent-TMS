@@ -1,7 +1,7 @@
 <script>
 export default {
-    props: ["userTasks","taskCountGiving"],
-    Maindata:Array,
+    props: ["userTasks", "taskCountGiving"],
+    Maindata: Array,
     data() {
         return {
             totalTasks: 0,
@@ -22,16 +22,16 @@ export default {
             this.completedTasks = this.Maindata.filter((item) => item.completed === 1).length
             // latest tasks
             // this.Maindata.filter((item)=>(new Date(item.created_at)- new Date())<= 86400)
-            this.latestTasks =this.Maindata.filter((item) => {
+            this.latestTasks = this.Maindata.filter((item) => {
                 const timeDiff = Math.abs(new Date(item.created_at) - new Date());
                 const timeDiffInSeconds = Math.floor(timeDiff / 1000);
                 return timeDiffInSeconds <= 86400;
             }).length
         }
     },
-    created() { 
+    created() {
         this.printData(),
-        this.calculateStatistics()
+            this.calculateStatistics()
     }
 
 }
@@ -40,24 +40,24 @@ export default {
 <template>
     <div class="main-task-displays">
         <div class="task-item">
-            <p>Total tasks</p>
-            <h1>{{ totalTasks }} tasks</h1>
+            <p>Total Tasks</p>
+            <h1>{{ totalTasks }} Tasks</h1>
         </div>
 
         <div class="task-item">
-            <p>Task completed</p>
-            <h1>{{ completedTasks }} tasks</h1>
+            <p>Task Completed</p>
+            <h1>{{ completedTasks }} Tasks</h1>
         </div>
 
         <div class="task-item">
             <p>Task Assinging</p>
-            <h1>{{ totalTaskAssinging }} tasks</h1>
+            <h1>{{ totalTaskAssinging }} Tasks</h1>
         </div>
 
 
         <div class="task-item">
-            <p>latest tasks</p>
-            <h1>{{ latestTasks }} tasks</h1>
+            <p>Latest Tasks</p>
+            <h1>{{ latestTasks }} Tasks</h1>
         </div>
     </div>
 </template>

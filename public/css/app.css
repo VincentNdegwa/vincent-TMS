@@ -1244,10 +1244,16 @@ select {
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
-section{
-    background: #4E31AA;
+section {
+    background: #4e31aa;
     width: 100%;
     min-height: 100vh;
+}
+:root {
+    --black: #010101;
+    --orange: #fe6902;
+    --light-dark: #262626;
+    --white: #e5e5e5;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
@@ -1442,3 +1448,4 @@ section{
     padding-right: 2rem;
   }
 }
+

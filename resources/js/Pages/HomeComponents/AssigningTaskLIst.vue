@@ -3,7 +3,7 @@ export default {
     props: ['tasksAssigning'],
     data() {
         return {
-            tasksAssigning: this.tasksAssigning.slice(0,5)
+            tasksAssigning: this.tasksAssigning.slice(0, 5)
         }
     },
     created() {
@@ -15,7 +15,7 @@ export default {
 <template>
     <div class="task-list task-assigning">
         <div class="assigning-table-holder">
-            <span>Tasks Assigning</span>
+            <div>Tasks Assigning</div>
             <table class="assigning-table">
                 <thead>
                     <tr>
@@ -26,9 +26,9 @@ export default {
                 </thead>
                 <tbody class="table-group-divider">
                     <tr v-for="(item, index) in tasksAssigning" :key="index">
-                        <th scope="row"> {{item.name}}</th>
+                        <th scope="row"> {{ item.name }}</th>
                         <td>{{ item.user_id }} </td>
-                        <td>{{item.completed? "completed": "pending"}}</td>
+                        <td>{{ item.completed ? "completed" : "pending" }}</td>
                     </tr>
                 </tbody>
             </table>

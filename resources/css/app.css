@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https: //cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
-section{
-    background: #4E31AA;
+section {
+    background: #4e31aa;
     width: 100%;
     min-height: 100vh;
+}
+:root {
+    --black: #010101;
+    --orange: #fe6902;
+    --light-dark: #262626;
+    --white: #e5e5e5;
 }

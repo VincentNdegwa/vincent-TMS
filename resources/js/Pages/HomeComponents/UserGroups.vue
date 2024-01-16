@@ -3,7 +3,7 @@ import AssigningTaskLIst from './AssigningTaskLIst.vue';
 
 export default {
     props: ['taskAssigningData'],
-    tasksAssigning:Array,
+    tasksAssigning: Array,
     data() {
         return {
         }
