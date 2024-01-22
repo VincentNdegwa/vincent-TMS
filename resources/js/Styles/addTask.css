@@ -14,9 +14,13 @@ main {
 
 .create-form-conatiner {
     /* border: 1px solid; */
+    background: var(--light-dark);
     padding: 1em;
 }
-
+.create-form-conatiner form {
+    width: 100%;
+    height: 100%;
+}
 /* form{
     border: 1px solid;
 } */
@@ -58,6 +62,7 @@ textarea {
     /* border: 1px solid; */
     display: grid;
     place-items: center;
+    background: var(--light-dark);
 }
 .created-tasks-holder {
     /* border: 1px solid; */

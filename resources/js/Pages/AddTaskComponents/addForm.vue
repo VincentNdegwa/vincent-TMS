@@ -12,9 +12,9 @@ export default {
             dueDate: "",
             priority: 0,
             unique_id: Date.now(),
-            taskFile:"",
+            taskFile: "",
         });
-        return {form}
+        return { form }
     },
     data() {
         return {
@@ -40,10 +40,11 @@ export default {
 
 
 <template>
-    <form  @submit.prevent="sendForm">
+    <form @submit.prevent="sendForm" class="form">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Task name</label>
-            <input type="text" v-model="form.name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" v-model="form.name" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
         </div>
         <div class="form-floating">
             <label for="exampleInputEmail1" class="form-label">Task description</label>
