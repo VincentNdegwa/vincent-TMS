@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\commentController;
+use App\Http\Controllers\emailVerificationController;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\pageController;
@@ -40,3 +41,5 @@ Route::get('storage/{filename}', function ($filename) {
 
     abort(404);
 })->where('filename', '.*');
+
+Route::get("/verify_email/{username}/{tokenLink}", [emailVerificationController::class, "verificationCreation"]);

@@ -29,7 +29,7 @@ class createAccountEmail extends Mailable
                 'verificationToken' => Str::random(32)
             ]);
             $this->name = $name;
-            $this->verificationLink = env("APP_URL") . "/verify_email/" . $this->name . "/" . $verification->verificationToken;
+            $this->verificationLink = env("APP_URL") . "verify_email/" . $this->name . "/" . $verification->verificationToken;
         } else {
             $verificationLink = env("APP_URL");
         }
