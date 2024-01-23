@@ -43,21 +43,21 @@ export default {
     <form @submit.prevent="sendForm" class="form">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Task name</label>
-            <input type="text" v-model="form.name" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp">
+            <input type="text" v-model="form.name" class="form-control task_name_input" id="exampleInputEmail1"
+                aria-describedby="emailHelp" required>
         </div>
         <div class="form-floating">
             <label for="exampleInputEmail1" class="form-label">Task description</label>
             <textarea class="form-control" v-model="form.description" placeholder="Leave a description here"
-                id="floatingTextarea2" style="height: 100%"></textarea>
+                id="floatingTextarea2" style="height: 100%" required></textarea>
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Due date</label>
-            <input type="date" class="form-control" v-model="form.dueDate">
+            <input type="date" class="form-control" v-model="form.dueDate" required>
         </div>
         <div class="mb-3">
             <label for="">Task Priority</label>
-            <select class="form-select" v-model="form.priority">
+            <select class="form-select" v-model="form.priority" required>
                 <option class="option sected" value="0">0</option>
                 <option class="option" value="1">1</option>
                 <option class="option" value="2">2</option>
@@ -66,7 +66,7 @@ export default {
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Task file</label>
-            <input class="form-control form-control-sm" id="formFileSm" type="file" @change="filechange">
+            <input required class="form-control form-control-sm" id="formFileSm" type="file" @change="filechange">
         </div>
         <button type="submit" class="btn btn-primary submit-btn">Create</button>
     </form>

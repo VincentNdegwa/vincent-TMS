@@ -20438,9 +20438,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.name = $event;
     }),
-    "class": "form-control",
+    "class": "form-control task_name_input",
     id: "exampleInputEmail1",
-    "aria-describedby": "emailHelp"
+    "aria-describedby": "emailHelp",
+    required: ""
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -20450,19 +20451,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "floatingTextarea2",
     style: {
       "height": "100%"
-    }
+    },
+    required: ""
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "date",
     "class": "form-control",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.form.dueDate = $event;
-    })
+    }),
+    required: ""
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.dueDate]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-select",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.priority = $event;
-    })
+    }),
+    required: ""
   }, _hoisted_13, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.priority]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    required: "",
     "class": "form-control form-control-sm",
     id: "formFileSm",
     type: "file",
@@ -23904,7 +23909,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https: //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n    display: grid;\n    grid-template-rows: 10% 90%;\n    color: white;\n}\n\nmain {\n    /* border: 1px solid; */\n    display: grid;\n    grid-template-columns: 40% 60%;\n}\n\n.create-form-conatiner {\n    /* border: 1px solid; */\n    background: var(--light-dark);\n    padding: 1em;\n}\n.create-form-conatiner form {\n    width: 100%;\n    height: 100%;\n}\n/* form{\n    border: 1px solid;\n} */\nform > div,\nselect {\n    display: flex;\n    flex-direction: column;\n}\n\nform > div > input,\ntextarea {\n    color: black;\n    border-radius: 0.3em;\n    border: 0px;\n    outline: none;\n}\n\n.option,\n.form-select {\n    color: black;\n}\n.option:hover {\n    background: #acb1d6;\n}\n.form-control {\n    color: black;\n    border-radius: 0.3em !important;\n    border: 0px;\n    outline: none;\n}\n\n.submit-btn {\n    padding: 0.6em;\n    background: #acb1d6;\n    color: #4e31aa;\n    border-radius: 0.3em;\n}\n.created-task-container {\n    /* border: 1px solid; */\n    display: grid;\n    place-items: center;\n    background: var(--light-dark);\n}\n.created-tasks-holder {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 90%;\n    display: grid;\n    gap: 3%;\n    grid-template-rows: repeat(2, 1fr);\n}\n.side-display {\n    border: 1px solid;\n    background: white;\n    border-radius: 0.3em;\n}\n.side-display > h2 {\n    color: #acb1d6;\n    border-bottom: 1px solid;\n}\n.side-display {\n    display: grid;\n    grid-template-rows: 12% 88%;\n}\n.display-container {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: repeat(3, 1fr);\n    grid-template-columns: repeat(3, 1fr);\n    gap: 2%;\n    padding: 2%;\n}\n.display-item {\n    background: #ffba86;\n    color: #4e31aa;\n    border-radius: 0.3em;\n}\n/* ////////assignee select/////// */\n\n.select-assingnee {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.5);\n    display: grid;\n    place-items: center;\n}\n.select-holder {\n    color: #4e31aa;\n    border: 1px solid;\n    width: 50%;\n    height: 50%;\n    background-color: #4e31aa;\n    padding: 1em;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    gap: 4%;\n}\n.select-holder > select {\n    width: 100%;\n    border-radius: 0.3em;\n}\n.option-name {\n    color: black;\n}\n.select-holder > button {\n    color: white;\n    background-color: #acb1d6;\n    /* margin-top: 5%; */\n    padding: 2%;\n    border-radius: 0.3em;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n    display: grid;\n    grid-template-rows: 10% 90%;\n    color: white;\n}\n\nmain {\n    display: grid;\n    grid-template-columns: 40% 60%;\n    background-color: var(--light-dark);\n}\n\n.create-form-conatiner {\n    /* border: 1px solid; */\n    padding: 1em;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\nform > div,\nselect {\n    display: flex;\n    flex-direction: column;\n}\n\nform > div > input,\ntextarea {\n    color: black;\n    border-radius: 0.3em;\n    border: 0px solid var(--orange);\n    outline: none;\n}\n.form-label {\n    color: var(--orange);\n    font-size: 1.6rem;\n}\ntextarea {\n    min-height: 10rem !important;\n}\n.task_name_input {\n    height: 3.5rem;\n}\n.option,\n.form-select {\n    color: black;\n}\n.option:hover {\n    background: #acb1d6;\n}\n\n.form-control {\n    color: black;\n    border-radius: 0.3em !important;\n    border: 0px;\n    outline: none;\n}\n\n.submit-btn {\n    padding: 0.6em;\n    width: 100%;\n    border-radius: 0.3em;\n    background: var(--orange);\n}\n.created-task-container {\n    /* border: 1px solid; */\n    display: grid;\n    place-items: center;\n}\n.created-tasks-holder {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 90%;\n    display: grid;\n    gap: 3%;\n    grid-template-rows: repeat(2, 1fr);\n}\n.side-display {\n    border: 1px solid;\n    background: white;\n    border-radius: 0.3em;\n}\n.side-display > h2 {\n    color: #acb1d6;\n    border-bottom: 1px solid;\n}\n.side-display {\n    display: grid;\n    grid-template-rows: 12% 88%;\n}\n.display-container {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: repeat(3, 1fr);\n    grid-template-columns: repeat(3, 1fr);\n    gap: 2%;\n    padding: 2%;\n}\n.display-item {\n    background: #ffba86;\n    color: #4e31aa;\n    border-radius: 0.3em;\n}\n/* ////////assignee select/////// */\n\n.select-assingnee {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.5);\n    display: grid;\n    place-items: center;\n}\n.select-holder {\n    color: #4e31aa;\n    border: 1px solid;\n    width: 50%;\n    height: 50%;\n    background-color: #4e31aa;\n    padding: 1em;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    gap: 4%;\n}\n.select-holder > select {\n    width: 100%;\n    border-radius: 0.3em;\n}\n.option-name {\n    color: black;\n}\n.select-holder > button {\n    color: white;\n    background-color: #acb1d6;\n    /* margin-top: 5%; */\n    padding: 2%;\n    border-radius: 0.3em;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
