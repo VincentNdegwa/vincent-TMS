@@ -143,3 +143,21 @@ textarea {
     padding: 2%;
     border-radius: 0.3em;
 }
+
+@media screen and (max-width: 960px) {
+    main {
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 1rem;
+    }
+    .created-task-container {
+        height: 500px;
+        width: 100%;
+    }
+    .created-tasks-holder {
+        width: 100% !important;
+    }
+    .create-form-conatiner {
+        padding: 0;
+    }
+}

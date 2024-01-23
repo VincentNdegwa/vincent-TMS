@@ -16,14 +16,12 @@
 }
 /* left */
 .tasks-container {
-    height: 30rem;
+    height: 90%;
     width: 90%;
-    border: 1px solid;
     border-radius: 0.3em;
 }
 .task-holder-display {
     width: 100%;
-    height: 100%;
     background: white;
     display: grid;
     grid-template-rows: 10% 90%;
@@ -34,24 +32,32 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: #acb1d6;
-    color: #4e31aa;
+    background: var(--orange);
+    color: var(--white);
+}
+.tasks-header > select > option {
+    background: var(--dark);
+    color: var(--orange);
+}
+.tasks-header > select {
+    border: 0px;
+    outline: none;
 }
 .tasks-body {
-    height: 100%;
+    height: 700px;
     display: grid;
     align-items: start;
     padding: 0.2em;
-    grid-template-rows: repeat(5, 4em);
     overflow-y: scroll;
+    background: var(--light-dark);
 }
 .tasks-body::-webkit-scrollbar {
     display: none;
 }
 .task-item-display {
     height: 4em;
-    color: #4e31aa;
-    background: #ffba86;
+    color: var(--light-dark);
+    background: var(--white);
     border-radius: 0.3em;
     /* display: flex;
     align-items: center; */
@@ -62,14 +68,13 @@
     border: 1px solid #acb1d6;
 }
 .task-item-display:hover {
-    background: #dfa375;
+    background: var(--orange);
 }
 /* right */
 
 .left-assigning {
     width: 90%;
-    height: 25rem;
-    border: 1px solid;
+    height: 90%;
 }
 .left-task-continer {
     width: 100%;
@@ -77,9 +82,16 @@
     display: grid;
     place-items: center;
 }
+.task-assigning-body,
+.notask-assign {
+    background: var(--light-dark);
+    color: var(--white);
+    overflow-y: scroll;
+    height: 100%;
+}
 .left-assigning {
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 10% 600px;
 }
 .header-assigning {
     background: white;
@@ -87,8 +99,6 @@
 }
 .task-assigning-body {
     height: 100%;
-    display: grid;
-    grid-template-rows: repeat(5, auto);
     overflow-y: scroll;
     padding: 0.2em;
     background: white;
@@ -97,9 +107,10 @@
     display: none;
 }
 .task-assigning-items {
-    height: 3em;
-    background: #4e31aa;
-    color: #ffba86;
+    height: 6em;
+    width: 100%;
+    background: var(--dark);
+    color: var(--orange);
     border: 1px solid white;
     border-radius: 0.3em;
 }

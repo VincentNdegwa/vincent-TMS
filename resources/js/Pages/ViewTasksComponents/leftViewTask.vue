@@ -5,7 +5,7 @@ export default {
     props: ['tasks', 'taskSorted'],
     data() {
         return {
-            taskData:this.tasks,
+            taskData: this.tasks,
         }
     },
     setup() {
@@ -21,7 +21,7 @@ export default {
             this.$emit("customChange", id)
         },
         sendFilter() {
-            this.$emit('filter',this.form)
+            this.$emit('filter', this.form)
         }
     }
 }
@@ -33,16 +33,16 @@ export default {
             <div class="task-holder-display">
                 <div class="tasks-header">
                     <h3>Tasks assinged</h3>
-                        <select v-model="form.filter" @change="sendFilter" >
-                            <option value="all" selected >all</option>
-                            <option value="dueDate" >due date</option>
-                            <option value="latest" >latest</option>
-                            <option value="name" >name</option>
-                            <option value="priority" >priority</option>
+                    <select v-model="form.filter" @change="sendFilter">
+                        <option value="all" selected>all</option>
+                        <option value="dueDate">due date</option>
+                        <option value="latest">latest</option>
+                        <option value="name">name</option>
+                        <option value="priority">priority</option>
 
-                            <!-- <option value="">filter</option> -->
-                        </select>
-        
+                        <!-- <option value="">filter</option> -->
+                    </select>
+
                 </div>
                 <div class="tasks-body" v-if="tasks.length > 0">
                     <div class="task-item-display" v-for="(item, index) in taskData" :key="index"

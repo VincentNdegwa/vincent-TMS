@@ -365,7 +365,7 @@ thead {
         height: 100%;
         top: 0;
         left: 0;
-        transform: translateX(-100%);
+        transform: translateX(100%);
         background-color: var(--light-dark) !important;
         z-index: 10 !important;
         padding: 1rem;
