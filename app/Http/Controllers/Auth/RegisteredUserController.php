@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\createAccountEmail;
 use App\Models\User;
+use App\Models\userVerification;
 use App\Providers\RouteServiceProvider;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 
@@ -38,7 +41,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required', 'confirmed', Rules\Password::defaults(),
+            'password' => 'required',
         ]);
 
         $user = User::create([
@@ -47,7 +50,19 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $verification = userVerification::create([
+            'user_id' => $user->id,
+            'userName' => $user->name,
+            "userEmail" => $user->email,
+            'startVerification' => now(),
+            'expireVerification' => now()->addDay(),
+        ]);
+        if ($verification) {
+            Mail::to($user->email)->send(new createAccountEmail($user->name, $user->email));
+        }
+
         event(new Registered($user));
+
 
         Auth::login($user);
 
