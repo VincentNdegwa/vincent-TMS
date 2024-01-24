@@ -54,10 +54,11 @@ export default {
                         v-model="form.password_confirmation">
                 </div>
                 <button type="submit" class="btn btn-primary login-btn">Register</button>
-
-                <a :href="(route('login'))">
-                    You have an account?
-                </a>
+                <div class="user-links">
+                    <a :href="(route('login'))">
+                        You have an account?
+                    </a>
+                </div>
             </form>
         </div>
     </section>

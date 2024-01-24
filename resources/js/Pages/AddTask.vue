@@ -8,7 +8,7 @@ export default {
     props: ["auth", "assigningTasks", "users"],
     data() {
         return {
-            showSelect: false,
+            showSelect: true,
             form: {
                 name: "",
                 description: "",
@@ -30,7 +30,7 @@ export default {
             this.form.priority = priority
             this.form.unique_id = unique_id
             this.form.taskFile = taskFile
-            console.log(this.form.taskFile)
+            console.log(this.form)
         },
         getId(id) {
             if (Number.isInteger(+id)) {
@@ -47,6 +47,9 @@ export default {
                     this.showSelect = false
                 }
             })
+        },
+        exitOverlay() {
+            this.showSelect = false
         }
     },
     components: {
@@ -73,6 +76,7 @@ export default {
                 <SideDisplay :assigningTasks="assigningTasks" />
             </div>
             <div class="select-assingnee" v-if="showSelect">
+                <button class="exit_button" @click="exitOverlay">Exit</button>
                 <div class="select-holder">
                     <select name="" id="" @change="getId($event.target.value)">
                         <option>select user to assign task</option>

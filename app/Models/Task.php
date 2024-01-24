@@ -26,6 +26,9 @@ class Task extends Model
         'taskFile',
         'response_file'
     ];
+    protected $casts = [
+        'due_date' => 'datetime',
+    ];
 
     public function user(): BelongsTo
     {

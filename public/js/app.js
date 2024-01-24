@@ -19124,7 +19124,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["auth", "assigningTasks", "users"],
   data: function data() {
     return {
-      showSelect: false,
+      showSelect: true,
       form: {
         name: "",
         description: "",
@@ -19151,7 +19151,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.priority = priority;
       this.form.unique_id = unique_id;
       this.form.taskFile = taskFile;
-      console.log(this.form.taskFile);
+      console.log(this.form);
     },
     getId: function getId(id) {
       if (Number.isInteger(+id)) {
@@ -19166,6 +19166,9 @@ __webpack_require__.r(__webpack_exports__);
           _this.showSelect = false;
         }
       });
+    },
+    exitOverlay: function exitOverlay() {
+      this.showSelect = false;
     }
   },
   components: {
@@ -20375,10 +20378,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSendingForm: $options.handleSending
   }, null, 8 /* PROPS */, ["onSendingForm"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideDisplay, {
     assigningTasks: $props.assigningTasks
-  }, null, 8 /* PROPS */, ["assigningTasks"])]), $data.showSelect ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 8 /* PROPS */, ["assigningTasks"])]), $data.showSelect ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "exit_button",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.exitOverlay && $options.exitOverlay.apply($options, arguments);
+    })
+  }, "Exit"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     name: "",
     id: "",
-    onChange: _cache[0] || (_cache[0] = function ($event) {
+    onChange: _cache[1] || (_cache[1] = function ($event) {
       return $options.getId($event.target.value);
     })
   }, [_hoisted_6, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.users, function (item, index) {
@@ -20387,7 +20395,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       value: item.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(",    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.email), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_7);
   }), 128 /* KEYED_FRAGMENT */))], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $options.sendForm && $options.sendForm.apply($options, arguments);
     })
   }, "Send Task")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
@@ -20624,55 +20632,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _images_icon_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/icon.jpg */ "./resources/images/icon.jpg");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mb-4 text-sm text-gray-600"
-}, " Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one. ", -1 /* HOISTED */);
-var _hoisted_2 = {
-  key: 0,
-  "class": "mb-4 font-medium text-sm text-green-600"
+
+var _hoisted_1 = {
+  "class": "form-container"
 };
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "logo-diplay"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Password Reset"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: _images_icon_jpg__WEBPACK_IMPORTED_MODULE_1__["default"],
+  alt: "logo display"
+})], -1 /* HOISTED */);
 var _hoisted_3 = ["onSubmit"];
-var _hoisted_4 = {
-  "class": "flex items-center justify-end mt-4"
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mb-4 description-text"
+}, " Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one. ", -1 /* HOISTED */);
+var _hoisted_5 = {
+  "class": "mb-3 input-holder"
 };
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "exampleFormControlInput1",
+  "class": "form-label"
+}, "Email:", -1 /* HOISTED */);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "submit",
+  "class": "btn btn-primary login-btn"
+}, "Send Reset Link", -1 /* HOISTED */);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "user-links"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "/login"
+}, "Login instead?")], -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["BreezeGuestLayout"], null, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
-        title: "Forgot Password"
-      }), _hoisted_1, $props.status ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.status), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeValidationErrors"], {
-        "class": "mb-4"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"])
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
-        "for": "email",
-        value: "Email"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
-        id: "email",
-        type: "email",
-        "class": "mt-1 block w-full",
-        modelValue: $setup.form.email,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $setup.form.email = $event;
-        }),
-        required: "",
-        autofocus: "",
-        autocomplete: "username"
-      }, null, 8 /* PROPS */, ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeButton"], {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-          'opacity-25': $setup.form.processing
-        }),
-        disabled: $setup.form.processing
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Email Password Reset Link ")];
-        }),
-        _: 1 /* STABLE */
-      }, 8 /* PROPS */, ["class", "disabled"])])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_3)];
-    }),
-    _: 1 /* STABLE */
-  });
+  var _component_ValidationErrorsVue = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ValidationErrorsVue");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ValidationErrorsVue, {
+    "class": "mb-4"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    action: "",
+    method: "post",
+    onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"])
+  }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "class": "form-control",
+    id: "exampleFormControlInput1",
+    placeholder: "name@example.com",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.form.email = $event;
+    })
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.email]])]), _hoisted_7], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_3), _hoisted_8])]);
 }
 
 /***/ }),
@@ -20815,7 +20824,10 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "submit",
   "class": "btn btn-primary login-btn"
 }, "Register", -1 /* HOISTED */);
-var _hoisted_12 = ["href"];
+var _hoisted_12 = {
+  "class": "user-links"
+};
+var _hoisted_13 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ValidationErrorsVue = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ValidationErrorsVue");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ValidationErrorsVue, {
@@ -20854,9 +20866,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.password_confirmation = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.password_confirmation]])]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.password_confirmation]])]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: _ctx.route('login')
-  }, " You have an account? ", 8 /* PROPS */, _hoisted_12)], 32 /* HYDRATE_EVENTS */)])]);
+  }, " You have an account? ", 8 /* PROPS */, _hoisted_13)])], 32 /* HYDRATE_EVENTS */)])]);
 }
 
 /***/ }),
@@ -23819,6 +23831,33 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n", ""]);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_Styles_form_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../Styles/form.css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./resources/js/Styles/form.css");
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_Styles_form_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.description-text {\n    text-align: center;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Login.vue?vue&type=style&index=0&id=a2ac2cea&lang=css":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Login.vue?vue&type=style&index=0&id=a2ac2cea&lang=css ***!
@@ -24052,7 +24091,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https: //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n    display: grid;\n    grid-template-rows: 10% 90%;\n    color: white;\n}\n\nmain {\n    display: grid;\n    grid-template-columns: 40% 60%;\n    background-color: var(--light-dark);\n}\n\n.create-form-conatiner {\n    /* border: 1px solid; */\n    padding: 1em;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\nform > div,\nselect {\n    display: flex;\n    flex-direction: column;\n}\n\nform > div > input,\ntextarea {\n    color: black;\n    border-radius: 0.3em;\n    border: 0px solid var(--orange);\n    outline: none;\n}\n.form-label {\n    color: var(--orange);\n    font-size: 1.6rem;\n}\ntextarea {\n    min-height: 10rem !important;\n}\n.task_name_input {\n    height: 3.5rem;\n}\n.option,\n.form-select {\n    color: black;\n}\n.option:hover {\n    background: #acb1d6;\n}\n\n.form-control {\n    color: black;\n    border-radius: 0.3em !important;\n    border: 0px;\n    outline: none;\n}\n\n.submit-btn {\n    padding: 0.6em;\n    width: 100%;\n    border-radius: 0.3em;\n    background: var(--orange);\n}\n.created-task-container {\n    /* border: 1px solid; */\n    display: grid;\n    place-items: center;\n}\n.created-tasks-holder {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 90%;\n    display: grid;\n    gap: 3%;\n    grid-template-rows: repeat(2, 1fr);\n}\n.side-display {\n    border: 1px solid;\n    background: white;\n    border-radius: 0.3em;\n}\n.side-display > h2 {\n    color: #acb1d6;\n    border-bottom: 1px solid;\n}\n.side-display {\n    display: grid;\n    grid-template-rows: 12% 88%;\n}\n.display-container {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: repeat(3, 1fr);\n    grid-template-columns: repeat(3, 1fr);\n    gap: 2%;\n    padding: 2%;\n}\n.display-item {\n    background: #ffba86;\n    color: #4e31aa;\n    border-radius: 0.3em;\n}\n/* ////////assignee select/////// */\n\n.select-assingnee {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.5);\n    display: grid;\n    place-items: center;\n}\n.select-holder {\n    color: #4e31aa;\n    border: 1px solid;\n    width: 50%;\n    height: 50%;\n    background-color: #4e31aa;\n    padding: 1em;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    gap: 4%;\n}\n.select-holder > select {\n    width: 100%;\n    border-radius: 0.3em;\n}\n.option-name {\n    color: black;\n}\n.select-holder > button {\n    color: white;\n    background-color: #acb1d6;\n    /* margin-top: 5%; */\n    padding: 2%;\n    border-radius: 0.3em;\n}\n\n@media screen and (max-width: 960px) {\n    main {\n        display: flex;\n        flex-direction: column-reverse;\n        padding: 1rem;\n    }\n    .created-task-container {\n        height: 500px;\n        width: 100%;\n    }\n    .created-tasks-holder {\n        width: 100% !important;\n    }\n    .create-form-conatiner {\n        padding: 0;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n    display: grid;\n    grid-template-rows: 10% 90%;\n    color: white;\n}\n\nmain {\n    display: grid;\n    grid-template-columns: 40% 60%;\n    background-color: var(--light-dark);\n}\n\n.create-form-conatiner {\n    /* border: 1px solid; */\n    padding: 1em;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\nform > div,\nselect {\n    display: flex;\n    flex-direction: column;\n}\n\nform > div > input,\ntextarea {\n    color: black;\n    border-radius: 0.3em;\n    border: 0px solid var(--orange);\n    outline: none;\n}\n.form-label {\n    color: var(--orange);\n    font-size: 1.6rem;\n}\ntextarea {\n    min-height: 10rem !important;\n}\n.task_name_input {\n    height: 3.5rem;\n}\n.option,\n.form-select {\n    color: black;\n}\n.option:hover {\n    background: #acb1d6;\n}\n\n.form-control {\n    color: black;\n    border-radius: 0.3em !important;\n    border: 0px;\n    outline: none;\n}\n\n.submit-btn {\n    padding: 0.6em;\n    width: 100%;\n    border-radius: 0.3em;\n    background: var(--orange);\n}\n.created-task-container {\n    /* border: 1px solid; */\n    display: grid;\n    place-items: center;\n}\n.created-tasks-holder {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 90%;\n    display: grid;\n    gap: 3%;\n    grid-template-rows: repeat(2, 1fr);\n}\n.side-display {\n    border: 1px solid;\n    background: white;\n    border-radius: 0.3em;\n}\n.side-display > h2 {\n    color: #acb1d6;\n    border-bottom: 1px solid;\n}\n.side-display {\n    display: grid;\n    grid-template-rows: 12% 88%;\n}\n.display-container {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: repeat(3, 1fr);\n    grid-template-columns: repeat(3, 1fr);\n    gap: 2%;\n    padding: 2%;\n}\n.display-item {\n    background: #ffba86;\n    color: #4e31aa;\n    border-radius: 0.3em;\n}\n/* ////////assignee select/////// */\n\n.select-assingnee {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.9);\n    display: grid;\n    place-items: center;\n}\n.select-holder {\n    color: var(--white);\n    /* border: 1px solid; */\n    width: 50%;\n    height: 70%;\n    background-color: var(--light-dark);\n    padding: 1em;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    gap: 4%;\n    border-radius: 0.5rem;\n}\n.exit_button {\n    background: var(--orange);\n    color: var(--white);\n    position: absolute;\n    top: 15%;\n    right: 25%;\n    font-size: 1.4rem;\n    padding: 0.6rem;\n}\n.select-holder > select {\n    width: 100%;\n    border-radius: 0.3em;\n}\n.option-name {\n    color: black;\n}\n.select-holder > button {\n    color: var(--orange);\n    background-color: var(--dark);\n    /* margin-top: 5%; */\n    padding: 2%;\n    border-radius: 0.3em;\n}\n.select-holder > select {\n    background: var(--white);\n    color: var(--light-dark);\n}\n@media screen and (max-width: 960px) {\n    main {\n        display: flex;\n        flex-direction: column-reverse;\n        padding: 1rem;\n    }\n    .created-task-container {\n        height: 500px;\n        width: 100%;\n    }\n    .created-tasks-holder {\n        width: 100% !important;\n    }\n    .create-form-conatiner {\n        padding: 0;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24101,7 +24140,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body,\nsection {\n    width: 100%;\n    height: 100vh;\n    background: var(--white);\n    color: white;\n}\n\nsection {\n    display: grid;\n    justify-items: center;\n    place-items: center;\n}\n\n.login-btn {\n    padding: 0.3em;\n    background: var(--orange);\n    color: var(--white);\n    border-radius: 0.3em;\n    width: 100%;\n    font-size: 1.5rem;\n}\n\nform {\n    border: 1px solid var(--orange);\n    height: fit-content;\n    padding: 1.4em;\n    border-radius: 0.4em;\n}\n\n.form-container {\n    min-width: 700px;\n    height: max-content;\n    background: var(--light-dark);\n}\n\n.input-holder {\n    display: flex;\n    gap: 0.5em;\n    flex-direction: column;\n}\n\ninput {\n    border-radius: 0.4em !important;\n    color: black !important;\n}\n.logo-diplay {\n    display: flex;\n    flex-direction: column-reverse;\n    align-items: center;\n    color: var(--orange);\n    font-weight: bold;\n    background: var(--black);\n    z-index: 2;\n    height: 10rem;\n    width: 100%;\n}\n.logo-diplay > p {\n    font-size: 2em;\n}\n.logo-diplay > img {\n    height: 50px;\n    width: 50px;\n    border-radius: 0.2em;\n}\n\n@media screen and (max-width: 960px) {\n    .form-container {\n        width: 90%;\n        min-width: 90% !important;\n        padding: 0;\n        display: grid;\n        place-items: center;\n    }\n    form {\n        width: 90%;\n        height: 50vh;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body,\nsection {\n    width: 100%;\n    height: 100vh;\n    background: var(--light-dark);\n    color: white;\n}\n\nsection {\n    display: grid;\n    justify-items: center;\n    place-items: center;\n}\n\n.login-btn {\n    padding: 0.3em;\n    background: var(--orange);\n    color: var(--white);\n    border-radius: 0.3em;\n    width: 100%;\n    font-size: 1.5rem;\n}\n\nform {\n    height: fit-content;\n    padding: 1.4em;\n    border-radius: 0.4em;\n}\n\n.form-container {\n    width: 700px !important;\n    height: max-content;\n    background: var(--light-dark);\n    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4);\n    border-radius: 0.3rem;\n}\n.user-links {\n    padding-left: 1.4rem;\n    font-size: 1.2rem;\n}\n.input-holder {\n    display: flex;\n    gap: 0.5em;\n    flex-direction: column;\n}\n\ninput {\n    border-radius: 0.4em !important;\n    color: black !important;\n}\n.logo-diplay {\n    display: flex;\n    flex-direction: column-reverse;\n    align-items: center;\n    color: var(--orange);\n    font-weight: bold;\n    background: var(--black);\n    z-index: 2;\n    height: 10rem;\n    width: 100%;\n}\n.logo-diplay > p {\n    font-size: 2em;\n}\n.logo-diplay > img {\n    height: 50px;\n    width: 50px;\n    border-radius: 0.2em;\n}\n\n@media screen and (max-width: 960px) {\n    .form-container {\n        width: 90%;\n        min-width: 90% !important;\n        padding: 0;\n        display: grid;\n        place-items: center;\n    }\n    form {\n        width: 90%;\n        height: 50vh;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -69786,6 +69825,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ForgotPassword_vue_vue_type_style_index_0_id_2d73eca8_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ForgotPassword_vue_vue_type_style_index_0_id_2d73eca8_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ForgotPassword_vue_vue_type_style_index_0_id_2d73eca8_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Login.vue?vue&type=style&index=0&id=a2ac2cea&lang=css":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Login.vue?vue&type=style&index=0&id=a2ac2cea&lang=css ***!
@@ -70649,13 +70718,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ForgotPassword_vue_vue_type_template_id_2d73eca8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ForgotPassword.vue?vue&type=template&id=2d73eca8 */ "./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=template&id=2d73eca8");
 /* harmony import */ var _ForgotPassword_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ForgotPassword.vue?vue&type=script&setup=true&lang=js */ "./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=script&setup=true&lang=js");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _ForgotPassword_vue_vue_type_style_index_0_id_2d73eca8_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css */ "./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ForgotPassword_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ForgotPassword_vue_vue_type_template_id_2d73eca8__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/ForgotPassword.vue"]])
+
+
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ForgotPassword_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ForgotPassword_vue_vue_type_template_id_2d73eca8__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/ForgotPassword.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -72025,6 +72097,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddTask_vue_vue_type_style_index_0_id_d61421a6_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddTask.vue?vue&type=style&index=0&id=d61421a6&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/AddTask.vue?vue&type=style&index=0&id=d61421a6&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ForgotPassword_vue_vue_type_style_index_0_id_2d73eca8_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/ForgotPassword.vue?vue&type=style&index=0&id=2d73eca8&lang=css");
 
 
 /***/ }),

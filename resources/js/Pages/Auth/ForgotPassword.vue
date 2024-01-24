@@ -20,30 +20,40 @@ const submit = () => {
 </script>
 
 <template>
-    <BreezeGuestLayout>
-        <Head title="Forgot Password" />
-
-        <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
-        </div>
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
-        <BreezeValidationErrors class="mb-4" />
-
-        <form @submit.prevent="submit">
-            <div>
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+    <section>
+        <div class="form-container">
+            <div class="logo-diplay">
+                <p>Password Reset</p>
+                <img src="../../../images/icon.jpg" alt="logo display">
             </div>
+            <ValidationErrorsVue class="mb-4" />
+            <form action="" method="post" @submit.prevent="submit">
 
-            <div class="flex items-center justify-end mt-4">
-                <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
-                </BreezeButton>
+                <div class="mb-4 description-text">
+                    Forgot your password? No problem. Just let us know your email address and we will email you a password
+                    reset
+                    link that will allow you to choose a new one.
+
+                </div>
+
+                <div class="mb-3 input-holder">
+                    <label for="exampleFormControlInput1" class="form-label">Email:</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+                        v-model="form.email">
+                </div>
+
+                <button type="submit" class="btn btn-primary login-btn">Send Reset Link</button>
+            </form>
+            <div class="user-links">
+                <a href="/login">Login instead?</a>
             </div>
-        </form>
-    </BreezeGuestLayout>
+        </div>
+    </section>
 </template>
+<style>
+@import url("../../Styles/form.css");
+
+.description-text {
+    text-align: center;
+}
+</style>

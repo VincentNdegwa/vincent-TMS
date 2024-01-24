@@ -65,6 +65,8 @@ class taskController extends Controller
 
     public function addTask(Request $request)
     {
+        $dueDateInput = $request->input('dueDate');
+        $dueDate = Carbon::parse($dueDateInput);
         if ($request->hasFile('taskFile')) {
             $file = $request->file('taskFile');
             $path = $file->store('taskFiles', 'public');
@@ -74,7 +76,7 @@ class taskController extends Controller
                 "assigner" => auth()->id(),
                 "user_id" => $request->input('user_id'),
                 "priority" => $request->input('priority'),
-                "due_date" => Carbon::parse($request->input('due_date'))->timestamp,
+                "due_date" => $dueDate->timestamp,
                 'description' => $request->input("description"),
                 'taskFile' => $path,
             ]);
@@ -85,7 +87,7 @@ class taskController extends Controller
                 "assigner" => auth()->id(),
                 "user_id" => $request->input('user_id'),
                 "priority" => $request->input('priority'),
-                "due_date" => Carbon::parse($request->input('due_date'))->timestamp,
+                "due_date" => $dueDate->timestamp,
                 'description' => $request->input("description"),
             ]);
         }

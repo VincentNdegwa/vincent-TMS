@@ -113,21 +113,31 @@ textarea {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
     display: grid;
     place-items: center;
 }
 .select-holder {
-    color: #4e31aa;
-    border: 1px solid;
+    color: var(--white);
+    /* border: 1px solid; */
     width: 50%;
-    height: 50%;
-    background-color: #4e31aa;
+    height: 70%;
+    background-color: var(--light-dark);
     padding: 1em;
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 4%;
+    border-radius: 0.5rem;
+}
+.exit_button {
+    background: var(--orange);
+    color: var(--white);
+    position: absolute;
+    top: 15%;
+    right: 25%;
+    font-size: 1.4rem;
+    padding: 0.6rem;
 }
 .select-holder > select {
     width: 100%;
@@ -137,13 +147,16 @@ textarea {
     color: black;
 }
 .select-holder > button {
-    color: white;
-    background-color: #acb1d6;
+    color: var(--orange);
+    background-color: var(--dark);
     /* margin-top: 5%; */
     padding: 2%;
     border-radius: 0.3em;
 }
-
+.select-holder > select {
+    background: var(--white);
+    color: var(--light-dark);
+}
 @media screen and (max-width: 960px) {
     main {
         display: flex;
