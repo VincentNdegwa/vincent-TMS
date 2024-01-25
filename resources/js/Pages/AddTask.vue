@@ -2,13 +2,20 @@
 import HeaderHome from './HomeComponents/HeaderHome.vue';
 import AddForm from "./AddTaskComponents/addForm.vue"
 import SideDisplay from "./AddTaskComponents/sideDisplay.vue"
+import SweetAlerts from "../modules/SweetAlerts.vue"
 import { useForm } from '@inertiajs/vue3';
+import axios from 'axios';
+import { handleError } from 'vue';
 // import FormComponents from "./AddTaskComonents/Form.vue";
 export default {
-    props: ["auth", "assigningTasks", "users"],
+    props: {
+        assigningTasks: Array,
+        users: Array,
+        auth: Object
+    },
     data() {
         return {
-            showSelect: true,
+            showSelect: false,
             form: {
                 name: "",
                 description: "",
@@ -17,7 +24,9 @@ export default {
                 priority: 0,
                 unique_id: Date.now(),
                 taskFile: "",
-            }
+            },
+            assigningTasksArray: [],
+            addedTask: {}
         }
     },
     methods: {
@@ -30,7 +39,7 @@ export default {
             this.form.priority = priority
             this.form.unique_id = unique_id
             this.form.taskFile = taskFile
-            console.log(this.form)
+
         },
         getId(id) {
             if (Number.isInteger(+id)) {
@@ -38,15 +47,37 @@ export default {
             }
 
         },
-        sendForm() {
-            let formSend = useForm(
-                this.form
-            )
-            formSend.post(route('addTask'), {
-                onFinish: () => {
-                    this.showSelect = false
+        async sendForm() {
+            try {
+                const formData = new FormData();
+                formData.append('name', this.form.name);
+                formData.append('unique_id', this.form.unique_id);
+                formData.append('user_id', this.form.user_id);
+                formData.append('priority', this.form.priority);
+                formData.append('dueDate', this.form.dueDate);
+                formData.append('description', this.form.description);
+                formData.append('taskFile', this.form.taskFile);
+
+                const response = await axios.post('/tasks/add', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+                this.addedTask = response.data.task;
+
+                this.showSelect = false;
+                this.$refs.SweetAlerts.showNotification("Task created");
+                console.log(this.addedTask)
+                if (this.addedTask) {
+                    this.assigningTasksArray.pop()
+                    this.assigningTasksArray.unshift(this.addedTask);
+                    console.log("added")
                 }
-            })
+            } catch (error) {
+                this.$refs.SweetAlerts.showError();
+                console.error(error)
+            }
         },
         exitOverlay() {
             this.showSelect = false
@@ -55,10 +86,13 @@ export default {
     components: {
         HeaderHome,
         AddForm,
-        SideDisplay
-    },
-    created() {
-        console.log(this.assigningTasks)
+        SideDisplay,
+        SweetAlerts
+    }, mounted() {
+        this.assigningTasks.forEach(element => {
+            this.assigningTasksArray.push(element)
+            console.log("mounted")
+        });
     }
 
 }
@@ -67,18 +101,19 @@ export default {
 
 <template>
     <section class="dashboard">
+        <SweetAlerts ref="SweetAlerts"></SweetAlerts>
         <HeaderHome :userName="auth.user.name" />
         <main>
             <div class="create-form-conatiner">
                 <AddForm @sendingForm="handleSending" />
             </div>
             <div class="created-task-container">
-                <SideDisplay :assigningTasks="assigningTasks" />
+                <SideDisplay :assigningTasks="assigningTasksArray" />
             </div>
             <div class="select-assingnee" v-if="showSelect">
                 <button class="exit_button" @click="exitOverlay">Exit</button>
                 <div class="select-holder">
-                    <select name="" id="" @change="getId($event.target.value)">
+                    <select name="" id="" @change="getId($event.target.value)" required>
                         <option>select user to assign task</option>
                         <option v-for="(item, index) in users" :key="index" :value="item.id">
                             <p class="option-name">{{ item.name }}</p>, &nbsp;&nbsp; <p>{{ item.email }}</p>

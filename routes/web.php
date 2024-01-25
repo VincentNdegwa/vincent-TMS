@@ -23,9 +23,9 @@ Route::prefix("/")->group(function () {
 
 // main data routes
 Route::prefix("/tasks")->group(function () {
-    Route::post('add', [taskController::class, "addTask"])->name('addTask');
-    Route::get('all', [taskController::class, "getAllTask"])->name('getAllTask');
-    Route::post("update", [taskController::class, "updateTask"])->name('updateTask');
+    Route::post('/add', [taskController::class, "addTask"])->name('addTask');
+    Route::get('/all', [taskController::class, "getAllTask"])->name('getAllTask');
+    Route::post("/update", [taskController::class, "updateTask"])->name('updateTask');
     Route::get("/", [taskController::class, "sortTask"])->name('sortTask');
     Route::post("/comment", [commentController::class, "create"])->name('createComment');
 });
@@ -43,3 +43,4 @@ Route::get('storage/{filename}', function ($filename) {
 })->where('filename', '.*');
 
 Route::get("/verify_email/{username}/{tokenLink}", [emailVerificationController::class, "verificationCreation"]);
+

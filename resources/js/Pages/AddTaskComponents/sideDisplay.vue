@@ -3,7 +3,7 @@ export default {
     props: ['assigningTasks'],
     data() {
         return {
-            userCreatedTask:""
+            userCreatedTask: ""
         }
     },
     created() {
@@ -17,34 +17,10 @@ export default {
         <div class="side-display">
             <h2>Latest Tasks Created</h2>
             <div class="display-container">
-                <div  v-for="(item, index) in assigningTasks" :key="index" class="display-item">
+                <div v-for="(item, index) in assigningTasks" :key="index" class="display-item">
                     <p>{{ item.name }} </p>
                 </div>
-                <!-- <div class="display-item">
-                    <p>name</p>
-                </div>
-                <div class="display-item">
-                    <p>name</p>
-                </div>
-                <div class="display-item">
-                    <p>name</p>
-                </div>
 
-                <div class="display-item">
-                    <p>name</p>
-                </div>
-                <div class="display-item">
-                    <p>name</p>
-                </div>
-                <div class="display-item">
-                    <p>name</p>
-                </div>
-                <div class="display-item">
-                    <p>name</p>
-                </div>
-                <div class="display-item">
-                    <p>name</p>
-                </div> -->
             </div>
         </div>
         <div class="side-display">

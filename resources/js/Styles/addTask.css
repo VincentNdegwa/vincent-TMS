@@ -83,7 +83,7 @@ textarea {
     border-radius: 0.3em;
 }
 .side-display > h2 {
-    color: #acb1d6;
+    color: var(--light-dark);
     border-bottom: 1px solid;
 }
 .side-display {
@@ -95,14 +95,22 @@ textarea {
     height: 100%;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2%;
     padding: 2%;
+    overflow-y: scroll;
 }
 .display-item {
     background: #ffba86;
-    color: #4e31aa;
+    color: var(--dark);
     border-radius: 0.3em;
+    padding: 0.5rem;
+}
+.display-item > p {
+    overflow: hidden;
+    width: calc(200px - 1rem);
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
 }
 /* ////////assignee select/////// */
 
@@ -164,7 +172,7 @@ textarea {
         padding: 1rem;
     }
     .created-task-container {
-        height: 500px;
+        height: 900px;
         width: 100%;
     }
     .created-tasks-holder {

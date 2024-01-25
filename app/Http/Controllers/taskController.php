@@ -8,6 +8,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class taskController extends Controller
 {
@@ -65,34 +66,43 @@ class taskController extends Controller
 
     public function addTask(Request $request)
     {
-        $dueDateInput = $request->input('dueDate');
-        $dueDate = Carbon::parse($dueDateInput);
-        if ($request->hasFile('taskFile')) {
-            $file = $request->file('taskFile');
-            $path = $file->store('taskFiles', 'public');
-            Task::create([
-                "name" => $request->input('name'),
-                "unique_id" => $request->input('unique_id'),
-                "assigner" => auth()->id(),
-                "user_id" => $request->input('user_id'),
-                "priority" => $request->input('priority'),
-                "due_date" => $dueDate->timestamp,
-                'description' => $request->input("description"),
-                'taskFile' => $path,
-            ]);
-        } else {
-            Task::create([
-                "name" => $request->input('name'),
-                "unique_id" => $request->input('unique_id'),
-                "assigner" => auth()->id(),
-                "user_id" => $request->input('user_id'),
-                "priority" => $request->input('priority'),
-                "due_date" => $dueDate->timestamp,
-                'description' => $request->input("description"),
-            ]);
-        }
 
-        return Inertia::render('AddTask');
+        try {
+            $dueDateInput = $request->input('dueDate');
+            $dueDate = Carbon::parse($dueDateInput);
+            $addedAsssigning = null;
+            if ($request->hasFile('taskFile')) {
+                $file = $request->file('taskFile');
+                $filename = $file->storeAs('taskFiles', $file->getClientOriginalName(), 'public');
+                $addedAsssigning = Task::create([
+                    "name" => $request->input('name'),
+                    "unique_id" => $request->input('unique_id'),
+                    "assigner" => auth()->id(),
+                    "user_id" => $request->input('user_id'),
+                    "priority" => $request->input('priority'),
+                    "due_date" => $dueDate->timestamp,
+                    'description' => $request->input("description"),
+                    'taskFile' => $filename,
+                ]);
+            } else {
+                $addedAsssigning = Task::create([
+                    "name" => $request->input('name'),
+                    "unique_id" => $request->input('unique_id'),
+                    "assigner" => auth()->id(),
+                    "user_id" => $request->input('user_id'),
+                    "priority" => $request->input('priority'),
+                    "due_date" => $dueDate->timestamp,
+                    'description' => $request->input("description"),
+                ]);
+            }
+
+            return response()->json([
+                "error" => false,
+                "task" => $addedAsssigning
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function getUserTasks()
@@ -113,6 +123,7 @@ class taskController extends Controller
             'tasks' => Task::where('user_id', $loggedInId)->orderBy("created_at", "DESC")->get(),
             'assigningTasks' => Task::where('assigner', $loggedInId)->orderBy("created_at", "DESC")->limit(9)->get(),
             "users" => User::where("id", "!=", auth()->id())->get(),
+            "addedAsssigning" => null
         ]);
     }
 
