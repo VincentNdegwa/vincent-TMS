@@ -83,14 +83,16 @@ export default {
             <div class="display-task" v-if="display">
                 <div class="see-tasks">
                     <div class="header-with-cancel">
-                        <p @click="exitView"><i class='bx bx-exit'>exit</i></p>
+                        <p @click="exitView"><i class='bx bx-exit'></i></p>
+                        <h3>{{ taskData.name }} </h3>
                     </div>
                     <div class="see-task-main">
                         <div class="task-read">
-                            <h3>{{ taskData.name }} </h3>
+                            <p>Task description:</p>
                             <h2>{{ taskData.description }}</h2>
                             <form @submit.prevent="submiTask" class="task-reply">
-                                <textarea class="form-control reply-textarea" v-model="form.task_reply"></textarea>
+                                <textarea class="form-control reply-textarea" v-model="form.task_reply"
+                                    placeholder="Please enter your response..." required></textarea>
                                 <input type="file" name="response_file" id="" @input="handleFileResponse">
                                 <button type="submit">Submit</button>
                             </form>

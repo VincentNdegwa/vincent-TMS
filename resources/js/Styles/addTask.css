@@ -10,6 +10,7 @@ main {
     display: grid;
     grid-template-columns: 40% 60%;
     background-color: var(--light-dark);
+    height: 90vh;
 }
 
 .create-form-conatiner {
