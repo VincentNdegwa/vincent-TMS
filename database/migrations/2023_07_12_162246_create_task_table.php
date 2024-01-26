@@ -17,8 +17,9 @@ class CreateTaskTable extends Migration
             $table->id();
             $table->string('unique_id');
             $table->string('name');
-            $table->integer('assigner');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('assigner');
+            $table->foreign("assigner")->references("id")->on("users")->onDelete("cascade");
+            $table->integer('user_id')->nullable();
             $table->integer('priority')->default(0);
             $table->string('description')->nullable();
             $table->integer('likes')->default(0);

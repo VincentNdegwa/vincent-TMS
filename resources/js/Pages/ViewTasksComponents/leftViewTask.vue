@@ -50,7 +50,7 @@ export default {
                         <h2>{{ item.name }}</h2>
                         <h2>{{ item.priority }}</h2>
                         <h2>{{ item.completed ? "completed" : "incomplete" }}</h2>
-                        <h2>{{ item.due_date ? new Date(item.due_date * 1000).toLocaleDateString() : "no due date" }}</h2>
+                        <h2>{{ item.due_date ? new Date(item.due_date).toLocaleDateString() : "no due date" }}</h2>
                     </div>
 
                 </div>
