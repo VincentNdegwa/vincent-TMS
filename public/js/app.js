@@ -19682,6 +19682,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HomeComponents_TaskDisplay_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HomeComponents/TaskDisplay.vue */ "./resources/js/Pages/HomeComponents/TaskDisplay.vue");
 /* harmony import */ var _HomeComponents_UserGroups_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HomeComponents/UserGroups.vue */ "./resources/js/Pages/HomeComponents/UserGroups.vue");
 /* harmony import */ var _HomeComponents_TaskLIst_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HomeComponents/TaskLIst.vue */ "./resources/js/Pages/HomeComponents/TaskLIst.vue");
+/* harmony import */ var _HomeComponents_AddGroup_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HomeComponents/AddGroup.vue */ "./resources/js/Pages/HomeComponents/AddGroup.vue");
+
 
 
 
@@ -19694,7 +19696,8 @@ __webpack_require__.r(__webpack_exports__);
       limitData: [],
       allData: [],
       taskCountGiving: this.assigner,
-      taskAssigningData: this.assigningTasks
+      taskAssigningData: this.assigningTasks,
+      addGroup: false
     };
   },
   computed: {
@@ -19708,7 +19711,8 @@ __webpack_require__.r(__webpack_exports__);
     HeaderHome: _HomeComponents_HeaderHome_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     UserGroups: _HomeComponents_UserGroups_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     TaskDisplay: _HomeComponents_TaskDisplay_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    TaskList: _HomeComponents_TaskLIst_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    TaskList: _HomeComponents_TaskLIst_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    AddGroup: _HomeComponents_AddGroup_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   created: function created() {
     var _this$tasks;
@@ -19716,6 +19720,49 @@ __webpack_require__.r(__webpack_exports__);
       return index < 5;
     });
     this.allData = this.tasks;
+  },
+  methods: {
+    openOverlay: function openOverlay() {
+      this.addGroup = true;
+    },
+    closeOverlay: function closeOverlay() {
+      this.addGroup = false;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=script&lang=js":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=script&lang=js ***!
+  \************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    addGroup: Boolean
+  },
+  data: function data() {
+    return {
+      form: {
+        groupName: ""
+      }
+    };
+  },
+  methods: {
+    closeOverlay: function closeOverlay() {
+      this.$emit("closeOverlay");
+    },
+    submitForm: function submitForm() {}
   }
 });
 
@@ -19885,6 +19932,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     displayData: function displayData() {
       this.tasksAssigning = JSON.parse(JSON.stringify(this.taskAssigningData));
+    },
+    openOverlay: function openOverlay() {
+      this.$emit("openOverlay");
     }
   },
   created: function created() {
@@ -21163,16 +21213,90 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_UserGroups = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("UserGroups");
   var _component_TaskDisplay = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TaskDisplay");
   var _component_TaskList = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TaskList");
+  var _component_AddGroup = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AddGroup");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Head title=\"Dashboard\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_HeaderHome, {
     userName: $options.userName
   }, null, 8 /* PROPS */, ["userName"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserGroups, {
-    taskAssigningData: $data.taskAssigningData
-  }, null, 8 /* PROPS */, ["taskAssigningData"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TaskDisplay, {
+    taskAssigningData: $data.taskAssigningData,
+    onOpenOverlay: $options.openOverlay
+  }, null, 8 /* PROPS */, ["taskAssigningData", "onOpenOverlay"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TaskDisplay, {
     userTasks: $data.allData,
     taskCountGiving: $data.taskCountGiving
   }, null, 8 /* PROPS */, ["userTasks", "taskCountGiving"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TaskList, {
     userTasks: $data.limitData
-  }, null, 8 /* PROPS */, ["userTasks"])])])])])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+  }, null, 8 /* PROPS */, ["userTasks"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddGroup, {
+    onCloseOverlay: $options.closeOverlay,
+    addGroup: $data.addGroup
+  }, null, 8 /* PROPS */, ["onCloseOverlay", "addGroup"])])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=template&id=69b4545f":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=template&id=69b4545f ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  key: 0,
+  "class": "group_overlay"
+};
+var _hoisted_2 = {
+  "class": "group_form"
+};
+var _hoisted_3 = {
+  "class": "exit-button"
+};
+var _hoisted_4 = {
+  "class": "card container-fluid"
+};
+var _hoisted_5 = {
+  "class": "card-body"
+};
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "card-title"
+}, "Group Information", -1 /* HOISTED */);
+var _hoisted_7 = {
+  "class": "form-group"
+};
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "groupName"
+}, "Group Name", -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+  "class": "form-text text-muted"
+}, " The entered name will be the name of the group and can be edited later. You will be the admin of the group. ", -1 /* HOISTED */);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "submit",
+  "class": "btn btn-primary group_btn"
+}, "Create Group", -1 /* HOISTED */);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return $props.addGroup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.closeOverlay && $options.closeOverlay.apply($options, arguments);
+    }),
+    "class": "bx bx-x-circle"
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bootstrap Form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.submitForm && $options.submitForm.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.form.groupName = $event;
+    }),
+    "class": "form-control",
+    id: "groupName",
+    required: ""
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.groupName]]), _hoisted_9]), _hoisted_10], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Bootstrap Form ")])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
@@ -21403,10 +21527,28 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "left-main"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"user-groups\"><div class=\"groups-holder\"><div class=\"group-header\"><p>groups</p><p>+</p></div><div class=\"groups-items\"><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div></div></div></div>", 1);
+var _hoisted_2 = {
+  "class": "user-groups"
+};
+var _hoisted_3 = {
+  "class": "groups-holder"
+};
+var _hoisted_4 = {
+  "class": "group-header"
+};
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Groups", -1 /* HOISTED */);
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "bx bx-plus"
+}, null, -1 /* HOISTED */);
+var _hoisted_7 = [_hoisted_6];
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"groups-items\"><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div><div class=\"group-item\"> group item </div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AssigningTaskLIst = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AssigningTaskLIst");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AssigningTaskLIst, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.openOverlay && $options.openOverlay.apply($options, arguments);
+    })
+  }, _hoisted_7)]), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AssigningTaskLIst, {
     tasksAssigning: _ctx.tasksAssigning
   }, null, 8 /* PROPS */, ["tasksAssigning"])]);
 }
@@ -24082,6 +24224,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n", ""]);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.group_overlay {\n    width: 100%;\n    height: 100vh;\n    background: rgba(0, 0, 0, 0.8);\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n}\n.group_form {\n    max-width: 700px;\n    width: 100%;\n}\n.card {\n    background-color: var(--light-dark);\n}\n.group_btn {\n    background: transparent;\n    border: 1px solid var(--orange);\n}\n.group_btn:hover {\n    background: var(--orange);\n}\n.card-title {\n    height: 100px;\n    color: var(--orange);\n    font-size: 1.6rem;\n}\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 1rem;\n}\n.exit-button>i {\n    font-size: 2rem;\n    color: var(--white);\n    cursor: pointer;\n}\n.exit-button>i:hover {\n    color: var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/HeaderHome.vue?vue&type=style&index=0&id=0f3e6c66&lang=css":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/HeaderHome.vue?vue&type=style&index=0&id=0f3e6c66&lang=css ***!
@@ -24259,7 +24425,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\n    --dark: #010101;\n    --orange: #fe6902;\n    --light-dark: #262626;\n    --white: #e5e5e5;\n}\n.dashboard {\n    width: 100%;\n    min-height: 100vh;\n    background: var(--white);\n    display: grid;\n    color: white;\n    grid-template-rows: 10vh 90vh;\n    position: relative;\n}\n\nheader,\nmain {\n    width: 100%;\n    padding-left: 5%;\n    padding-right: 5%;\n}\n\nheader {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    height: 10vh;\n    width: 100%;\n    /* background: #a67598; */\n    background-color: var(--white);\n    border-bottom: 1px solid var(--orange);\n    display: fixed;\n    top: 0;\n}\nheader .avatar {\n    color: var(--dark);\n    font-size: 2rem;\n    font-weight: bold;\n}\nheader .bx-menu {\n    display: none;\n}\nheader .bx-menu,\n.bx-x {\n    color: var(--orange);\n    font-size: 2.5rem;\n    position: sticky;\n    top: 0;\n}\n.bx-x {\n    position: absolute;\n    top: 2.5%;\n    right: 5%;\n    z-index: 100 !important;\n}\n.left_header {\n    display: flex;\n    /* gap: 20%;\n    width: 50%; */\n}\nnav {\n    display: flex;\n    padding: 0.4em;\n    gap: 1em;\n    /* border: 1px solid; */\n    justify-content: flex-end;\n}\n.left-nav {\n    display: flex;\n    align-items: center;\n    gap: 1em;\n    color: var(--orange);\n}\n.left-nav h2 {\n    font-size: 2rem;\n    margin: 0 !important;\n}\n.left-nav a {\n    font-size: 1.5rem;\n}\nnav > a {\n    background: var(--orange);\n    color: var(--white);\n    border-radius: 0.2em;\n    padding: 1em;\n    display: flex;\n    justify-content: flex-start;\n    text-wrap: nowrap;\n    text-overflow: ellipsis;\n}\n\nnav > a:hover {\n    background: var(--light-dark);\n    transition: all ease 2s;\n}\n\n.main-container {\n    width: 100%;\n    /* height: 100%; */\n    /* border: 1px solid; */\n    display: grid;\n    grid-template-columns: 40% 60%;\n    height: 90vh;\n}\n\n/* .user-groups,\n.user-task-display {\n    border: 1px solid;\n} */\n.left-main {\n    /* display: grid; */\n    width: 100%;\n    /* border: 1px solid; */\n    height: 100%;\n}\n\n/* .task-assigning {\n    border: 1px solid;\n} */\n\n.user-groups {\n    display: grid;\n    /* justify-content: center; */\n    /* place-items: center; */\n    width: 100%;\n    height: 50vh;\n}\n\n.groups-holder {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10% 90%;\n    background: var(--light-dark);\n    margin-top: 0.8em;\n    /* position: relative; */\n    overflow-y: scroll;\n}\n\n.group-header {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    background: var(--orange);\n    /* border: 1px solid; */\n}\n\n.groups-items {\n    width: 100%;\n    height: 100%;\n    padding: 3%;\n    overflow-y: scroll;\n}\n\n.groups-items::-webkit-scrollbar,\n.groups-holder::-webkit-scrollbar {\n    display: none;\n}\n\n.group-item {\n    background: var(--white);\n    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.4);\n    border-radius: 1em;\n    color: var(--dark);\n    padding: 0.5em;\n    height: 60px !important;\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n.user-task-display {\n    width: 100%;\n    display: grid;\n    place-items: center;\n}\n\n.task-display {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: 60% 40%;\n}\n\n.main-task-displays {\n    /* border: 1px solid; */\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-template-rows: 1fr 1fr;\n    gap: 3%;\n    margin-top: 1em;\n}\n\n.task-item {\n    border-radius: 0.3em;\n    box-shadow: 1px 2px 5px 1px var(--dark);\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around;\n    color: var(--white);\n    background: var(--light-dark);\n}\n\n.task-item > h1 {\n    font-size: 3em;\n    font-weight: bold;\n    color: var(--orange);\n    text-indent: 10%;\n}\n\n.task-item > p {\n    text-indent: 10%;\n    font-size: 1.4rem;\n}\n\n.task-list {\n    display: grid;\n    place-items: center;\n}\n\n.task-holder {\n    width: 90%;\n    height: 90%;\n    background: var(--light-dark);\n    border-radius: 0.4em;\n    /* position: relative; */\n    /* z-index: 0 !important; */\n}\n.task-holder thead tr {\n    border: 1px solid var(--orange);\n    margin-top: 1rem;\n}\n.task-holder thead {\n    color: var(--dark);\n}\n.no-task-row {\n    color: var(--white);\n    width: 100%;\n    font-size: 2rem;\n    text-align: center;\n}\n\n.table {\n    width: 100% !important;\n    height: 100% !important;\n    display: grid;\n    grid-template-rows: 20% 80%;\n}\n\nthead > tr,\ntbody > tr {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr);\n    text-align: center;\n}\n\n.assigning-tr {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    text-align: center;\n}\n\n.asssigning-table {\n    width: 100% !important;\n    height: 100% !important;\n    display: grid;\n    grid-template-rows: 20% 80%;\n    border: 1px solid #acb1d6;\n    border-radius: 0.3em;\n}\n\nthead {\n    background: var(--white);\n    border-top: 1px solid #acb1d6;\n    border-left: 1px solid #acb1d6;\n    border-right: 1px solid #acb1d6;\n    border-top-right-radius: 0.4em;\n    border-top-left-radius: 0.4em;\n    border: 1px solid gray;\n}\n\n.ellipsis {\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ////////////////// */\n.task-assigning {\n    /* border: 1px solid; */\n    display: grid;\n    height: 35vh;\n    width: 100%;\n    margin-top: 1rem;\n    border-radius: 1rem;\n}\n\n.assigning-table-holder {\n    /* border: 1px solid; */\n    height: 100%;\n    width: 100%;\n    padding: 0.5rem;\n}\n.assigning-table-holder > div {\n    background: var(--orange);\n    width: 100%;\n}\n.assigning-table {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10% 90%;\n    overflow-y: scroll;\n    /* position: relative; */\n}\n\n.assigning-table > thead {\n    background: var(--light-dark);\n    /* position: sticky; */\n    top: 0;\n}\n\n.assigning-table > tbody {\n    background: white;\n    display: grid;\n    grid-template-rows: repeat(5, 15%);\n    padding-left: 0.3em;\n    padding-right: 0.3em;\n    gap: 0.3em;\n}\n\n.table-group-divider > tr > th,\n.table-group-divider > tr > td {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.table-group-divider > tr,\n.assigning-table > thead > tr {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n}\n.table-group-divider > tr {\n    background-color: #ffba86;\n    margin-top: 1.5%;\n    color: #4e31aa;\n    border-radius: 0.2em;\n    height: 1.5em;\n}\n.table-group-divider {\n    height: 90%;\n}\n/* media query */\n@media screen and (max-width: 960px) {\n    header .bx-menu {\n        display: block;\n    }\n    .left_header {\n        display: block;\n        position: fixed;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        transform: translateX(100%);\n        background-color: var(--light-dark) !important;\n        z-index: 10 !important;\n        padding: 1rem;\n        opacity: 0;\n        transition: all ease-in-out 1s;\n    }\n\n    .openMenu {\n        transform: translateX(0);\n        background-color: var(--light-dark) !important;\n        z-index: 10 !important;\n        opacity: 1;\n        transition: all ease-in-out 1s;\n    }\n    .openMenu > nav {\n        margin-top: 10vh;\n    }\n    .left_header nav {\n        display: block;\n    }\n    .left_header nav a {\n        margin-top: 1rem;\n        /* font-size: 1.5rem; */\n        font-weight: bold;\n    }\n    .main-container {\n        display: flex;\n        flex-direction: column-reverse;\n        height: fit-content !important;\n        width: 100%;\n        padding: 0.8rem !important;\n        height: max-content;\n    }\n    .user-task-display {\n        height: 1000px;\n    }\n    .dashboard {\n        min-height: none;\n        height: max-content;\n    }\n    .main-container > * {\n        width: 100% !important;\n    }\n    .user-task-display > *,\n    .task-holder {\n        width: 100%;\n    }\n    header {\n        position: sticky;\n        top: 0;\n    }\n}\n@media screen and (max-width: 500px) {\n    .main-task-displays {\n        display: flex;\n        flex-direction: column;\n    }\n    .main-task-displays > * {\n        height: 200px;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\n    --dark: #010101;\n    --orange: #fe6902;\n    --light-dark: #262626;\n    --white: #e5e5e5;\n}\n.dashboard {\n    width: 100%;\n    min-height: 100vh;\n    background: var(--white);\n    display: grid;\n    color: white;\n    grid-template-rows: 10vh 90vh;\n    position: relative;\n}\n\nheader,\nmain {\n    width: 100%;\n    padding-left: 5%;\n    padding-right: 5%;\n}\n\nheader {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    height: 10vh;\n    width: 100%;\n    /* background: #a67598; */\n    background-color: var(--white);\n    border-bottom: 1px solid var(--orange);\n    display: fixed;\n    top: 0;\n}\nheader .avatar {\n    color: var(--dark);\n    font-size: 2rem;\n    font-weight: bold;\n}\nheader .bx-menu {\n    display: none;\n}\nheader .bx-menu,\n.bx-x {\n    color: var(--orange);\n    font-size: 2.5rem;\n    position: sticky;\n    top: 0;\n}\n.bx-x {\n    position: absolute;\n    top: 2.5%;\n    right: 5%;\n    z-index: 100 !important;\n}\n.left_header {\n    display: flex;\n    /* gap: 20%;\n    width: 50%; */\n}\nnav {\n    display: flex;\n    padding: 0.4em;\n    gap: 1em;\n    /* border: 1px solid; */\n    justify-content: flex-end;\n}\n.left-nav {\n    display: flex;\n    align-items: center;\n    gap: 1em;\n    color: var(--orange);\n}\n.left-nav h2 {\n    font-size: 2rem;\n    margin: 0 !important;\n}\n.left-nav a {\n    font-size: 1.5rem;\n}\nnav > a {\n    background: var(--orange);\n    color: var(--white);\n    border-radius: 0.2em;\n    padding: 1em;\n    display: flex;\n    justify-content: flex-start;\n    text-wrap: nowrap;\n    text-overflow: ellipsis;\n}\n\nnav > a:hover {\n    background: var(--light-dark);\n    transition: all ease 2s;\n}\n\n.main-container {\n    width: 100%;\n    /* height: 100%; */\n    /* border: 1px solid; */\n    display: grid;\n    grid-template-columns: 40% 60%;\n    height: 90vh;\n}\n\n/* .user-groups,\n.user-task-display {\n    border: 1px solid;\n} */\n.left-main {\n    /* display: grid; */\n    width: 100%;\n    /* border: 1px solid; */\n    height: 100%;\n}\n\n/* .task-assigning {\n    border: 1px solid;\n} */\n\n.user-groups {\n    display: grid;\n    /* justify-content: center; */\n    /* place-items: center; */\n    width: 100%;\n    height: 50vh;\n}\n\n.groups-holder {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10% 90%;\n    background: var(--light-dark);\n    margin-top: 0.8em;\n    /* position: relative; */\n    overflow-y: scroll;\n}\n\n.group-header {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    background: var(--orange);\n    /* border: 1px solid; */\n}\n.group-header > div {\n    color: var(--dark);\n    font-size: 2rem;\n    background: var(--white) !important;\n    width: 2.5rem;\n    height: 2.5rem;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n}\n.group-header > div:hover {\n    background: var(--dark) !important;\n    color: var(--white);\n    transition: all ease-in-out 0.5s;\n}\n.groups-items {\n    width: 100%;\n    height: 100%;\n    padding: 3%;\n    overflow-y: scroll;\n}\n\n.groups-items::-webkit-scrollbar,\n.groups-holder::-webkit-scrollbar {\n    display: none;\n}\n\n.group-item {\n    background: var(--white);\n    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.4);\n    border-radius: 1em;\n    color: var(--dark);\n    padding: 0.5em;\n    height: 60px !important;\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n.user-task-display {\n    width: 100%;\n    display: grid;\n    place-items: center;\n}\n\n.task-display {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: 60% 40%;\n}\n\n.main-task-displays {\n    /* border: 1px solid; */\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-template-rows: 1fr 1fr;\n    gap: 3%;\n    margin-top: 1em;\n}\n\n.task-item {\n    border-radius: 0.3em;\n    box-shadow: 1px 2px 5px 1px var(--dark);\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around;\n    color: var(--white);\n    background: var(--light-dark);\n}\n\n.task-item > h1 {\n    font-size: 3em;\n    font-weight: bold;\n    color: var(--orange);\n    text-indent: 10%;\n}\n\n.task-item > p {\n    text-indent: 10%;\n    font-size: 1.4rem;\n}\n\n.task-list {\n    display: grid;\n    place-items: center;\n}\n\n.task-holder {\n    width: 90%;\n    height: 90%;\n    background: var(--light-dark);\n    border-radius: 0.4em;\n    /* position: relative; */\n    /* z-index: 0 !important; */\n}\n.task-holder thead tr {\n    border: 1px solid var(--orange);\n    margin-top: 1rem;\n}\n.task-holder thead {\n    color: var(--dark);\n}\n.no-task-row {\n    color: var(--white);\n    width: 100%;\n    font-size: 2rem;\n    text-align: center;\n}\n\n.table {\n    width: 100% !important;\n    height: 100% !important;\n    display: grid;\n    grid-template-rows: 20% 80%;\n}\n\nthead > tr,\ntbody > tr {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr);\n    text-align: center;\n}\n\n.assigning-tr {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    text-align: center;\n}\n\n.asssigning-table {\n    width: 100% !important;\n    height: 100% !important;\n    display: grid;\n    grid-template-rows: 20% 80%;\n    border: 1px solid #acb1d6;\n    border-radius: 0.3em;\n}\n\nthead {\n    background: var(--white);\n    border-top: 1px solid #acb1d6;\n    border-left: 1px solid #acb1d6;\n    border-right: 1px solid #acb1d6;\n    border-top-right-radius: 0.4em;\n    border-top-left-radius: 0.4em;\n    border: 1px solid gray;\n}\n\n.ellipsis {\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ////////////////// */\n.task-assigning {\n    /* border: 1px solid; */\n    display: grid;\n    height: 35vh;\n    width: 100%;\n    margin-top: 1rem;\n    border-radius: 1rem;\n}\n\n.assigning-table-holder {\n    /* border: 1px solid; */\n    height: 100%;\n    width: 100%;\n    padding: 0.5rem;\n}\n.assigning-table-holder > div {\n    background: var(--orange);\n    width: 100%;\n}\n.assigning-table {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10% 90%;\n    overflow-y: scroll;\n    /* position: relative; */\n}\n\n.assigning-table > thead {\n    background: var(--light-dark);\n    /* position: sticky; */\n    top: 0;\n}\n\n.assigning-table > tbody {\n    background: white;\n    display: grid;\n    grid-template-rows: repeat(5, 15%);\n    padding-left: 0.3em;\n    padding-right: 0.3em;\n    gap: 0.3em;\n}\n\n.table-group-divider > tr > th,\n.table-group-divider > tr > td {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.table-group-divider > tr,\n.assigning-table > thead > tr {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n}\n.table-group-divider > tr {\n    background-color: #ffba86;\n    margin-top: 1.5%;\n    color: #4e31aa;\n    border-radius: 0.2em;\n    height: 1.5em;\n}\n.table-group-divider {\n    height: 90%;\n}\n/* media query */\n@media screen and (max-width: 960px) {\n    header .bx-menu {\n        display: block;\n    }\n    .left_header {\n        display: block;\n        position: fixed;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        transform: translateX(100%);\n        background-color: var(--light-dark) !important;\n        z-index: 10 !important;\n        padding: 1rem;\n        opacity: 0;\n        transition: all ease-in-out 1s;\n    }\n\n    .openMenu {\n        transform: translateX(0);\n        background-color: var(--light-dark) !important;\n        z-index: 10 !important;\n        opacity: 1;\n        transition: all ease-in-out 1s;\n    }\n    .openMenu > nav {\n        margin-top: 10vh;\n    }\n    .left_header nav {\n        display: block;\n    }\n    .left_header nav a {\n        margin-top: 1rem;\n        /* font-size: 1.5rem; */\n        font-weight: bold;\n    }\n    .main-container {\n        display: flex;\n        flex-direction: column-reverse;\n        height: fit-content !important;\n        width: 100%;\n        padding: 0.8rem !important;\n        height: max-content;\n    }\n    .user-task-display {\n        height: 1000px;\n    }\n    .dashboard {\n        min-height: none;\n        height: max-content;\n    }\n    .main-container > * {\n        width: 100% !important;\n    }\n    .user-task-display > *,\n    .task-holder {\n        width: 100%;\n    }\n    header {\n        position: sticky;\n        top: 0;\n    }\n}\n@media screen and (max-width: 500px) {\n    .main-task-displays {\n        display: flex;\n        flex-direction: column;\n    }\n    .main-task-displays > * {\n        height: 200px;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -70118,6 +70284,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_style_index_0_id_69b4545f_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_style_index_0_id_69b4545f_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_style_index_0_id_69b4545f_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/HeaderHome.vue?vue&type=style&index=0&id=0f3e6c66&lang=css":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/HeaderHome.vue?vue&type=style&index=0&id=0f3e6c66&lang=css ***!
@@ -71058,6 +71254,37 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/Pages/HomeComponents/AddGroup.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/Pages/HomeComponents/AddGroup.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AddGroup_vue_vue_type_template_id_69b4545f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddGroup.vue?vue&type=template&id=69b4545f */ "./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=template&id=69b4545f");
+/* harmony import */ var _AddGroup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddGroup.vue?vue&type=script&lang=js */ "./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=script&lang=js");
+/* harmony import */ var _AddGroup_vue_vue_type_style_index_0_id_69b4545f_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css */ "./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+
+
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_AddGroup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_AddGroup_vue_vue_type_template_id_69b4545f__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/HomeComponents/AddGroup.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue ***!
@@ -71663,6 +71890,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=script&lang=js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=script&lang=js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddGroup.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue?vue&type=script&lang=js":
 /*!*****************************************************************************************!*\
   !*** ./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue?vue&type=script&lang=js ***!
@@ -72127,6 +72370,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=template&id=69b4545f":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=template&id=69b4545f ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_template_id_69b4545f__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_template_id_69b4545f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddGroup.vue?vue&type=template&id=69b4545f */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=template&id=69b4545f");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue?vue&type=template&id=2ea906b6":
 /*!***********************************************************************************************!*\
   !*** ./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue?vue&type=template&id=2ea906b6 ***!
@@ -72364,6 +72623,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Dashboard_vue_vue_type_style_index_0_id_097ba13b_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Dashboard.vue?vue&type=style&index=0&id=097ba13b&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Dashboard.vue?vue&type=style&index=0&id=097ba13b&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddGroup_vue_vue_type_style_index_0_id_69b4545f_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/HomeComponents/AddGroup.vue?vue&type=style&index=0&id=69b4545f&lang=css");
 
 
 /***/ }),
@@ -72699,6 +72971,7 @@ var map = {
 	"./Auth/ResetPassword.vue": "./resources/js/Pages/Auth/ResetPassword.vue",
 	"./Auth/VerifyEmail.vue": "./resources/js/Pages/Auth/VerifyEmail.vue",
 	"./Dashboard.vue": "./resources/js/Pages/Dashboard.vue",
+	"./HomeComponents/AddGroup.vue": "./resources/js/Pages/HomeComponents/AddGroup.vue",
 	"./HomeComponents/AssigningTaskLIst.vue": "./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue",
 	"./HomeComponents/HeaderHome.vue": "./resources/js/Pages/HomeComponents/HeaderHome.vue",
 	"./HomeComponents/TaskDisplay.vue": "./resources/js/Pages/HomeComponents/TaskDisplay.vue",

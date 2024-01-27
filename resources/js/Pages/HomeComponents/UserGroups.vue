@@ -14,6 +14,9 @@ export default {
     methods: {
         displayData() {
             this.tasksAssigning = JSON.parse(JSON.stringify(this.taskAssigningData))
+        },
+        openOverlay() {
+            this.$emit("openOverlay")
         }
     },
     created() {
@@ -28,8 +31,8 @@ export default {
         <div class="user-groups">
             <div class="groups-holder">
                 <div class="group-header">
-                    <p>groups</p>
-                    <p>+</p>
+                    <p>Groups</p>
+                    <div @click="openOverlay"><i class='bx bx-plus'></i></div>
                 </div>
                 <div class="groups-items">
                     <div class="group-item">

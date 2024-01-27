@@ -146,7 +146,21 @@ nav > a:hover {
     background: var(--orange);
     /* border: 1px solid; */
 }
-
+.group-header > div {
+    color: var(--dark);
+    font-size: 2rem;
+    background: var(--white) !important;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+.group-header > div:hover {
+    background: var(--dark) !important;
+    color: var(--white);
+    transition: all ease-in-out 0.5s;
+}
 .groups-items {
     width: 100%;
     height: 100%;

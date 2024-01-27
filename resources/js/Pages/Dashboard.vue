@@ -4,16 +4,18 @@ import HeaderHome from "./HomeComponents/HeaderHome.vue";
 import TaskDisplay from "./HomeComponents/TaskDisplay.vue"
 import UserGroups from "./HomeComponents/UserGroups.vue";
 import TaskList from "./HomeComponents/TaskLIst.vue"
+import AddGroup from './HomeComponents/AddGroup.vue';
 
 
 export default {
-    props: ['tasks', 'auth','assigner','assigningTasks'],
+    props: ['tasks', 'auth', 'assigner', 'assigningTasks'],
     data() {
         return {
             limitData: [],
             allData: [],
             taskCountGiving: this.assigner,
-            taskAssigningData: this.assigningTasks
+            taskAssigningData: this.assigningTasks,
+            addGroup: false
         }
     },
     computed: {
@@ -27,10 +29,18 @@ export default {
         UserGroups,
         TaskDisplay,
         TaskList,
+        AddGroup,
     },
     created() {
         this.limitData = this.tasks?.filter((item, index) => index < 5);
         this.allData = this.tasks
+    }, methods: {
+        openOverlay() {
+            this.addGroup = true
+        },
+        closeOverlay() {
+            this.addGroup = false;
+        }
     }
 }
 
@@ -41,14 +51,15 @@ export default {
     <section class="dashboard">
         <HeaderHome :userName="userName" />
         <main class="main-container">
-            <UserGroups :taskAssigningData="taskAssigningData"/>
+            <UserGroups :taskAssigningData="taskAssigningData" @openOverlay="openOverlay" />
             <div class="user-task-display">
                 <div class="task-display">
-                    <TaskDisplay :userTasks="allData" :taskCountGiving="taskCountGiving"/>
+                    <TaskDisplay :userTasks="allData" :taskCountGiving="taskCountGiving" />
                     <TaskList :userTasks="limitData" />
                 </div>
             </div>
         </main>
+        <AddGroup @closeOverlay="closeOverlay" :addGroup="addGroup" />
     </section>
 </template>
 <style>
