@@ -42,7 +42,7 @@ const submit = () => {
                         v-model="form.email">
                 </div>
 
-                <button type="submit" class="btn btn-primary login-btn">Send Reset Link</button>
+                <button type="submit" class="btn login-btn">Send Reset Link</button>
             </form>
             <div class="user-links">
                 <a href="/login">Login instead?</a>

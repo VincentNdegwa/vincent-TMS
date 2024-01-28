@@ -53,7 +53,7 @@ export default {
                     <input type="password" class="form-control" id="exampleFormControlInput1"
                         v-model="form.password_confirmation">
                 </div>
-                <button type="submit" class="btn btn-primary login-btn">Register</button>
+                <button type="submit" class="btn login-btn">Register</button>
                 <div class="user-links">
                     <a :href="(route('login'))">
                         You have an account?

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\UserGroup;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -112,6 +114,10 @@ class taskController extends Controller
             'tasks' => Task::where('user_id', $loggedInId)->orderBy("created_at", "DESC")->get(),
             'assigningTasks' => Task::where('assigner', $loggedInId)->orderBy("created_at", "DESC")->limit(9)->get(),
             "assigner" => count(Task::where('assigner', $loggedInId)->get()),
+            "groups" => UserGroup::where('user_id', auth()->id())
+                ->join('groups', 'user_group.group_id', '=', 'groups.id')
+                ->get()
+
         ]);
     }
 

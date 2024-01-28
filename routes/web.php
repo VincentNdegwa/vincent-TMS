@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\commentController;
 use App\Http\Controllers\emailVerificationController;
+use App\Http\Controllers\group_controller;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\pageController;
@@ -44,3 +45,8 @@ Route::get('storage/{filename}', function ($filename) {
 
 Route::get("/verify_email/{username}/{tokenLink}", [emailVerificationController::class, "verificationCreation"]);
 
+//  public route 
+
+Route::group(['prefix' => 'group'], function () {
+    Route::post('/create', [group_controller::class, 'createNewGroup']);
+});

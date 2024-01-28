@@ -1,5 +1,6 @@
 <template>
     <div class="group_overlay" v-if="addGroup">
+        <SweetAlerts ref="SweetAlerts"></SweetAlerts>
         <div class="group_form">
             <div class="exit-button"><i @click="closeOverlay" class='bx bx-x-circle'></i></div>
             <div class="card container-fluid">
@@ -29,6 +30,7 @@
 
 <script>
 import axios from 'axios';
+import SweetAlerts from '@/modules/SweetAlerts.vue';
 export default {
     props: {
         addGroup: Boolean
@@ -37,15 +39,45 @@ export default {
         return {
             form: {
                 groupName: ""
-            }
+            }, createdGroup: ""
+            // group: {
+            //     "group_name": "",
+            //     "updated_at": "",
+            //     "created_at": "",
+            //     "id": ""
+            // }
         }
+    },
+    components: {
+        SweetAlerts
     },
     methods: {
         closeOverlay() {
             this.$emit("closeOverlay")
         },
-        submitForm() {
+        async submitForm() {
+            try {
+                let results = await axios.post("/group/create", {
+                    "group_name": this.form.groupName
+                })
+                if (results.data.error) {
+                    this.$refs.SweetAlerts.showNotificationError(results.data.message)
+                } else {
+                    this.$refs.SweetAlerts.showNotification(results.data.message)
+                    this.createdGroup = results.data.data
+                }
 
+                this.$emit("closeOverlay")
+            } catch (error) {
+                this.$refs.SweetAlerts.ShowAlert(error)
+            }
+        }
+    }, watch: {
+        createdGroup: {
+            handler: function (newGroup, oldGroup) {
+                console.log("newgroup detected")
+                this.$emit("latestGroup", newGroup)
+            }, deep: true
         }
     }
 }

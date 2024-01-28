@@ -8,7 +8,7 @@ import AddGroup from './HomeComponents/AddGroup.vue';
 
 
 export default {
-    props: ['tasks', 'auth', 'assigner', 'assigningTasks'],
+    props: ['tasks', 'auth', 'assigner', 'assigningTasks', 'groups'],
     data() {
         return {
             limitData: [],
@@ -40,6 +40,8 @@ export default {
         },
         closeOverlay() {
             this.addGroup = false;
+        }, latestGroup(group) {
+            this.groups.push(group)
         }
     }
 }
@@ -51,7 +53,7 @@ export default {
     <section class="dashboard">
         <HeaderHome :userName="userName" />
         <main class="main-container">
-            <UserGroups :taskAssigningData="taskAssigningData" @openOverlay="openOverlay" />
+            <UserGroups :taskAssigningData="taskAssigningData" :groups="groups" @openOverlay="openOverlay" />
             <div class="user-task-display">
                 <div class="task-display">
                     <TaskDisplay :userTasks="allData" :taskCountGiving="taskCountGiving" />
@@ -59,7 +61,7 @@ export default {
                 </div>
             </div>
         </main>
-        <AddGroup @closeOverlay="closeOverlay" :addGroup="addGroup" />
+        <AddGroup @closeOverlay="closeOverlay" @latestGroup="latestGroup" :addGroup="addGroup" />
     </section>
 </template>
 <style>

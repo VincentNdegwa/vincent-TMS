@@ -19,7 +19,7 @@
                     <input type="password" class="form-control" id="exampleFormControlInput2" v-model="form.password">
                 </div>
 
-                <button type="submit" class="btn btn-primary login-btn">Login</button>
+                <button type="submit" class="btn login-btn">Login</button>
             </form>
             <div class="user-links">
                 <a :href="(route('password.request'))">
