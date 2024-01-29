@@ -1,4 +1,5 @@
 <script>
+import { router } from '@inertiajs/vue3';
 import AssigningTaskLIst from './AssigningTaskLIst.vue';
 
 export default {
@@ -17,6 +18,10 @@ export default {
         },
         openOverlay() {
             this.$emit("openOverlay")
+        },
+        viewTheGroup(id) {
+            console.log(id)
+            router.visit("/group/view/"+id)
         }
     },
     created() {
@@ -35,7 +40,8 @@ export default {
                     <div @click="openOverlay"><i class='bx bx-plus'></i></div>
                 </div>
                 <div class="groups-items">
-                    <div class="group-item" v-for="(item, index) in groups" :key="index" v-if="groups.length > 0">
+                    <div class="group-item" @click="viewTheGroup(item.id)" v-for="(item, index) in groups" :key="index"
+                        v-if="groups.length > 0">
                         {{ item.group_name }}
                     </div>
                     <div v-else class="no_groups">

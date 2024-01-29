@@ -19980,7 +19980,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _AssigningTaskLIst_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AssigningTaskLIst.vue */ "./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue");
+/* harmony import */ var _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/vue3 */ "./node_modules/@inertiajs/vue3/dist/index.esm.js");
+/* harmony import */ var _AssigningTaskLIst_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AssigningTaskLIst.vue */ "./resources/js/Pages/HomeComponents/AssigningTaskLIst.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['taskAssigningData', 'groups'],
@@ -19989,7 +19991,7 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   components: {
-    AssigningTaskLIst: _AssigningTaskLIst_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AssigningTaskLIst: _AssigningTaskLIst_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     displayData: function displayData() {
@@ -19997,6 +19999,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     openOverlay: function openOverlay() {
       this.$emit("openOverlay");
+    },
+    viewTheGroup: function viewTheGroup(id) {
+      console.log(id);
+      _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_0__.router.visit("/group/view/" + id);
     }
   },
   created: function created() {
@@ -20135,6 +20141,14 @@ __webpack_require__.r(__webpack_exports__);
   props: ["viewData", "userName"],
   components: {
     HeaderHome: _HomeComponents_HeaderHome_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    scrollToBottom: function scrollToBottom() {
+      this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
+    }
+  },
+  mounted: function mounted() {
+    this.scrollToBottom();
   }
 });
 
@@ -21633,7 +21647,8 @@ var _hoisted_7 = [_hoisted_6];
 var _hoisted_8 = {
   "class": "groups-items"
 };
-var _hoisted_9 = {
+var _hoisted_9 = ["onClick"];
+var _hoisted_10 = {
   key: 1,
   "class": "no_groups"
 };
@@ -21648,9 +21663,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.groups, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "group-item",
+      onClick: function onClick($event) {
+        return $options.viewTheGroup(item.id);
+      },
       key: index
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.group_name), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, " You are not in any group yet! Click on the \"+\" button to add yourself into a new one. "))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AssigningTaskLIst, {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.group_name), 9 /* TEXT, PROPS */, _hoisted_9);
+  }), 128 /* KEYED_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, " You are not in any group yet! Click on the \"+\" button to add yourself into a new one. "))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AssigningTaskLIst, {
     tasksAssigning: _ctx.tasksAssigning
   }, null, 8 /* PROPS */, ["tasksAssigning"])]);
 }
@@ -21791,21 +21809,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../public/images/cool-background.png */ "./public/images/cool-background.png");
+
 
 var _hoisted_1 = {
   "class": "dashboard"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
+var _hoisted_2 = {
   "class": "group_container"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_3 = {
   "class": "main_screen"
-})], -1 /* HOISTED */);
-
+};
+var _hoisted_4 = {
+  "class": "conversation_section"
+};
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"conversation_header\"><div class=\"group_avatar\"><img src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\"></div><div class=\"group_name\"><p>Malaka group</p><small>Created at:</small></div><div class=\"group_functions\"><button>Create Task</button></div></div>", 1);
+var _hoisted_6 = {
+  "class": "converstaion_container",
+  ref: "conversationContainer"
+};
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div>", 10);
+var _hoisted_17 = [_hoisted_7];
+var _hoisted_18 = {
+  "class": "text_box"
+};
+var _hoisted_19 = {
+  "class": "input-container"
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"member_section\"><div class=\"group_details\"><img src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"Profile Image\"><h3>Group Name</h3><p>Group description goes here...</p></div><div class=\"member_details\"><div class=\"settings_group\"><small>Options</small><div class=\"settlings_list\"><div class=\"settings_item\"><i class=\"bx bx-edit\"></i> Edit Group </div><div class=\"settings_item\"><i class=\"bx bx-exit\"></i> Exit Group </div></div></div><div class=\"members_list\"><small>Members</small><div class=\"settings_item\"><i class=\"bx bx-plus-circle\"></i> Add Member </div><div class=\"member_scroll_list\"><div class=\"member-item\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"Member Avatar\"><div class=\"member-details\"><h3>Member Name</h3><p>member@example.com</p></div></div></div></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_HeaderHome = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("HeaderHome");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_HeaderHome, {
     userName: $props.userName
-  }, null, 8 /* PROPS */, ["userName"]), _hoisted_2]);
+  }, null, 8 /* PROPS */, ["userName"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, _hoisted_17, 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return _ctx.newMessage = $event;
+    }),
+    onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+      return _ctx.sendMessage && _ctx.sendMessage.apply(_ctx, arguments);
+    }, ["enter"])),
+    placeholder: "Type your message..."
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.newMessage]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "bx bx-send",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return _ctx.sendMessage && _ctx.sendMessage.apply(_ctx, arguments);
+    })
+  })])])]), _hoisted_20])])]);
 }
 
 /***/ }),
@@ -24476,11 +24526,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_Styles_viewgroup_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../Styles/viewgroup.css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./resources/js/Styles/viewgroup.css");
 // Imports
 
+
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_Styles_viewgroup_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n}\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    /* background-image: url(\"../../../public/images/cool-background.png\");\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    filter: blur(2px); */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24679,6 +24732,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".view-task-display {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-columns: 70% 30%;\n}\n\n.left-task-display,\n.right-task-display {\n    /* border: 1px solid; */\n    width: 100%;\n    height: 100%;\n    display: grid;\n    place-items: center;\n    color: #acb1d6;\n}\n/* left */\n.tasks-container {\n    height: 90%;\n    width: 90%;\n    border-radius: 0.3em;\n}\n.task-holder-display {\n    width: 100%;\n    background: white;\n    display: grid;\n    grid-template-rows: 10% 90%;\n    /* background: #4E31AA; */\n}\n.tasks-header {\n    width: 100%;\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    background: var(--orange);\n    color: var(--white);\n}\n.tasks-header > select > option {\n    background: var(--dark);\n    color: var(--orange);\n}\n.tasks-header > select {\n    border: 0px;\n    outline: none;\n}\n.tasks-body {\n    height: 700px;\n    display: grid;\n    align-items: start;\n    padding: 0.2em;\n    overflow-y: scroll;\n    background: var(--light-dark);\n}\n.tasks-body::-webkit-scrollbar {\n    display: none;\n}\n.task-item-display {\n    height: 4em;\n    color: var(--light-dark);\n    background: var(--white);\n    border-radius: 0.3em;\n    /* display: flex;\n    align-items: center; */\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    place-items: center;\n    /* color: #4E31AA; */\n    border: 1px solid #acb1d6;\n}\n.task-item-display:hover {\n    background: var(--orange);\n}\n/* right */\n\n.left-assigning {\n    width: 90%;\n    height: 90%;\n}\n.left-task-continer {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    place-items: center;\n}\n.task-assigning-body,\n.notask-assign {\n    background: var(--light-dark);\n    color: var(--white);\n    overflow-y: scroll;\n    height: 100%;\n}\n.left-assigning {\n    display: grid;\n    grid-template-rows: 10% 600px;\n}\n.header-assigning {\n    background: white;\n    color: #452c97;\n}\n.task-assigning-body {\n    height: 100%;\n    overflow-y: scroll;\n    padding: 0.2em;\n    background: white;\n}\n.task-assigning-body::-webkit-scrollbar {\n    display: none;\n}\n.task-assigning-items {\n    height: 6em;\n    width: 100%;\n    background: var(--dark);\n    color: var(--orange);\n    border: 1px solid white;\n    border-radius: 0.3em;\n}\n.display-task {\n    position: fixed;\n    width: 100%;\n    height: 100vh;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.6);\n    display: grid;\n    place-items: center;\n    overflow-y: scroll;\n}\n.see-tasks {\n    width: 80%;\n    height: 80%;\n    display: grid;\n    grid-template-rows: 10% 90%;\n    /* background: linear-gradient(45deg, #4e31aa, #ffba86); */\n    background: var(--light-dark);\n    color: white;\n    border-radius: 0.4em;\n}\n.header-with-cancel {\n    height: 100%;\n    font-size: 1.2em;\n    background-color: var(--white);\n    color: var(--dark);\n    position: relative;\n}\n.header-with-cancel > p {\n    position: absolute;\n    top: 1rem;\n    left: 1rem;\n    font-size: 2rem;\n}\n.header-with-cancel > h3 {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    font-size: 3rem;\n    color: var(--orange);\n    width: 500px;\n    text-align: center;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n}\n.see-task-main {\n    /* display: grid; */\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-columns: 60% 40%;\n    /* grid-template-rows: repeat(2, 1fr); */\n}\n.task-read {\n    padding: 1em;\n    color: #acb1d6;\n    height: 100%;\n    border-radius: 0.3em;\n    overflow: scroll;\n}\n.task-read > p {\n    font-size: 0.9rem;\n    color: var(--orange);\n}\n.task-read > h2 {\n    height: fit-content;\n    max-height: 300px;\n    overflow-y: scroll;\n    color: var(--white);\n    padding: 0.5rem;\n    font-size: 1.3rem;\n}\n.task-read > h2::-webkit-scrollbar {\n    display: none;\n}\n.task-reply {\n    /* padding: 1em; */\n    height: calc(100% - 300px - 0.9rem);\n    /* display: flex;\n    flex-direction: column; */\n    gap: 0.3em;\n    margin-top: 1em;\n}\n.reply-textarea {\n    border-radius: 0.3em;\n    height: 70%;\n    width: 100%;\n    resize: none;\n    color: var(--dark);\n}\n.task-reply > input {\n    width: 100%;\n    background: var(--dark);\n    color: var(--orange);\n}\n.task-reply > button {\n    background: var(--orange);\n    margin-top: 3%;\n    padding: 0.5em;\n    border-radius: 0.4em;\n    color: var(--dark);\n    width: 100%;\n}\n.files-display {\n    width: 100%;\n    /* height: 300px; */\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around;\n}\nobject {\n    /* height: 200px !important; */\n    height: 70%;\n    width: 100%;\n    overflow-y: hidden !important;\n}\n.file-preview-btn {\n    padding: 0.4em;\n    background: #ffba86;\n    color: var(--dark);\n    text-align: center;\n    border-radius: 0.4em;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./resources/js/Styles/viewgroup.css":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./resources/js/Styles/viewgroup.css ***!
+  \*********************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #ce4848;\n    font-weight: bold;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24902,6 +24979,21 @@ var deepmerge_1 = deepmerge;
 
 module.exports = deepmerge_1;
 
+
+/***/ }),
+
+/***/ "./public/images/cool-background.png":
+/*!*******************************************!*\
+  !*** ./public/images/cool-background.png ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/cool-background.png?63a8e6b18a3f5fe3aac3f922053812d7");
 
 /***/ }),
 
