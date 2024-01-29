@@ -12,4 +12,9 @@ class Group extends Model
     protected $fillable = [
         "group_name",
     ];
+
+    public function user_group()
+    {
+        return $this->hasMany(UserGroup::class);
+    }
 }

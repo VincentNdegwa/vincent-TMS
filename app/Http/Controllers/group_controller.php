@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\User;
 use App\Models\UserGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 
 class group_controller extends Controller
 {
@@ -48,6 +50,28 @@ class group_controller extends Controller
                 'validations' => $validation->errors(),
                 "message" => "You have missing inputs"
             ], 400);
+        }
+    }
+    function viewGroup($id)
+    {
+        $group = Group::where("groups.id", $id)
+            ->with(["user_group" => function ($query) {
+                $query->with("users");
+            }])
+            ->get();
+
+
+        if ($group) {
+            $userName = User::where("id", auth()->id())->value("name");
+
+            return Inertia::render("ViewGroup", [
+                "viewData" => [
+                    "error" => false,
+                    "data" => $group,
+                    "message" => "Group data retrieved"
+                ],
+                "userName" => $userName,
+            ]);
         }
     }
 }

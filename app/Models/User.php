@@ -35,4 +35,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class, 'assigner');
     }
+
+    function user_group_in()
+    {
+        return $this->hasMany(UserGroup::class);
+    }
 }

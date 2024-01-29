@@ -49,4 +49,5 @@ Route::get("/verify_email/{username}/{tokenLink}", [emailVerificationController:
 
 Route::group(['prefix' => 'group'], function () {
     Route::post('/create', [group_controller::class, 'createNewGroup']);
+    Route::get('/view/{group_id}', [group_controller::class, "viewGroup"]);
 });
