@@ -1,3 +1,30 @@
+<script>
+import HeaderHome from './HomeComponents/HeaderHome.vue';
+export default {
+    props: ["viewData", "userName"],
+    data() {
+        return {
+            mainData: Array
+        }
+    },
+    components: {
+        HeaderHome,
+    }, methods: {
+        scrollToBottom() {
+            this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
+        },
+    }, mounted() {
+        this.scrollToBottom()
+        if (!this.viewData.error) {
+            this.mainData = this.viewData.group_data
+            console.log(this.viewData)
+        } else {
+            console.log("There is an issue")
+        }
+    }
+}
+
+</script>
 <template>
     <section class="dashboard">
         <HeaderHome :userName="userName" />
@@ -9,8 +36,8 @@
                             <img src="../../../public/images/cool-background.png" alt="">
                         </div>
                         <div class="group_name">
-                            <p>Malaka group</p>
-                            <small>Created at:</small>
+                            <p>{{ mainData.group_name }}</p>
+                            <small>{{ mainData.created_at }}</small>
                         </div>
                         <div class="group_functions">
                             <button>Create Task</button>
@@ -125,7 +152,7 @@
                 <div class="member_section">
                     <div class="group_details">
                         <img src="../../../public/images/cool-background.png" alt="Profile Image" />
-                        <h3>Group Name</h3>
+                        <h3>{{ mainData.group_name }}</h3>
                         <p>Group description goes here...</p>
                     </div>
 
@@ -150,12 +177,12 @@
                                 Add Member
                             </div>
                             <div class="member_scroll_list">
-                                <div class="member-item">
+                                <div class="member-item" v-for="(item, index) in mainData.user_group" :key="index">
                                     <img class="avatar" src="../../../public/images/cool-background.png"
                                         alt="Member Avatar">
                                     <div class="member-details">
-                                        <h3>Member Name</h3>
-                                        <p>member@example.com</p>
+                                        <h3>{{ item.users.name }}</h3>
+                                        <p>{{ item.users.email }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -167,20 +194,8 @@
     </section>
 </template>
 
-<script>
-import HeaderHome from './HomeComponents/HeaderHome.vue';
-export default {
-    props: ["viewData", "userName"],
-    components: {
-        HeaderHome,
-    }, methods: {
-        scrollToBottom() {
-            this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
-        },
-    }, mounted() {
-        this.scrollToBottom()
-    }
-}
-</script>
 
-<style>@import url("../Styles/viewgroup.css");</style>
+
+<style>
+@import url("../Styles/viewgroup.css");
+</style>

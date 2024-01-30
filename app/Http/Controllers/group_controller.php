@@ -58,7 +58,7 @@ class group_controller extends Controller
             ->with(["user_group" => function ($query) {
                 $query->with("users");
             }])
-            ->get();
+            ->first();
 
 
         if ($group) {
@@ -67,7 +67,7 @@ class group_controller extends Controller
             return Inertia::render("ViewGroup", [
                 "viewData" => [
                     "error" => false,
-                    "data" => $group,
+                    "group_data" => $group,
                     "message" => "Group data retrieved"
                 ],
                 "userName" => $userName,
