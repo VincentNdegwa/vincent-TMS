@@ -1,23 +1,68 @@
 <script>
 import HeaderHome from './HomeComponents/HeaderHome.vue';
+import AddMember from "./GroupComponets/AddMemberGroup.vue"
+import DeleteGroup from "./GroupComponets/DeleteGroup.vue";
+import EditGroup from "./GroupComponets/EditGroup.vue";
+import ExitGroup from "./GroupComponets/ExitGroup.vue"
 export default {
     props: ["viewData", "userName"],
     data() {
         return {
-            mainData: Array
+            mainData: Array,
+            group_icon: "",
+            user_id: Number,
+            admin: false,
+
+            overLays: {
+                ShowAddMember
+                    : false,
+                ShowDeleteGroup: false,
+                ShowEditGroup: false,
+                ShowExitGroup: false,
+            },
+            openOverlay: false
+
         }
     },
     components: {
         HeaderHome,
+        AddMember,
+        DeleteGroup,
+        EditGroup,
+        ExitGroup,
     }, methods: {
         scrollToBottom() {
             this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
+        },
+        groupFunctions() {
+            let current_user = this.mainData.user_group.find((item) => item.users.id == this.user_id)
+            if (current_user.admin) {
+                this.admin = true
+            } else {
+                this.admin = false
+            }
+        },
+        checkIfAdmin(id) {
+            let list_user = this.mainData.user_group.find((item) => item.users.id == id)
+            if (list_user.admin) {
+                return true
+            } else {
+                return false
+            }
+        }, handleOptionClick(option) {
+            this.ShowEditGroup = option === 'edit';
+            this.ShowExitGroup = option === 'exit';
+            this.ShowDeleteGroup = option === 'delete';
+            this.ShowAddMember = option === 'addMember';
+            this.openOverlay = true;
         },
     }, mounted() {
         this.scrollToBottom()
         if (!this.viewData.error) {
             this.mainData = this.viewData.group_data
-            console.log(this.viewData)
+            this.group_icon = "/" + this.mainData.group_icon
+            this.user_id = this.viewData.user_id
+            this.groupFunctions()
         } else {
             console.log("There is an issue")
         }
@@ -33,7 +78,7 @@ export default {
                 <div class="conversation_section">
                     <div class="conversation_header">
                         <div class="group_avatar">
-                            <img src="../../../public/images/cool-background.png" alt="">
+                            <img :src="group_icon" alt="">
                         </div>
                         <div class="group_name">
                             <p>{{ mainData.group_name }}</p>
@@ -151,28 +196,32 @@ export default {
                 </div>
                 <div class="member_section">
                     <div class="group_details">
-                        <img src="../../../public/images/cool-background.png" alt="Profile Image" />
+                        <img :src="group_icon" alt="Profile Image" />
                         <h3>{{ mainData.group_name }}</h3>
-                        <p>Group description goes here...</p>
+                        <p>{{ mainData.group_description }}</p>
                     </div>
 
                     <div class="member_details">
                         <div class="settings_group">
                             <small>Options</small>
                             <div class="settlings_list">
-                                <div class="settings_item">
+                                <div @click="handleOptionClick('edit')" class="settings_item" v-if="admin">
                                     <i class='bx bx-edit'></i>
                                     Edit Group
                                 </div>
-                                <div class="settings_item">
+                                <div @click="handleOptionClick('exit')" class="settings_item">
                                     <i class='bx bx-exit'></i>
                                     Exit Group
+                                </div>
+                                <div @click="handleOptionClick('delete')" class="settings_item" v-if="admin">
+                                    <i class='bx bx-trash'></i>
+                                    Delete Group
                                 </div>
                             </div>
                         </div>
                         <div class="members_list">
                             <small>Members</small>
-                            <div class="settings_item">
+                            <div @click="handleOptionClick('addMember')" class="settings_item" v-if="admin">
                                 <i class='bx bx-plus-circle'></i>
                                 Add Member
                             </div>
@@ -184,6 +233,7 @@ export default {
                                         <h3>{{ item.users.name }}</h3>
                                         <p>{{ item.users.email }}</p>
                                     </div>
+                                    <i v-if="checkIfAdmin(item.id)" class='bx bxs-badge-check'></i>
                                 </div>
                             </div>
                         </div>
@@ -191,6 +241,13 @@ export default {
                 </div>
             </div>
         </main>
+        <div class="group_overlay" v-if="openOverlay">
+            <span @click="() => openOverlay = false"><i class='bx bx-x-circle'></i></span>
+            <AddMember :ShowAddMember="ShowAddMember" />
+            <DeleteGroup :ShowDeleteGroup="ShowDeleteGroup" />
+            <EditGroup :ShowEditGroup="ShowEditGroup" :mainData="mainData" />
+            <ExitGroup :ShowExitGroup="ShowExitGroup" />
+        </div>
     </section>
 </template>
 

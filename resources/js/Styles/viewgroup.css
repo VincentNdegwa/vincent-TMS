@@ -258,12 +258,16 @@
     font-weight: bold;
 }
 .settings_item .bx-exit {
-    color: #ce4848;
+    color: #b6772f;
     font-weight: bold;
+}
+.settings_item .bx-trash {
+    color: red;
 }
 .settings_item .bx-plus-circle {
     color: var(--orange);
 }
+
 .members_list {
     padding: 0.5rem;
 }
@@ -283,6 +287,13 @@
     border-bottom: 1px solid var(--light-dark);
     padding: 0 10px;
     margin-top: 0.2rem;
+    position: relative;
+}
+.member-item .bxs-badge-check {
+    color: blue;
+    font-size: 2rem;
+    position: absolute;
+    right: 0.5rem;
 }
 
 .member-item .avatar {
@@ -300,4 +311,20 @@
 .member-details p {
     margin: 0;
     color: var(--light-dark);
+}
+.group_overlay {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.7);
+}
+.group_overlay > span {
+    font-size: 2rem;
+    position: absolute;
+    right: 10%;
+    top: 10%;
 }

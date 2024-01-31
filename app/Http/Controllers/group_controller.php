@@ -29,8 +29,6 @@ class group_controller extends Controller
         }
 
         try {
-            // $groupIconPath = $request->file('group_icon')->store('public/group_icons');
-            // Assuming $request->file('group_icon') is the uploaded file
             $groupIconPath = $request->file('group_icon')->store('group_icons', 'public');
 
 
@@ -88,10 +86,54 @@ class group_controller extends Controller
                 "viewData" => [
                     "error" => false,
                     "group_data" => $group,
+                    "user_id" => auth()->id(),
                     "message" => "Group data retrieved"
                 ],
                 "userName" => $userName,
             ]);
         }
+    }
+
+
+    function editGroup(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'group_name' => 'required',
+            'group_description' => 'required',
+            'new_group_icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'group_icon' => 'nullable|string',
+            'existing_icon' => 'nullable|string',
+            'id' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => true, 'message' => $validator->errors()->first()], 400);
+        }
+
+        $group = Group::find($request->id);
+
+        if (!$group) {
+            return response()->json(['error' => true, 'message' => 'Group not found'], 404);
+        }
+
+        $group->group_name = $request->group_name;
+        $group->group_description = $request->group_description;
+
+        if ($request->new_group_icon) {
+            if ($request->existing_icon) {
+                Storage::delete($request->existing_icon);
+            }
+
+            $path = $request->file("new_group_icon")->store("group_icons", "public");
+            $group->group_icon = "storage/" . $path;
+        } elseif ($request->group_icon === "null") {
+            Storage::delete($request->existing_icon);
+            $group->group_icon = "null_image";
+        }
+
+        // Save the changes
+        $group->save();
+
+        return response()->json(['error' => false, 'message' => 'Group updated successfully', 'data' => $group], 200);
     }
 }
