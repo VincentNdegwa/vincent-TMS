@@ -11,6 +11,8 @@ class Group extends Model
     protected $table = 'groups';
     protected $fillable = [
         "group_name",
+        "group_description",
+        "group_icon"
     ];
 
     public function user_group()

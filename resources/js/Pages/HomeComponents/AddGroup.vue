@@ -7,20 +7,33 @@
                 <div class="card-body">
                     <h5 class="card-title">Group Information</h5>
 
-                    <!-- Bootstrap Form -->
                     <form @submit.prevent="submitForm">
                         <div class="form-group">
                             <label for="groupName">Group Name</label>
-                            <input type="text" v-model="form.groupName" class="form-control" id="groupName" required>
                             <small class="form-text text-muted">
                                 The entered name will be the name of the group and can be edited later. You will be the
                                 admin of the group.
                             </small>
+                            <input type="text" v-model="form.groupName" class="form-control" id="groupName" required>
+
+                            <label for="groupDescription">Group Description</label>
+                            <small class="form-text text-muted">
+                                Enter a brief description of the group.
+                            </small>
+                            <textarea type="text" v-model="form.group_description" class="form-control"
+                                id="group_description" required></textarea>
+
+                            <label for="groupIcon">Group Icon (Image File)</label>
+                            <small class="form-text text-muted">
+                                Please upload an image file (e.g., JPG, PNG) for the group icon.
+                            </small>
+                            <input type="file" @change="handleFileChange" accept="image/*" class="form-control"
+                                id="group_icon" required>
+
                         </div>
 
                         <button type="submit" class="btn btn-primary group_btn">Create Group</button>
                     </form>
-                    <!-- End Bootstrap Form -->
 
                 </div>
             </div>
@@ -31,6 +44,7 @@
 <script>
 import axios from 'axios';
 import SweetAlerts from '@/modules/SweetAlerts.vue';
+
 export default {
     props: {
         addGroup: Boolean
@@ -38,14 +52,11 @@ export default {
     data() {
         return {
             form: {
-                groupName: ""
-            }, createdGroup: ""
-            // group: {
-            //     "group_name": "",
-            //     "updated_at": "",
-            //     "created_at": "",
-            //     "id": ""
-            // }
+                groupName: "",
+                group_description: "",
+                group_icon: null
+            },
+            createdGroup: ""
         }
     },
     components: {
@@ -57,9 +68,17 @@ export default {
         },
         async submitForm() {
             try {
-                let results = await axios.post("/group/create", {
-                    "group_name": this.form.groupName
-                })
+                let formData = new FormData();
+                formData.append("group_name", this.form.groupName);
+                formData.append("group_description", this.form.group_description);
+                formData.append("group_icon", this.form.group_icon);
+
+                let results = await axios.post("/group/create", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
                 if (results.data.error) {
                     this.$refs.SweetAlerts.showNotificationError(results.data.message)
                 } else {
@@ -69,19 +88,26 @@ export default {
 
                 this.$emit("closeOverlay")
             } catch (error) {
+                console.log("there is a catch error")
                 this.$refs.SweetAlerts.ShowAlert(error)
             }
+        },
+        handleFileChange(event) {
+            this.form.group_icon = event.target.files[0];
         }
-    }, watch: {
+    },
+    watch: {
         createdGroup: {
             handler: function (newGroup, oldGroup) {
                 console.log("newgroup detected")
                 this.$emit("latestGroup", newGroup)
-            }, deep: true
+            },
+            deep: true
         }
     }
 }
 </script>
+
 
 <style>
 .group_overlay {
@@ -93,6 +119,11 @@ export default {
     left: 0;
     display: grid;
     place-items: center;
+    overflow-y: scroll;
+}
+
+.group_overlay::-webkit-scrollbar {
+    display: none;
 }
 
 .group_form {

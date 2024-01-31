@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
@@ -15,41 +16,60 @@ class group_controller extends Controller
     {
         $validation = Validator::make($request->all(), [
             "group_name" => "required",
+            "group_description" => "required",
+            "group_icon" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
-        if (!$validation->fails()) {
-            $group = Group::create([
-                "group_name" => $request->input("group_name")
-            ]);
-            $latest_group_id = $group->id;
-            if ($latest_group_id) {
-                $user_group = UserGroup::create([
-                    "user_id" => auth()->id(),
-                    "group_id" => $latest_group_id,
-                    "admin" => "true"
-                ]);
-                if ($user_group) {
-                    return response()->json([
-                        'error' => false,
-                        "data" => $group,
-                        "message" => "Group created"
-                    ], 201);
-                } else {
-                    $group->delete();
-                    return response()->json([
-                        'error' => true,
-                        'message' => 'Failed to add user to the group'
-                    ], 400);
-                }
-            } else {
-                return response()->json(['error' => true, 'message' => 'Failed to create new group'], 500);
-            }
-        } else {
+        if ($validation->fails()) {
             return response()->json([
                 'error' => true,
                 'validations' => $validation->errors(),
-                "message" => "You have missing inputs"
+                "message" => "Validation failed. Please check your inputs."
             ], 400);
+        }
+
+        try {
+            // $groupIconPath = $request->file('group_icon')->store('public/group_icons');
+            // Assuming $request->file('group_icon') is the uploaded file
+            $groupIconPath = $request->file('group_icon')->store('group_icons', 'public');
+
+
+            $group = Group::create([
+                "group_name" => $request->input("group_name"),
+                "group_description" => $request->input("group_description"),
+                "group_icon" => "storage/" . $groupIconPath
+            ]);
+
+            $latestGroupId = $group->id;
+
+            if (!$latestGroupId) {
+                throw new \Exception("Failed to create new group");
+            }
+
+
+            $userGroup = UserGroup::create([
+                "user_id" => auth()->id(),
+                "group_id" => $latestGroupId,
+                "admin" => true
+            ]);
+
+            if (!$userGroup) {
+                $group->delete();
+                Storage::delete($groupIconPath);
+
+                throw new \Exception("Failed to add user to the group");
+            }
+
+            return response()->json([
+                'error' => false,
+                "data" => $group,
+                "message" => "Group created successfully."
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
     function viewGroup($id)

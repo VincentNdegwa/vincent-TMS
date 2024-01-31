@@ -16,6 +16,8 @@ class Groups extends Migration
         Schema::create("groups", function (Blueprint $table) {
             $table->id();
             $table->string("group_name");
+            $table->string("group_description");
+            $table->string("group_icon");
             $table->timestamps();
         });
     }

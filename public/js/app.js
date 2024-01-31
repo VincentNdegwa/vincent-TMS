@@ -19763,18 +19763,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       form: {
-        groupName: ""
+        groupName: "",
+        group_description: "",
+        group_icon: null
       },
       createdGroup: ""
-      // group: {
-      //     "group_name": "",
-      //     "updated_at": "",
-      //     "created_at": "",
-      //     "id": ""
-      // }
     };
   },
-
   components: {
     SweetAlerts: _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -19785,16 +19780,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     submitForm: function submitForm() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var results;
+        var formData, results;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/group/create", {
-                "group_name": _this.form.groupName
+              formData = new FormData();
+              formData.append("group_name", _this.form.groupName);
+              formData.append("group_description", _this.form.group_description);
+              formData.append("group_icon", _this.form.group_icon);
+              _context.next = 7;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/group/create", formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
               });
-            case 3:
+            case 7:
               results = _context.sent;
               if (results.data.error) {
                 _this.$refs.SweetAlerts.showNotificationError(results.data.message);
@@ -19803,18 +19804,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.createdGroup = results.data.data;
               }
               _this.$emit("closeOverlay");
-              _context.next = 11;
+              _context.next = 16;
               break;
-            case 8:
-              _context.prev = 8;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](0);
+              console.log("there is a catch error");
               _this.$refs.SweetAlerts.ShowAlert(_context.t0);
-            case 11:
+            case 16:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 12]]);
       }))();
+    },
+    handleFileChange: function handleFileChange(event) {
+      this.form.group_icon = event.target.files[0];
     }
   },
   watch: {
@@ -21384,7 +21389,19 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
   "class": "form-text text-muted"
 }, " The entered name will be the name of the group and can be edited later. You will be the admin of the group. ", -1 /* HOISTED */);
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "groupDescription"
+}, "Group Description", -1 /* HOISTED */);
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+  "class": "form-text text-muted"
+}, " Enter a brief description of the group. ", -1 /* HOISTED */);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "groupIcon"
+}, "Group Icon (Image File)", -1 /* HOISTED */);
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+  "class": "form-text text-muted"
+}, " Please upload an image file (e.g., JPG, PNG) for the group icon. ", -1 /* HOISTED */);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary group_btn"
 }, "Create Group", -1 /* HOISTED */);
@@ -21398,11 +21415,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.closeOverlay && $options.closeOverlay.apply($options, arguments);
     }),
     "class": "bx bx-x-circle"
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bootstrap Form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.submitForm && $options.submitForm.apply($options, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.form.groupName = $event;
@@ -21410,7 +21427,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control",
     id: "groupName",
     required: ""
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.groupName]]), _hoisted_9]), _hoisted_10], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Bootstrap Form ")])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.groupName]]), _hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    type: "text",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.form.group_description = $event;
+    }),
+    "class": "form-control",
+    id: "group_description",
+    required: ""
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.group_description]]), _hoisted_12, _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "file",
+    onChange: _cache[3] || (_cache[3] = function () {
+      return $options.handleFileChange && $options.handleFileChange.apply($options, arguments);
+    }),
+    accept: "image/*",
+    "class": "form-control",
+    id: "group_icon",
+    required: ""
+  }, null, 32 /* HYDRATE_EVENTS */)]), _hoisted_14], 32 /* HYDRATE_EVENTS */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
@@ -24488,7 +24522,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.group_overlay {\n    width: 100%;\n    height: 100vh;\n    background: rgba(0, 0, 0, 0.8);\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n}\n.group_form {\n    max-width: 700px;\n    width: 100%;\n}\n.card {\n    background-color: var(--light-dark);\n}\n.group_btn {\n    background: transparent;\n    border: 1px solid var(--orange);\n}\n.group_btn:hover {\n    background: var(--orange);\n}\n.card-title {\n    height: 100px;\n    color: var(--orange);\n    font-size: 1.6rem;\n}\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 1rem;\n}\n.exit-button>i {\n    font-size: 2rem;\n    color: var(--white);\n    cursor: pointer;\n}\n.exit-button>i:hover {\n    color: var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.group_overlay {\n    width: 100%;\n    height: 100vh;\n    background: rgba(0, 0, 0, 0.8);\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    overflow-y: scroll;\n}\n.group_overlay::-webkit-scrollbar {\n    display: none;\n}\n.group_form {\n    max-width: 700px;\n    width: 100%;\n}\n.card {\n    background-color: var(--light-dark);\n}\n.group_btn {\n    background: transparent;\n    border: 1px solid var(--orange);\n}\n.group_btn:hover {\n    background: var(--orange);\n}\n.card-title {\n    height: 100px;\n    color: var(--orange);\n    font-size: 1.6rem;\n}\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 1rem;\n}\n.exit-button>i {\n    font-size: 2rem;\n    color: var(--white);\n    cursor: pointer;\n}\n.exit-button>i:hover {\n    color: var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
