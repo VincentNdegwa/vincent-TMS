@@ -136,4 +136,40 @@ class group_controller extends Controller
 
         return response()->json(['error' => false, 'message' => 'Group updated successfully', 'data' => $group], 200);
     }
+
+    function exitGroup(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => true, 'message' => $validator->errors()->first()], 400);
+        }
+        $user = UserGroup::where("group_id", $request->input("group_id"))
+            ->where("user_id", $request->input("user_id"))->first();
+
+        if (!$user) {
+            return response()->json(['error' => true, 'message' => "Group did not match with the member"], 400);
+        }
+        $user->delete();
+        return response()->json(['error' => false, 'message' => "User deleted"]);
+    }
+
+    
+    function deleteGroup(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => true, 'message' => $validator->errors()->first()], 400);
+        }
+        $group = Group::where("id", $request->input("group_id"))->first();
+        if (!$group) {
+            return response()->json(['error' => true, 'message' => "Group not found"], 400);
+        }
+        $group->delete();
+        return response()->json(['error' => false, 'message' => "Group deleted"]);
+    }
 }

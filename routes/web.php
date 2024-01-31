@@ -51,4 +51,6 @@ Route::group(['prefix' => 'group'], function () {
     Route::post('/create', [group_controller::class, 'createNewGroup']);
     Route::get('/view/{group_id}', [group_controller::class, "viewGroup"]);
     Route::post("/update", [group_controller::class, "editGroup"]);
+    Route::post("/exit", [group_controller::class, "exitGroup"]);
+    Route::post("/delete", [group_controller::class, "deleteGroup"]);
 });

@@ -1,6 +1,7 @@
 
 <script>
 import axios from 'axios';
+import SweetAlerts from '@/modules/SweetAlerts.vue';
 
 export default {
     props: {
@@ -16,7 +17,8 @@ export default {
                 existing_icon: "",
                 id: ""
             },
-            new_group_icon: ""
+            new_group_icon: "",
+            updatedGroup: ""
         };
     },
     methods: {
@@ -57,9 +59,16 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log('Server response:', response.data);
+                    if (!response.data.error) {
+                        this.updatedGroup = response.data.data
+                        this.$refs.SweetAlerts.showNotification(response.data.message)
+                    } else {
+                        this.$refs.SweetAlerts.showNotificationError(response.data.message)
+                    }
+
                 })
                 .catch(error => {
+                    this.$refs.SweetAlerts.ShowAlert(error)
                     console.error('Error:', error);
                 });
         },
@@ -71,12 +80,22 @@ export default {
         this.editedGroup.group_icon = "/" + this.mainData.group_icon;
         this.editedGroup.existing_icon = this.mainData.group_icon
         this.editedGroup.id = this.mainData.id
-    },
-};
+    }, components: {
+        SweetAlerts
+    }, watch: {
+        updatedGroup: {
+            handler: function (newGroup, oldGroup) {
+                this.$emit("closeDialog", newGroup);
+            }, deep: true
+        }
+    }
+}
+
 </script>
 
 <template>
     <div class="edit-group-container" v-if="ShowEditGroup">
+        <SweetAlerts ref="SweetAlerts"></SweetAlerts>
         <div class="">
             <div class="card-header">
                 <h5 class="card-title">Edit Group</h5>

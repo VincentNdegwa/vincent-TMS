@@ -8,14 +8,13 @@ export default {
     props: ["viewData", "userName"],
     data() {
         return {
-            mainData: Array,
+            mainData: Object,
             group_icon: "",
             user_id: Number,
             admin: false,
 
             overLays: {
-                ShowAddMember
-                    : false,
+                ShowAddMember: false,
                 ShowDeleteGroup: false,
                 ShowEditGroup: false,
                 ShowExitGroup: false,
@@ -55,7 +54,13 @@ export default {
             this.ShowDeleteGroup = option === 'delete';
             this.ShowAddMember = option === 'addMember';
             this.openOverlay = true;
-        },
+        }, closeDialog(data) {
+            this.openOverlay = false;
+            console.log(data, "in main")
+            this.mainData.group_icon = data.group_icon
+            this.mainData.group_name = data.group_name
+            this.mainData.group_description = data.group_description
+        }
     }, mounted() {
         this.scrollToBottom()
         if (!this.viewData.error) {
@@ -245,7 +250,7 @@ export default {
             <span @click="() => openOverlay = false"><i class='bx bx-x-circle'></i></span>
             <AddMember :ShowAddMember="ShowAddMember" />
             <DeleteGroup :ShowDeleteGroup="ShowDeleteGroup" />
-            <EditGroup :ShowEditGroup="ShowEditGroup" :mainData="mainData" />
+            <EditGroup :ShowEditGroup="ShowEditGroup" :mainData="mainData" @closeDialog="closeDialog" />
             <ExitGroup :ShowExitGroup="ShowExitGroup" />
         </div>
     </section>
