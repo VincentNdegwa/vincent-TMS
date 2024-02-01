@@ -4,6 +4,9 @@ import AddMember from "./GroupComponets/AddMemberGroup.vue"
 import DeleteGroup from "./GroupComponets/DeleteGroup.vue";
 import EditGroup from "./GroupComponets/EditGroup.vue";
 import ExitGroup from "./GroupComponets/ExitGroup.vue"
+import SweetAlerts from '@/modules/SweetAlerts.vue';
+import axios from 'axios';
+import { router } from '@inertiajs/vue3';
 export default {
     props: ["viewData", "userName"],
     data() {
@@ -29,6 +32,7 @@ export default {
         DeleteGroup,
         EditGroup,
         ExitGroup,
+        SweetAlerts
     }, methods: {
         scrollToBottom() {
             this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
@@ -42,12 +46,17 @@ export default {
             }
         },
         checkIfAdmin(id) {
-            let list_user = this.mainData.user_group.find((item) => item.users.id == id)
-            if (list_user.admin) {
-                return true
-            } else {
+            let list_user = this.mainData.user_group.find((item) => item.user_id == id)
+            if (list_user == undefined) {
                 return false
+            } else {
+                if (list_user.admin) {
+                    return true
+                } else {
+                    return false
+                }
             }
+
         }, handleOptionClick(option) {
             this.ShowEditGroup = option === 'edit';
             this.ShowExitGroup = option === 'exit';
@@ -60,9 +69,47 @@ export default {
             this.mainData.group_icon = data.group_icon
             this.mainData.group_name = data.group_name
             this.mainData.group_description = data.group_description
+        },
+        async exitGroup(status) {
+            if (status) {
+                await axios.post("/group/exit", {
+                    "user_id": this.user_id,
+                    "group_id": this.mainData.id
+                }).then(response => {
+                    if (!response.data.error) {
+                        this.$refs.SweetAlerts.showNotification(response.data.message)
+                        setTimeout(() => {
+                            router.visit("/")
+                        }, 3000);
+                    } else {
+                        this.$refs.SweetAlerts.showNotificationError(response.data.message)
+                    }
+                }).catch(err => {
+                    this.$refs.SweetAlerts.showNotificationError(err)
+                })
+            }
+        },
+        async deleteGroup(status) {
+            await axios.post("/group/delete", {
+                "user_id": this.user_id,
+                "group_id": this.mainData.id
+            }).then(response => {
+                if (!response.data.error) {
+                    this.$refs.SweetAlerts.showNotification(response.data.message)
+                    setTimeout(() => {
+                        router.visit("/")
+                    }, 3000);
+                } else {
+                    this.$refs.SweetAlerts.showNotificationError(response.data.message)
+                }
+            }).catch(err => {
+                this.$refs.SweetAlerts.showNotificationError(err)
+            })
         }
     }, mounted() {
         this.scrollToBottom()
+        console.log("main data");
+
         if (!this.viewData.error) {
             this.mainData = this.viewData.group_data
             this.group_icon = "/" + this.mainData.group_icon
@@ -77,6 +124,7 @@ export default {
 </script>
 <template>
     <section class="dashboard">
+        <SweetAlerts ref="SweetAlerts"></SweetAlerts>
         <HeaderHome :userName="userName" />
         <main class="group_container">
             <div class="main_screen">
@@ -238,7 +286,7 @@ export default {
                                         <h3>{{ item.users.name }}</h3>
                                         <p>{{ item.users.email }}</p>
                                     </div>
-                                    <i v-if="checkIfAdmin(item.id)" class='bx bxs-badge-check'></i>
+                                    <i v-if="checkIfAdmin(item.users.id)" class='bx bxs-badge-check'></i>
                                 </div>
                             </div>
                         </div>
@@ -249,12 +297,13 @@ export default {
         <div class="group_overlay" v-if="openOverlay">
             <span @click="() => openOverlay = false"><i class='bx bx-x-circle'></i></span>
             <AddMember :ShowAddMember="ShowAddMember" />
-            <DeleteGroup :ShowDeleteGroup="ShowDeleteGroup" />
+            <ExitGroup :ShowExitGroup="ShowExitGroup" @cancel-exit="exitGroup" @confirm-exit="exitGroup" />
+            <DeleteGroup :ShowDeleteGroup="ShowDeleteGroup" @cancel-delete="deleteGroup" @confirm-delete="deleteGroup" />
             <EditGroup :ShowEditGroup="ShowEditGroup" :mainData="mainData" @closeDialog="closeDialog" />
-            <ExitGroup :ShowExitGroup="ShowExitGroup" />
         </div>
     </section>
 </template>
+
 
 
 

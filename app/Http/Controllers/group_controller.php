@@ -143,33 +143,69 @@ class group_controller extends Controller
             'group_id' => 'required',
             'user_id' => 'required',
         ]);
+
         if ($validator->fails()) {
             return response()->json(['error' => true, 'message' => $validator->errors()->first()], 400);
         }
+
         $user = UserGroup::where("group_id", $request->input("group_id"))
             ->where("user_id", $request->input("user_id"))->first();
+
+        $group_count = UserGroup::where("group_id", $request->input("group_id"))->count();
 
         if (!$user) {
             return response()->json(['error' => true, 'message' => "Group did not match with the member"], 400);
         }
+
+        if ($group_count === 2) {
+            $remainingUser = UserGroup::where("group_id", $request->input("group_id"))
+                ->where("user_id", '!=', $request->input("user_id"))->first();
+
+            $remainingUser->update([
+                "admin" => "true"
+            ]);
+        }
+
         $user->delete();
+
         return response()->json(['error' => false, 'message' => "User deleted"]);
     }
 
-    
+
     function deleteGroup(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'group_id' => 'required',
+            "user_id" => "required",
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => true, 'message' => $validator->errors()->first()], 400);
         }
         $group = Group::where("id", $request->input("group_id"))->first();
+
         if (!$group) {
             return response()->json(['error' => true, 'message' => "Group not found"], 400);
         }
+        $userGroup = UserGroup::where("user_id", $request->input("user_id"))
+            ->where("group_id", $request->input("group_id"))
+            ->first();
+        if (!$userGroup || $userGroup->admin == "false") {
+            return response()->json(['error' => true, 'message' => "You are not and Admin"]);
+        }
         $group->delete();
         return response()->json(['error' => false, 'message' => "Group deleted"]);
+    }
+
+
+    function searchMember(Request $request)
+    {
+        $searchTerm = $request->input("search");
+
+        $users = User::where('name', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+            ->select('id', 'name', 'email')
+            ->get();
+
+        return response()->json($users);
     }
 }

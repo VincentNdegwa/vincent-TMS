@@ -17,11 +17,11 @@ export default {
         ShowExitGroup: Boolean
     },
     methods: {
-        cancelDelete() {
-            this.$emit('cancel-delete');
+        cancelExit() {
+            this.$emit('cancel-exit', false);
         },
-        confirmDelete() {
-            this.$emit('confirm-delete');
+        confirmExit() {
+            this.$emit('confirm-exit', true);
         }
     }
 }

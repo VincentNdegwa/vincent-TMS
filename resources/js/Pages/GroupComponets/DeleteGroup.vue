@@ -18,10 +18,10 @@ export default {
     },
     methods: {
         cancelDelete() {
-            this.$emit('cancel-delete');
+            this.$emit('cancel-delete', false);
         },
         confirmDelete() {
-            this.$emit('confirm-delete');
+            this.$emit('confirm-delete', true);
         }
     }
 }
