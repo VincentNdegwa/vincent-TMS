@@ -1,5 +1,74 @@
+<script>
+import axios from 'axios';
+import SweetAlerts from '@/modules/SweetAlerts.vue';
+
+export default {
+    props: {
+        ShowAddMember: Boolean,
+        groupId: Number
+    },
+    data() {
+        return {
+            memberInput: '',
+            searchResults: [],
+            selectedUser: null,
+            Alerts: ""
+        };
+    },
+    components: {
+        SweetAlerts,
+    },
+    methods: {
+        async searchMembers() {
+            try {
+                if (this.memberInput.trim()) {
+                    const response = await axios.post('/group/member/search', {
+                        "search": this.memberInput,
+                    });
+                    this.searchResults = response.data;
+                }
+            } catch (error) {
+                console.error('Error searching members:', error);
+            }
+        },
+        selectUser(userId) {
+            this.selectedUser = this.searchResults.find(user => user.id === userId);
+        },
+        submitSelectedUser() {
+            if (this.selectedUser) {
+                axios.post('/group/member/add', {
+                    "user_id": this.selectedUser.id,
+                    "group_id": this.groupId
+                })
+                    .then(response => {
+                        if (!response.data.error) {
+                            console.log(response.data.message)
+                            this.Alerts.showNotification(response.data.message)
+                        } else {
+                            console.log(response.data.message)
+                            this.Alerts.showNotificationError(response.data.message)
+                        }
+
+                    })
+                    .catch(error => {
+                        this.Alerts.ShowAlert(error)
+                        console.error('Error:', error);
+                    });
+                console.log(this.Alerts)
+
+                this.$emit("cancel-overlay")
+            }
+        },
+    },
+    mounted() {
+        this.Alerts = this.$refs.SweetAlerts
+    }
+}
+</script>
+
 <template>
     <div v-if="ShowAddMember" class="add-member-container">
+        <SweetAlerts ref="SweetAlerts"></SweetAlerts>
         <div class="search-container">
             <label for="memberInput">Enter Member Name or Email:</label>
             <input type="text" id="memberInput" v-model="memberInput" @input="searchMembers"
@@ -19,52 +88,6 @@
         </div>
     </div>
 </template>
-
-<script>
-import axios from 'axios';
-
-export default {
-    props: {
-        ShowAddMember: Boolean,
-    },
-    data() {
-        return {
-            memberInput: '',
-            searchResults: [],
-            selectedUser: null,
-        };
-    },
-    methods: {
-        async searchMembers() {
-            try {
-                const response = await axios.post('/group/member/search', {
-                    "search": this.memberInput,
-                });
-                this.searchResults = response.data;
-            } catch (error) {
-                console.error('Error searching members:', error);
-            }
-        },
-        selectUser(userId) {
-            this.selectedUser = this.searchResults.find(user => user.id === userId);
-        },
-        submitSelectedUser() {
-            if (this.selectedUser) {
-                axios.post('/group/addMember', {
-                    user_id: this.selectedUser.id,
-                })
-                    .then(response => {
-                        console.log(response.data);
-                    })
-                    .catch(error => {
-                        console.error('Error adding member:', error);
-                    });
-            }
-        },
-    }
-}
-</script>
-
 <style>
 .add-member-container {
     max-width: 400px;
@@ -90,7 +113,7 @@ input {
     border: 1px solid var(--white);
     border-radius: 5px;
     background-color: var(--light-dark);
-    color: var(--white);
+    color: var(--dark);
 }
 
 .search-results {

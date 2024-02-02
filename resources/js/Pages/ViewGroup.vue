@@ -15,6 +15,7 @@ export default {
             group_icon: "",
             user_id: Number,
             admin: false,
+            groupId: Number,
 
             overLays: {
                 ShowAddMember: false,
@@ -22,7 +23,12 @@ export default {
                 ShowEditGroup: false,
                 ShowExitGroup: false,
             },
-            openOverlay: false
+            openOverlay: false,
+            selectedUserOptions: null,
+            dialogStyle: {
+                top: 0,
+                left: 0,
+            },
 
         }
     },
@@ -34,6 +40,23 @@ export default {
         ExitGroup,
         SweetAlerts
     }, methods: {
+        showOptions(user, event) {
+            this.selectedUserOptions = user;
+            this.dialogStyle = {
+                top: event.clientY + 'px',
+                left: event.clientX + 'px',
+            };
+
+        },
+
+        sendMessage(user) {
+            console.log(`Sending a message to ${user.users.name}`);
+            this.selectedUserOptions = null;
+        },
+        removeUser(user) {
+            console.log(`Removing user ${user.users.name}`);
+            this.selectedUserOptions = null;
+        },
         scrollToBottom() {
             this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
         },
@@ -44,19 +67,6 @@ export default {
             } else {
                 this.admin = false
             }
-        },
-        checkIfAdmin(id) {
-            let list_user = this.mainData.user_group.find((item) => item.user_id == id)
-            if (list_user == undefined) {
-                return false
-            } else {
-                if (list_user.admin) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-
         }, handleOptionClick(option) {
             this.ShowEditGroup = option === 'edit';
             this.ShowExitGroup = option === 'exit';
@@ -65,7 +75,6 @@ export default {
             this.openOverlay = true;
         }, closeDialog(data) {
             this.openOverlay = false;
-            console.log(data, "in main")
             this.mainData.group_icon = data.group_icon
             this.mainData.group_name = data.group_name
             this.mainData.group_description = data.group_description
@@ -108,12 +117,14 @@ export default {
         }
     }, mounted() {
         this.scrollToBottom()
-        console.log("main data");
 
         if (!this.viewData.error) {
             this.mainData = this.viewData.group_data
             this.group_icon = "/" + this.mainData.group_icon
             this.user_id = this.viewData.user_id
+            this.groupId = this.mainData.id
+            console.log(this.viewData);
+
             this.groupFunctions()
         } else {
             console.log("There is an issue")
@@ -279,14 +290,20 @@ export default {
                                 Add Member
                             </div>
                             <div class="member_scroll_list">
-                                <div class="member-item" v-for="(item, index) in mainData.user_group" :key="index">
+                                <div class="member-item" v-for="(item, index) in mainData.user_group" :key="index"
+                                    @click="showOptions(item, $event)">
                                     <img class="avatar" src="../../../public/images/cool-background.png"
                                         alt="Member Avatar">
                                     <div class="member-details">
                                         <h3>{{ item.users.name }}</h3>
                                         <p>{{ item.users.email }}</p>
                                     </div>
-                                    <i v-if="checkIfAdmin(item.users.id)" class='bx bxs-badge-check'></i>
+                                    <i v-if="item.admin == 'true'" class='bx bxs-badge-check'></i>
+                                </div>
+                                <div v-if="selectedUserOptions" class="options-dialog" :style="dialogStyle"
+                                    ref="optionsDialog">
+                                    <button @click="sendMessage(selectedUserOptions)">Message</button>
+                                    <button @click="removeUser(selectedUserOptions)">Remove User</button>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +313,7 @@ export default {
         </main>
         <div class="group_overlay" v-if="openOverlay">
             <span @click="() => openOverlay = false"><i class='bx bx-x-circle'></i></span>
-            <AddMember :ShowAddMember="ShowAddMember" />
+            <AddMember :ShowAddMember="ShowAddMember" :groupId="groupId" @cancel-overlay="() => openOverlay = false" />
             <ExitGroup :ShowExitGroup="ShowExitGroup" @cancel-exit="exitGroup" @confirm-exit="exitGroup" />
             <DeleteGroup :ShowDeleteGroup="ShowDeleteGroup" @cancel-delete="deleteGroup" @confirm-delete="deleteGroup" />
             <EditGroup :ShowEditGroup="ShowEditGroup" :mainData="mainData" @closeDialog="closeDialog" />

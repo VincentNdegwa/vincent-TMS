@@ -43,6 +43,8 @@ export default {
         }, latestGroup(group) {
             this.groups.push(group)
         }
+    }, mounted() {
+        console.log(this.groups);
     }
 }
 

@@ -55,5 +55,6 @@ Route::group(['prefix' => 'group'], function () {
     Route::post("/delete", [group_controller::class, "deleteGroup"]);
     Route::group(["prefix" => "/member"], function () {
         Route::post("/search", [group_controller::class, "searchMember"]);
+        Route::post("/add", [group_controller::class, "inviteMember"]);
     });
 });

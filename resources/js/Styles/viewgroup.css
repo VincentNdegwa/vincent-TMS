@@ -328,3 +328,10 @@
     right: 10%;
     top: 10%;
 }
+.options-dialog {
+    position: absolute;
+    background-color: var(--light-dark);
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

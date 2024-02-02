@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -168,7 +169,7 @@ class group_controller extends Controller
 
         $user->delete();
 
-        return response()->json(['error' => false, 'message' => "User deleted"]);
+        return response()->json(['error' => false, 'message' => "Successfully Left the Group"]);
     }
 
 
@@ -207,5 +208,30 @@ class group_controller extends Controller
             ->get();
 
         return response()->json($users);
+    }
+    function inviteMember(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            "user_id" => "required",
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => true, 'message' => $validator->errors()->first()]);
+        }
+        $admin_id = auth()->id();
+        $checkAdmin = UserGroup::where("user_id",  $admin_id)->where("group_id", $request->input("group_id"))->select("admin")->first();
+        if ($checkAdmin == "false") {
+            return response()->json(["error" => true, "message" => "You are not allowed to invite a member in this group"]);
+        }
+        $userGroup = UserGroup::create([
+            "user_id" => $request->input("user_id"),
+            "group_id" => $request->input("group_id"),
+            "admin" => "false",
+        ]);
+        if (!$userGroup) {
+            return response()->json(["error" => true, "message" => "Failed to invite user"]);
+        }
+
+        return response()->json(["error" => false, "message" => "User Invited"]);
     }
 }

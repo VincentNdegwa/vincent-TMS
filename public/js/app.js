@@ -19731,6 +19731,9 @@ __webpack_require__.r(__webpack_exports__);
     latestGroup: function latestGroup(group) {
       this.groups.push(group);
     }
+  },
+  mounted: function mounted() {
+    console.log(this.groups);
   }
 });
 
@@ -19749,21 +19752,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/modules/SweetAlerts.vue */ "./resources/js/modules/SweetAlerts.vue");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    ShowAddMember: Boolean
+    ShowAddMember: Boolean,
+    groupId: Number
   },
   data: function data() {
     return {
       memberInput: '',
       searchResults: [],
-      selectedUser: null
+      selectedUser: null,
+      Alerts: ""
     };
+  },
+  components: {
+    SweetAlerts: _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     searchMembers: function searchMembers() {
@@ -19774,24 +19784,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              _context.next = 3;
+              if (!_this.memberInput.trim()) {
+                _context.next = 6;
+                break;
+              }
+              _context.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/group/member/search', {
                 "search": _this.memberInput
               });
-            case 3:
+            case 4:
               response = _context.sent;
               _this.searchResults = response.data;
-              _context.next = 10;
+            case 6:
+              _context.next = 11;
               break;
-            case 7:
-              _context.prev = 7;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](0);
               console.error('Error searching members:', _context.t0);
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[0, 8]]);
       }))();
     },
     selectUser: function selectUser(userId) {
@@ -19800,16 +19815,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     submitSelectedUser: function submitSelectedUser() {
+      var _this2 = this;
       if (this.selectedUser) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/group/addMember', {
-          user_id: this.selectedUser.id
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/group/member/add', {
+          "user_id": this.selectedUser.id,
+          "group_id": this.groupId
         }).then(function (response) {
-          console.log(response.data);
+          if (!response.data.error) {
+            console.log(response.data.message);
+            _this2.Alerts.showNotification(response.data.message);
+          } else {
+            console.log(response.data.message);
+            _this2.Alerts.showNotificationError(response.data.message);
+          }
         })["catch"](function (error) {
-          console.error('Error adding member:', error);
+          _this2.Alerts.ShowAlert(error);
+          console.error('Error:', error);
         });
+        console.log(this.Alerts);
+        this.$emit("cancel-overlay");
       }
     }
+  },
+  mounted: function mounted() {
+    this.Alerts = this.$refs.SweetAlerts;
   }
 });
 
@@ -20407,13 +20436,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       group_icon: "",
       user_id: Number,
       admin: false,
+      groupId: Number,
       overLays: {
         ShowAddMember: false,
         ShowDeleteGroup: false,
         ShowEditGroup: false,
         ShowExitGroup: false
       },
-      openOverlay: false
+      openOverlay: false,
+      selectedUserOptions: null,
+      dialogStyle: {
+        top: 0,
+        left: 0
+      }
     };
   },
   components: {
@@ -20425,6 +20460,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     SweetAlerts: _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   methods: {
+    showOptions: function showOptions(user, event) {
+      this.selectedUserOptions = user;
+      this.dialogStyle = {
+        top: event.clientY + 'px',
+        left: event.clientX + 'px'
+      };
+    },
+    sendMessage: function sendMessage(user) {
+      console.log("Sending a message to ".concat(user.users.name));
+      this.selectedUserOptions = null;
+    },
+    removeUser: function removeUser(user) {
+      console.log("Removing user ".concat(user.users.name));
+      this.selectedUserOptions = null;
+    },
     scrollToBottom: function scrollToBottom() {
       this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
     },
@@ -20439,20 +20489,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.admin = false;
       }
     },
-    checkIfAdmin: function checkIfAdmin(id) {
-      var list_user = this.mainData.user_group.find(function (item) {
-        return item.user_id == id;
-      });
-      if (list_user == undefined) {
-        return false;
-      } else {
-        if (list_user.admin) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    },
     handleOptionClick: function handleOptionClick(option) {
       this.ShowEditGroup = option === 'edit';
       this.ShowExitGroup = option === 'exit';
@@ -20462,7 +20498,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     closeDialog: function closeDialog(data) {
       this.openOverlay = false;
-      console.log(data, "in main");
       this.mainData.group_icon = data.group_icon;
       this.mainData.group_name = data.group_name;
       this.mainData.group_description = data.group_description;
@@ -20532,11 +20567,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.scrollToBottom();
-    console.log("main data");
     if (!this.viewData.error) {
       this.mainData = this.viewData.group_data;
       this.group_icon = "/" + this.mainData.group_icon;
       this.user_id = this.viewData.user_id;
+      this.groupId = this.mainData.id;
+      console.log(this.viewData);
       this.groupFunctions();
     } else {
       console.log("There is an issue");
@@ -21759,7 +21795,10 @@ var _hoisted_6 = {
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Selected User:", -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $props.ShowAddMember ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  var _component_SweetAlerts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SweetAlerts");
+  return $props.ShowAddMember ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SweetAlerts, {
+    ref: "SweetAlerts"
+  }, null, 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "memberInput",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -22552,26 +22591,27 @@ var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_37 = {
   "class": "member_scroll_list"
 };
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_38 = ["onClick"];
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "avatar",
   src: _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"],
   alt: "Member Avatar"
 }, null, -1 /* HOISTED */);
-var _hoisted_39 = {
-  "class": "member-details"
-};
 var _hoisted_40 = {
-  key: 0,
-  "class": "bx bxs-badge-check"
+  "class": "member-details"
 };
 var _hoisted_41 = {
   key: 0,
+  "class": "bx bxs-badge-check"
+};
+var _hoisted_42 = {
+  key: 0,
   "class": "group_overlay"
 };
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-x-circle"
 }, null, -1 /* HOISTED */);
-var _hoisted_43 = [_hoisted_42];
+var _hoisted_44 = [_hoisted_43];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_SweetAlerts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SweetAlerts");
   var _component_HeaderHome = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("HeaderHome");
@@ -22591,13 +22631,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return _ctx.newMessage = $event;
     }),
     onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
-      return _ctx.sendMessage && _ctx.sendMessage.apply(_ctx, arguments);
+      return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     }, ["enter"])),
     placeholder: "Type your message..."
   }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.newMessage]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "bx bx-send",
     onClick: _cache[2] || (_cache[2] = function () {
-      return _ctx.sendMessage && _ctx.sendMessage.apply(_ctx, arguments);
+      return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     })
   })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.group_icon,
@@ -22628,15 +22668,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Member ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mainData.user_group, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "member-item",
-      key: index
-    }, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.email), 1 /* TEXT */)]), $options.checkIfAdmin(item.users.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_40)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
-  }), 128 /* KEYED_FRAGMENT */))])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    onClick: _cache[7] || (_cache[7] = function () {
+      key: index,
+      onClick: function onClick($event) {
+        return $options.showOptions(item, $event);
+      }
+    }, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.email), 1 /* TEXT */)]), item.admin == 'true' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_41)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_38);
+  }), 128 /* KEYED_FRAGMENT */)), $data.selectedUserOptions ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 0,
+    "class": "options-dialog",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($data.dialogStyle),
+    ref: "optionsDialog"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[7] || (_cache[7] = function ($event) {
+      return $options.sendMessage($data.selectedUserOptions);
+    })
+  }, "Message"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
+      return $options.removeUser($data.selectedUserOptions);
+    })
+  }, "Remove User")], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    onClick: _cache[9] || (_cache[9] = function () {
       return $data.openOverlay = false;
     })
-  }, _hoisted_43), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
-    ShowAddMember: _ctx.ShowAddMember
-  }, null, 8 /* PROPS */, ["ShowAddMember"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ExitGroup, {
+  }, _hoisted_44), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
+    ShowAddMember: _ctx.ShowAddMember,
+    groupId: $data.groupId,
+    onCancelOverlay: _cache[10] || (_cache[10] = function () {
+      return $data.openOverlay = false;
+    })
+  }, null, 8 /* PROPS */, ["ShowAddMember", "groupId"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ExitGroup, {
     ShowExitGroup: _ctx.ShowExitGroup,
     onCancelExit: $options.exitGroup,
     onConfirmExit: $options.exitGroup
@@ -25217,7 +25277,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.add-member-container {\n    max-width: 400px;\n    margin: auto;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    background-color: var(--light-dark);\n    color: var(--white);\n}\n.search-container {\n    margin-bottom: 20px;\n}\nlabel {\n    color: var(--yellow);\n}\ninput {\n    width: 100%;\n    padding: 10px;\n    margin-bottom: 10px;\n    border: 1px solid var(--white);\n    border-radius: 5px;\n    background-color: var(--light-dark);\n    color: var(--white);\n}\n.search-results {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n.search-results li {\n    cursor: pointer;\n    padding: 5px;\n    border: 1px solid var(--white);\n    border-radius: 5px;\n    margin-bottom: 5px;\n}\n.selected-user-container {\n    padding: 10px;\n    border: 1px solid var(--white);\n    border-radius: 5px;\n    background-color: var(--light-dark);\n}\n.selected-user-container>button {\n    outline: none;\n    border: 1px solid var(--orange);\n    background: var(--dark);\n    border-radius: 0.5rem;\n    transition: all ease-in-out 0.5s;\n}\n.selected-user-container>button:hover {\n    border: 1px solid var(--dark);\n    background: var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.add-member-container {\n    max-width: 400px;\n    margin: auto;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    background-color: var(--light-dark);\n    color: var(--white);\n}\n.search-container {\n    margin-bottom: 20px;\n}\nlabel {\n    color: var(--yellow);\n}\ninput {\n    width: 100%;\n    padding: 10px;\n    margin-bottom: 10px;\n    border: 1px solid var(--white);\n    border-radius: 5px;\n    background-color: var(--light-dark);\n    color: var(--dark);\n}\n.search-results {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n.search-results li {\n    cursor: pointer;\n    padding: 5px;\n    border: 1px solid var(--white);\n    border-radius: 5px;\n    margin-bottom: 5px;\n}\n.selected-user-container {\n    padding: 10px;\n    border: 1px solid var(--white);\n    border-radius: 5px;\n    background-color: var(--light-dark);\n}\n.selected-user-container>button {\n    outline: none;\n    border: 1px solid var(--orange);\n    background: var(--dark);\n    border-radius: 0.5rem;\n    transition: all ease-in-out 0.5s;\n}\n.selected-user-container>button:hover {\n    border: 1px solid var(--dark);\n    background: var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -25644,7 +25704,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #b6772f;\n    font-weight: bold;\n}\n.settings_item .bx-trash {\n    color: red;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n    position: relative;\n}\n.member-item .bxs-badge-check {\n    color: blue;\n    font-size: 2rem;\n    position: absolute;\n    right: 0.5rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n.group_overlay {\n    position: absolute;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    background: rgba(0, 0, 0, 0.7);\n}\n.group_overlay > span {\n    font-size: 2rem;\n    position: absolute;\n    right: 10%;\n    top: 10%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #b6772f;\n    font-weight: bold;\n}\n.settings_item .bx-trash {\n    color: red;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n    position: relative;\n}\n.member-item .bxs-badge-check {\n    color: blue;\n    font-size: 2rem;\n    position: absolute;\n    right: 0.5rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n.group_overlay {\n    position: absolute;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    background: rgba(0, 0, 0, 0.7);\n}\n.group_overlay > span {\n    font-size: 2rem;\n    position: absolute;\n    right: 10%;\n    top: 10%;\n}\n.options-dialog {\n    position: absolute;\n    background-color: var(--light-dark);\n    border: 1px solid #ccc;\n    padding: 10px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
