@@ -25,10 +25,12 @@ class groupMessageController extends Controller
             'user_id' => $request->input("user_id"),
             "group_id" => $request->input("group_id"),
         ]);
+        $messageWithUser = $message->load('users');
+
         if (!$message) {
             return response()->json(['error' => true, 'message' => "Message failed"], 400);
         }
-        event(new GroupNotification(json_encode($message)));
-        return response()->json(['error' => false, 'message' => "Message failed", "data" => $message]);
+        event(new GroupNotification(json_encode($messageWithUser)));
+        return response()->json(['error' => false, 'message' => "Message sent", "data" => $message]);
     }
 }

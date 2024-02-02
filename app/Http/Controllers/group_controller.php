@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\groupMessage;
 use App\Models\User;
 use App\Models\UserGroup;
 use Illuminate\Http\Request;
@@ -79,6 +80,9 @@ class group_controller extends Controller
             }])
             ->first();
 
+        $messages = groupMessage::where("group_id", $id)
+            ->with("users")
+            ->get();
 
         if ($group) {
             $userName = User::where("id", auth()->id())->value("name");
@@ -88,6 +92,7 @@ class group_controller extends Controller
                     "error" => false,
                     "group_data" => $group,
                     "user_id" => auth()->id(),
+                    "group_messages" => $messages,
                     "message" => "Group data retrieved"
                 ],
                 "userName" => $userName,

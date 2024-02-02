@@ -7,6 +7,7 @@ import ExitGroup from "./GroupComponets/ExitGroup.vue"
 import SweetAlerts from '@/modules/SweetAlerts.vue';
 import axios from 'axios';
 import { router } from '@inertiajs/vue3';
+import Pusher from "pusher-js";
 export default {
     props: ["viewData", "userName"],
     data() {
@@ -16,6 +17,7 @@ export default {
             user_id: Number,
             admin: false,
             groupId: Number,
+            newMessage: "",
 
             overLays: {
                 ShowAddMember: false,
@@ -29,6 +31,8 @@ export default {
                 top: 0,
                 left: 0,
             },
+            currentGroupMessages: [],
+            liveMessage: ""
 
         }
     },
@@ -49,17 +53,41 @@ export default {
 
         },
 
-        sendMessage(user) {
-            console.log(`Sending a message to ${user.users.name}`);
-            this.selectedUserOptions = null;
+        sendMessage() {
+            if (this.newMessage.trim() !== "") {
+                axios.post('/messages/add', {
+                    "user_id": this.user_id,
+                    "group_id": this.groupId,
+                    'message': this.newMessage,
+                }).then(response => {
+                    this.newMessage = "";
+                    if (!response.data.error) {
+                        console.log(response.data.message);
+                        this.$nextTick(() => {
+                            const container = this.$refs.conversationContainer;
+                            container.scrollTop = container.scrollHeight;
+                        });
+                    } else {
+                        console.log(response.data.message);
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
         },
+
+
         removeUser(user) {
             console.log(`Removing user ${user.users.name}`);
             this.selectedUserOptions = null;
         },
         scrollToBottom() {
-            this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
+            document.addEventListener("DOMContentLoaded", function () {
+                let container = document.querySelector(".converstaion_container");
+                container.scrollTop = container.scrollHeight;
+            });
         },
+
         groupFunctions() {
             let current_user = this.mainData.user_group.find((item) => item.users.id == this.user_id)
             if (current_user.admin) {
@@ -123,19 +151,42 @@ export default {
         }
     }, mounted() {
         this.scrollToBottom()
+        // Pusher.logToConsole = true;
+
+        var pusher = new Pusher('5d03bc74ebd65c06a7d0', {
+            cluster: 'mt1'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', (data) => {
+            var jsonData = data.data;
+            this.liveMessage = JSON.parse(jsonData);;
+        });
+
 
         if (!this.viewData.error) {
             this.mainData = this.viewData.group_data
             this.group_icon = "/" + this.mainData.group_icon
             this.user_id = this.viewData.user_id
             this.groupId = this.mainData.id
+            this.currentGroupMessages = this.viewData.group_messages
             console.log(this.viewData);
 
             this.groupFunctions()
         } else {
             console.log("There is an issue")
         }
-    }
+    }, watch: {
+        liveMessage: function (newVal, oldVal) {
+            // console.log('liveMessage updated:', newVal);
+            this.currentGroupMessages.push(newVal)
+            this.$nextTick(() => {
+                const container = this.$refs.conversationContainer;
+                container.scrollTop = container.scrollHeight;
+            });
+        }
+    },
+
 }
 
 </script>
@@ -159,102 +210,23 @@ export default {
                         </div>
                     </div>
                     <div class="converstaion_container" ref="conversationContainer">
-                        <div class="message-container">
+                        <div :class="{ 'message-container': true, 'current_user_message': item.user_id === user_id }"
+                            v-for="(item, index) in currentGroupMessages" :key="index">
                             <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
                             <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                    sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla
-                                    voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat
-                                    doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p>
-                                <p class="date">January 28, 2024</p>
+                                <h3>{{ item.users.name }}</h3>
+                                <p class="message">{{ item.message }}</p>
+                                <p class="date">{{ item.created_at }}</p>
                             </div>
                         </div>
-                        <div class="message-container current_user_message">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet.</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                    sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla
-                                    voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat
-                                    doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container current_user_message">
+                        <!-- <div class="message-container current_user_message">
                             <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
                             <div class="user-details">
                                 <h3>User Name</h3>
                                 <p class="message">This is a sample message. Lorem ipsum dolor sit amet.</p>
                                 <p class="date">January 28, 2024</p>
                             </div>
-                        </div>
-                        <div class="message-container">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                    sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla
-                                    voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat
-                                    doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container current_user_message">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet.</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                    sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla
-                                    voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat
-                                    doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container current_user_message">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet.</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                    sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla
-                                    voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat
-                                    doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-                        <div class="message-container current_user_message">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet.</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div>
-
+                        </div> -->
                     </div>
                     <div class="text_box">
                         <div class="input-container">
@@ -296,8 +268,8 @@ export default {
                                 Add Member
                             </div>
                             <div class="member_scroll_list">
-                                <div class="member-item" v-for="(item, index) in mainData.user_group" :key="index"
-                                    @click="showOptions(item, $event)">
+                                <div class="member-item" v-for="(   item, index   ) in    mainData.user_group   "
+                                    :key="index" @click="showOptions(item, $event)">
                                     <img class="avatar" src="../../../public/images/cool-background.png"
                                         alt="Member Avatar">
                                     <div class="member-details">
@@ -308,7 +280,6 @@ export default {
                                 </div>
                                 <div v-if="selectedUserOptions" class="options-dialog" :style="dialogStyle"
                                     ref="optionsDialog">
-                                    <button @click="sendMessage(selectedUserOptions)">Message</button>
                                     <button @click="removeUser(selectedUserOptions)">Remove User</button>
                                 </div>
                             </div>

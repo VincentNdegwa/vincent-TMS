@@ -30,4 +30,11 @@ class GroupNotification implements ShouldBroadcast
     {
         return 'my-event';
     }
+
+    public function broadcastWith()
+    {
+        return [
+            'data' => $this->message,
+        ];
+    }
 }

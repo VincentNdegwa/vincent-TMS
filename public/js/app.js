@@ -20430,10 +20430,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/vue3 */ "./node_modules/@inertiajs/vue3/dist/index.esm.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_8__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -20451,6 +20454,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       user_id: Number,
       admin: false,
       groupId: Number,
+      newMessage: "",
       overLays: {
         ShowAddMember: false,
         ShowDeleteGroup: false,
@@ -20462,7 +20466,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       dialogStyle: {
         top: 0,
         left: 0
-      }
+      },
+      currentGroupMessages: [],
+      liveMessage: ""
     };
   },
   components: {
@@ -20481,21 +20487,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         left: event.clientX + 'px'
       };
     },
-    sendMessage: function sendMessage(user) {
-      console.log("Sending a message to ".concat(user.users.name));
-      this.selectedUserOptions = null;
+    sendMessage: function sendMessage() {
+      var _this = this;
+      if (this.newMessage.trim() !== "") {
+        axios__WEBPACK_IMPORTED_MODULE_6___default().post('/messages/add', {
+          "user_id": this.user_id,
+          "group_id": this.groupId,
+          'message': this.newMessage
+        }).then(function (response) {
+          _this.newMessage = "";
+          if (!response.data.error) {
+            console.log(response.data.message);
+            _this.$nextTick(function () {
+              var container = _this.$refs.conversationContainer;
+              container.scrollTop = container.scrollHeight;
+            });
+          } else {
+            console.log(response.data.message);
+          }
+        })["catch"](function (error) {
+          console.error('Error:', error);
+        });
+      }
     },
     removeUser: function removeUser(user) {
       console.log("Removing user ".concat(user.users.name));
       this.selectedUserOptions = null;
     },
     scrollToBottom: function scrollToBottom() {
-      this.$refs.conversationContainer.scrollTop = this.$refs.conversationContainer.scrollHeight;
+      document.addEventListener("DOMContentLoaded", function () {
+        var container = document.querySelector(".converstaion_container");
+        container.scrollTop = container.scrollHeight;
+      });
     },
     groupFunctions: function groupFunctions() {
-      var _this = this;
+      var _this2 = this;
       var current_user = this.mainData.user_group.find(function (item) {
-        return item.users.id == _this.user_id;
+        return item.users.id == _this2.user_id;
       });
       if (current_user.admin) {
         this.admin = true;
@@ -20517,7 +20545,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.mainData.group_description = data.group_description;
     },
     exitGroup: function exitGroup(status) {
-      var _this2 = this;
+      var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
@@ -20528,44 +20556,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
               _context.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_6___default().post("/group/exit", {
-                "user_id": _this2.user_id,
-                "group_id": _this2.mainData.id
-              }).then(function (response) {
-                if (!response.data.error) {
-                  _this2.$refs.SweetAlerts.showNotification(response.data.message);
-                  setTimeout(function () {
-                    _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_7__.router.visit("/");
-                  }, 3000);
-                } else {
-                  _this2.$refs.SweetAlerts.showNotificationError(response.data.message);
-                }
-              })["catch"](function (err) {
-                _this2.$refs.SweetAlerts.showNotificationError(err);
-              });
-            case 3:
-              _context.next = 6;
-              break;
-            case 5:
-              _this2.openOverlay = false;
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee);
-      }))();
-    },
-    deleteGroup: function deleteGroup(status) {
-      var _this3 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              if (!status) {
-                _context2.next = 5;
-                break;
-              }
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_6___default().post("/group/delete", {
                 "user_id": _this3.user_id,
                 "group_id": _this3.mainData.id
               }).then(function (response) {
@@ -20581,10 +20571,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.$refs.SweetAlerts.showNotificationError(err);
               });
             case 3:
-              _context2.next = 6;
+              _context.next = 6;
               break;
             case 5:
               _this3.openOverlay = false;
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    deleteGroup: function deleteGroup(status) {
+      var _this4 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!status) {
+                _context2.next = 5;
+                break;
+              }
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_6___default().post("/group/delete", {
+                "user_id": _this4.user_id,
+                "group_id": _this4.mainData.id
+              }).then(function (response) {
+                if (!response.data.error) {
+                  _this4.$refs.SweetAlerts.showNotification(response.data.message);
+                  setTimeout(function () {
+                    _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_7__.router.visit("/");
+                  }, 3000);
+                } else {
+                  _this4.$refs.SweetAlerts.showNotificationError(response.data.message);
+                }
+              })["catch"](function (err) {
+                _this4.$refs.SweetAlerts.showNotificationError(err);
+              });
+            case 3:
+              _context2.next = 6;
+              break;
+            case 5:
+              _this4.openOverlay = false;
             case 6:
             case "end":
               return _context2.stop();
@@ -20594,16 +20622,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
+    var _this5 = this;
     this.scrollToBottom();
+    // Pusher.logToConsole = true;
+
+    var pusher = new (pusher_js__WEBPACK_IMPORTED_MODULE_8___default())('5d03bc74ebd65c06a7d0', {
+      cluster: 'mt1'
+    });
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function (data) {
+      var jsonData = data.data;
+      _this5.liveMessage = JSON.parse(jsonData);
+      ;
+    });
     if (!this.viewData.error) {
       this.mainData = this.viewData.group_data;
       this.group_icon = "/" + this.mainData.group_icon;
       this.user_id = this.viewData.user_id;
       this.groupId = this.mainData.id;
+      this.currentGroupMessages = this.viewData.group_messages;
       console.log(this.viewData);
       this.groupFunctions();
     } else {
       console.log("There is an issue");
+    }
+  },
+  watch: {
+    liveMessage: function liveMessage(newVal, oldVal) {
+      var _this6 = this;
+      // console.log('liveMessage updated:', newVal);
+      this.currentGroupMessages.push(newVal);
+      this.$nextTick(function () {
+        var container = _this6.$refs.conversationContainer;
+        container.scrollTop = container.scrollHeight;
+      });
     }
   }
 });
@@ -22575,71 +22627,83 @@ var _hoisted_10 = {
   "class": "converstaion_container",
   ref: "conversationContainer"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis maxime maiores doloribus, nulla voluptatibus ipsam nisi praesentium voluptatum incidunt magnam adipisci fugiat doloremque optio quos, nobis, ducimus deserunt nemo deleniti!</p><p class=\"date\">January 28, 2024</p></div></div><div class=\"message-container current_user_message\"><img class=\"avatar\" src=\"" + _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"User Avatar\"><div class=\"user-details\"><h3>User Name</h3><p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p><p class=\"date\">January 28, 2024</p></div></div>", 10);
-var _hoisted_21 = [_hoisted_11];
-var _hoisted_22 = {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  "class": "avatar",
+  src: _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+  alt: "User Avatar"
+}, null, -1 /* HOISTED */);
+var _hoisted_12 = {
+  "class": "user-details"
+};
+var _hoisted_13 = {
+  "class": "message"
+};
+var _hoisted_14 = {
+  "class": "date"
+};
+var _hoisted_15 = {
   "class": "text_box"
 };
-var _hoisted_23 = {
+var _hoisted_16 = {
   "class": "input-container"
 };
-var _hoisted_24 = {
+var _hoisted_17 = {
   "class": "member_section"
 };
-var _hoisted_25 = {
+var _hoisted_18 = {
   "class": "group_details"
 };
-var _hoisted_26 = ["src"];
-var _hoisted_27 = {
+var _hoisted_19 = ["src"];
+var _hoisted_20 = {
   "class": "member_details"
 };
-var _hoisted_28 = {
+var _hoisted_21 = {
   "class": "settings_group"
 };
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Options", -1 /* HOISTED */);
-var _hoisted_30 = {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Options", -1 /* HOISTED */);
+var _hoisted_23 = {
   "class": "settlings_list"
 };
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-edit"
 }, null, -1 /* HOISTED */);
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-exit"
 }, null, -1 /* HOISTED */);
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-trash"
 }, null, -1 /* HOISTED */);
-var _hoisted_34 = {
+var _hoisted_27 = {
   "class": "members_list"
 };
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Members", -1 /* HOISTED */);
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Members", -1 /* HOISTED */);
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-plus-circle"
 }, null, -1 /* HOISTED */);
-var _hoisted_37 = {
+var _hoisted_30 = {
   "class": "member_scroll_list"
 };
-var _hoisted_38 = ["onClick"];
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_31 = ["onClick"];
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "avatar",
   src: _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"],
   alt: "Member Avatar"
 }, null, -1 /* HOISTED */);
-var _hoisted_40 = {
+var _hoisted_33 = {
   "class": "member-details"
 };
-var _hoisted_41 = {
+var _hoisted_34 = {
   key: 0,
   "class": "bx bxs-badge-check"
 };
-var _hoisted_42 = {
+var _hoisted_35 = {
   key: 0,
   "class": "group_overlay"
 };
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-x-circle"
 }, null, -1 /* HOISTED */);
-var _hoisted_44 = [_hoisted_43];
+var _hoisted_37 = [_hoisted_36];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_SweetAlerts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SweetAlerts");
   var _component_HeaderHome = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("HeaderHome");
@@ -22654,53 +22718,61 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8 /* PROPS */, ["userName"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.group_icon,
     alt: ""
-  }, null, 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.created_at), 1 /* TEXT */)]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, _hoisted_21, 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.created_at), 1 /* TEXT */)]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currentGroupMessages, function (item, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+        'message-container': true,
+        'current_user_message': item.user_id === $data.user_id
+      }),
+      key: index
+    }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.message), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])], 2 /* CLASS */);
+  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"message-container current_user_message\">\n                            <img class=\"avatar\" src=\"../../../public/images/cool-background.png\" alt=\"User Avatar\">\n                            <div class=\"user-details\">\n                                <h3>User Name</h3>\n                                <p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p>\n                                <p class=\"date\">January 28, 2024</p>\n                            </div>\n                        </div> ")], 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.newMessage = $event;
+      return $data.newMessage = $event;
     }),
     onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     }, ["enter"])),
     placeholder: "Type your message..."
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.newMessage]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newMessage]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "bx bx-send",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     })
-  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.group_icon,
     alt: "Profile Image"
-  }, null, 8 /* PROPS */, _hoisted_26), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_description), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [$data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, null, 8 /* PROPS */, _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_description), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.handleOptionClick('edit');
     }),
     "class": "settings_item"
-  }, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.handleOptionClick('exit');
     }),
     "class": "settings_item"
-  }, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Exit Group ")]), $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Exit Group ")]), $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 1,
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.handleOptionClick('delete');
     }),
     "class": "settings_item"
-  }, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     onClick: _cache[6] || (_cache[6] = function ($event) {
       return $options.handleOptionClick('addMember');
     }),
     "class": "settings_item"
-  }, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Member ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mainData.user_group, function (item, index) {
+  }, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Member ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mainData.user_group, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "member-item",
       key: index,
       onClick: function onClick($event) {
         return $options.showOptions(item, $event);
       }
-    }, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.email), 1 /* TEXT */)]), item.admin == 'true' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_41)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_38);
+    }, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.email), 1 /* TEXT */)]), item.admin == 'true' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_34)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_31);
   }), 128 /* KEYED_FRAGMENT */)), $data.selectedUserOptions ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     "class": "options-dialog",
@@ -22708,20 +22780,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ref: "optionsDialog"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[7] || (_cache[7] = function ($event) {
-      return $options.sendMessage($data.selectedUserOptions);
-    })
-  }, "Message"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.removeUser($data.selectedUserOptions);
     })
-  }, "Remove User")], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    onClick: _cache[9] || (_cache[9] = function () {
+  }, "Remove User")], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    onClick: _cache[8] || (_cache[8] = function () {
       return $data.openOverlay = false;
     })
-  }, _hoisted_44), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
+  }, _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
     ShowAddMember: _ctx.ShowAddMember,
     groupId: $data.groupId,
-    onCancelOverlay: _cache[10] || (_cache[10] = function () {
+    onCancelOverlay: _cache[9] || (_cache[9] = function () {
       return $data.openOverlay = false;
     })
   }, null, 8 /* PROPS */, ["ShowAddMember", "groupId"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ExitGroup, {

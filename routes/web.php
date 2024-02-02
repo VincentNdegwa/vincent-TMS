@@ -3,6 +3,7 @@
 use App\Http\Controllers\commentController;
 use App\Http\Controllers\emailVerificationController;
 use App\Http\Controllers\group_controller;
+use App\Http\Controllers\groupMessageController;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\pageController;
@@ -57,4 +58,8 @@ Route::group(['prefix' => 'group'], function () {
         Route::post("/search", [group_controller::class, "searchMember"]);
         Route::post("/add", [group_controller::class, "inviteMember"]);
     });
+});
+
+Route::group(['prefix' => 'messages'], function () {
+    Route::post('/add', [groupMessageController::class, 'addMessage']);
 });
