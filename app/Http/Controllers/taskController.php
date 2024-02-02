@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GroupNotification;
 use App\Models\Group;
 use Carbon\Carbon;
 use App\Models\Task;
@@ -109,6 +110,7 @@ class taskController extends Controller
 
     public function getUserTasks()
     {
+        // event(new GroupNotification("hello"));
         $loggedInId = auth()->id();
         return Inertia::render('Dashboard', [
             'tasks' => Task::where('user_id', $loggedInId)->orderBy("created_at", "DESC")->get(),

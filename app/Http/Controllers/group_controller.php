@@ -223,6 +223,12 @@ class group_controller extends Controller
         if ($checkAdmin == "false") {
             return response()->json(["error" => true, "message" => "You are not allowed to invite a member in this group"]);
         }
+        $checkIfUserGroup = UserGroup::where("group_id", $request->input("group_id"))
+            ->where("user_id", $request->input("user_id"))
+            ->first();
+        if ($checkIfUserGroup) {
+            return response()->json(["error" => true, "message" => "User exist in the group"]);
+        }
         $userGroup = UserGroup::create([
             "user_id" => $request->input("user_id"),
             "group_id" => $request->input("group_id"),

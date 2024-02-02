@@ -96,24 +96,30 @@ export default {
                 }).catch(err => {
                     this.$refs.SweetAlerts.showNotificationError(err)
                 })
+            } else {
+                this.openOverlay = false
             }
         },
         async deleteGroup(status) {
-            await axios.post("/group/delete", {
-                "user_id": this.user_id,
-                "group_id": this.mainData.id
-            }).then(response => {
-                if (!response.data.error) {
-                    this.$refs.SweetAlerts.showNotification(response.data.message)
-                    setTimeout(() => {
-                        router.visit("/")
-                    }, 3000);
-                } else {
-                    this.$refs.SweetAlerts.showNotificationError(response.data.message)
-                }
-            }).catch(err => {
-                this.$refs.SweetAlerts.showNotificationError(err)
-            })
+            if (status) {
+                await axios.post("/group/delete", {
+                    "user_id": this.user_id,
+                    "group_id": this.mainData.id
+                }).then(response => {
+                    if (!response.data.error) {
+                        this.$refs.SweetAlerts.showNotification(response.data.message)
+                        setTimeout(() => {
+                            router.visit("/")
+                        }, 3000);
+                    } else {
+                        this.$refs.SweetAlerts.showNotificationError(response.data.message)
+                    }
+                }).catch(err => {
+                    this.$refs.SweetAlerts.showNotificationError(err)
+                })
+            } else {
+                this.openOverlay = false
+            }
         }
     }, mounted() {
         this.scrollToBottom()

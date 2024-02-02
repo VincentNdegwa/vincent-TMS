@@ -6,8 +6,21 @@ import UserGroups from "./HomeComponents/UserGroups.vue";
 import TaskList from "./HomeComponents/TaskLIst.vue"
 import AddGroup from './HomeComponents/AddGroup.vue';
 
-
+import Pusher from "pusher-js"
 export default {
+    mounted() {
+        console.log(this.groups);
+        // Pusher.logToConsole = true;
+
+        // var pusher = new Pusher('5d03bc74ebd65c06a7d0', {
+        //     cluster: 'mt1'
+        // });
+
+        // var channel = pusher.subscribe('my-channel');
+        // channel.bind('my-event', function (data) {
+        //     alert(JSON.stringify(data));
+        // });
+    },
     props: ['tasks', 'auth', 'assigner', 'assigningTasks', 'groups'],
     data() {
         return {
@@ -43,8 +56,6 @@ export default {
         }, latestGroup(group) {
             this.groups.push(group)
         }
-    }, mounted() {
-        console.log(this.groups);
     }
 }
 

@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserGroup::class);
     }
+
+    function group_message()
+    {
+        return $this->hasMany(groupMessage::class);
+    }
 }
