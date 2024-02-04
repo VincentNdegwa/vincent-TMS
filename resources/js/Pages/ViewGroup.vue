@@ -173,6 +173,12 @@ export default {
             console.log(this.viewData);
 
             this.groupFunctions()
+            let currectUser = this.viewData.group_data.user_group.find((item) => item.user_id == this.user_id)
+            if (currectUser.admin == "true") {
+                this.admin = true
+            } else {
+                this.admin = false
+            }
         } else {
             console.log("There is an issue")
         }

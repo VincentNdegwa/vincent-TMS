@@ -7,7 +7,8 @@ export default {
         return {
             openMenu: false,
             width: window.innerWidth,
-            menuClicked: false
+            menuClicked: false,
+            isDropdownVisible: false,
         }
     },
     components: {
@@ -23,6 +24,12 @@ export default {
                 // this.menuClicked = true
                 this.openMenu = true
             }
+        },
+        toggleDropdown() {
+            this.isDropdownVisible = !this.isDropdownVisible;
+        },
+        closeDropdown() {
+            this.isDropdownVisible = false;
         }
     }
 }
@@ -41,9 +48,16 @@ export default {
                 <a :href="route('getPlayGround')">PlayGround</a>
                 <a href="">Home</a>
             </nav>
-            <div class="left-nav">
-                <h2><i class='bx bxs-user'></i></h2>
-                <a :href="route('logout')">logout</a>
+            <div class="left-nav dropdown">
+                <!-- <a :href="route('logout')">logout</a> -->
+                <button @click="toggleDropdown">
+                    <h2><i class='bx bxs-user'></i></h2>
+                </button>
+                <div v-show="isDropdownVisible" class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a :href="route('logout')">Logout</a>
+                </div>
             </div>
         </div>
         <i class="bx bx-menu" @click="handleMenu"></i>

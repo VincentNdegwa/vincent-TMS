@@ -70,8 +70,32 @@ nav {
 .left-nav {
     display: flex;
     align-items: center;
-    gap: 1em;
+    display: block;
     color: var(--orange);
+}
+.dropdown-content {
+    position: absolute;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem;
+    transition: all ease-in-out 1s;
+}
+.dropdown-content > a {
+    font-size: 1.1rem !important;
+    margin-top: 0.3rem;
+    text-decoration: none;
+}
+.dropdown > button {
+    border: 0px;
+    outline: none;
+    margin-top: 2vh;
+}
+.dropdown-content > a:hover {
+    color: var(--light-dark);
 }
 .left-nav h2 {
     font-size: 2rem;
