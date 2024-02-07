@@ -8,6 +8,7 @@ import SweetAlerts from '@/modules/SweetAlerts.vue';
 import axios from 'axios';
 import { router } from '@inertiajs/vue3';
 import Pusher from "pusher-js";
+import { format, render, cancel, register } from 'timeago.js';
 export default {
     props: ["viewData", "userName"],
     data() {
@@ -52,7 +53,9 @@ export default {
             };
 
         },
-
+        convertTime(time) {
+            return format(time, 'en');
+        },
         sendMessage() {
             if (this.newMessage.trim() !== "") {
                 axios.post('/messages/add', {
@@ -222,7 +225,7 @@ export default {
                             <div class="user-details">
                                 <h3>{{ item.users.name }}</h3>
                                 <p class="message">{{ item.message }}</p>
-                                <p class="date">{{ item.created_at }}</p>
+                                <p class="date">{{ convertTime(item.created_at) }}</p>
                             </div>
                         </div>
                         <!-- <div class="message-container current_user_message">

@@ -15,7 +15,7 @@ class GroupMessages extends Migration
     {
         Schema::create('group_messages', function (Blueprint $table) {
             $table->id();
-            $table->string("message");
+            $table->string("message", 2000);
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("group_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
