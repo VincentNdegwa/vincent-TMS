@@ -62,4 +62,5 @@ Route::group(['prefix' => 'group'], function () {
 
 Route::group(['prefix' => 'messages'], function () {
     Route::post('/add', [groupMessageController::class, 'addMessage']);
+    Route::post("/task", [groupMessageController::class, "assignTaskGroup"]);
 });

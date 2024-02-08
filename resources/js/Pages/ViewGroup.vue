@@ -5,6 +5,7 @@ import DeleteGroup from "./GroupComponets/DeleteGroup.vue";
 import EditGroup from "./GroupComponets/EditGroup.vue";
 import ExitGroup from "./GroupComponets/ExitGroup.vue"
 import SweetAlerts from '@/modules/SweetAlerts.vue';
+import addForm from './AddTaskComponents/addForm.vue';
 import axios from 'axios';
 import { router } from '@inertiajs/vue3';
 import Pusher from "pusher-js";
@@ -33,7 +34,19 @@ export default {
                 left: 0,
             },
             currentGroupMessages: [],
-            liveMessage: ""
+            liveMessage: "",
+            viewCreateTask: false,
+            showSelect: false,
+            form: {
+                name: "",
+                description: "",
+                user_id: "",
+                dueDate: "",
+                priority: 0,
+                unique_id: Date.now(),
+                taskFile: "",
+                group_id: ""
+            },
 
         }
     },
@@ -43,7 +56,8 @@ export default {
         DeleteGroup,
         EditGroup,
         ExitGroup,
-        SweetAlerts
+        SweetAlerts,
+        addForm
     }, methods: {
         showOptions(user, event) {
             this.selectedUserOptions = user;
@@ -56,6 +70,47 @@ export default {
         convertTime(time) {
             return format(time, 'en');
         },
+        async handleSending({ name, description, dueDate, priority, unique_id, taskFile }) {
+            this.showSelect = true;
+
+            this.form = {
+                name,
+                description,
+                dueDate,
+                priority,
+                unique_id,
+                taskFile,
+                user_id: this.form.user_id,
+                group_id: this.form.group_id,
+            };
+
+            await this.sendForm();
+        },
+
+        async sendForm() {
+            try {
+                const formData = new FormData();
+
+                for (const key in this.form) {
+                    formData.append(key, this.form[key]);
+                }
+
+                const response = await axios.post('/messages/task', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+
+                console.log(response.data);
+
+                this.$refs.SweetAlerts.showNotification("Task created");
+            } catch (error) {
+                this.$refs.SweetAlerts.showError();
+                console.error(error);
+            }
+        },
+
         sendMessage() {
             if (this.newMessage.trim() !== "") {
                 axios.post('/messages/add', {
@@ -103,6 +158,7 @@ export default {
             this.ShowExitGroup = option === 'exit';
             this.ShowDeleteGroup = option === 'delete';
             this.ShowAddMember = option === 'addMember';
+            this.viewCreateTask = option === 'create_task';
             this.openOverlay = true;
         }, closeDialog(data) {
             this.openOverlay = false;
@@ -172,6 +228,8 @@ export default {
             this.group_icon = "/" + this.mainData.group_icon
             this.user_id = this.viewData.user_id
             this.groupId = this.mainData.id
+            this.form.group_id = this.mainData.id
+            this.form.user_id = this.viewData.user_id
             this.currentGroupMessages = this.viewData.group_messages
             console.log(this.viewData);
 
@@ -214,8 +272,8 @@ export default {
                             <p>{{ mainData.group_name }}</p>
                             <small>{{ mainData.created_at }}</small>
                         </div>
-                        <div class="group_functions">
-                            <button>Create Task</button>
+                        <div class="group_functions" v-if="admin">
+                            <button @click="handleOptionClick('create_task')">Create Task</button>
                         </div>
                     </div>
                     <div class="converstaion_container" ref="conversationContainer">
@@ -228,14 +286,7 @@ export default {
                                 <p class="date">{{ convertTime(item.created_at) }}</p>
                             </div>
                         </div>
-                        <!-- <div class="message-container current_user_message">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
-                            <div class="user-details">
-                                <h3>User Name</h3>
-                                <p class="message">This is a sample message. Lorem ipsum dolor sit amet.</p>
-                                <p class="date">January 28, 2024</p>
-                            </div>
-                        </div> -->
+
                     </div>
                     <div class="text_box">
                         <div class="input-container">
@@ -303,6 +354,9 @@ export default {
             <ExitGroup :ShowExitGroup="ShowExitGroup" @cancel-exit="exitGroup" @confirm-exit="exitGroup" />
             <DeleteGroup :ShowDeleteGroup="ShowDeleteGroup" @cancel-delete="deleteGroup" @confirm-delete="deleteGroup" />
             <EditGroup :ShowEditGroup="ShowEditGroup" :mainData="mainData" @closeDialog="closeDialog" />
+            <div v-if="viewCreateTask" class="add_form_task">
+                <addForm @sendingForm="handleSending" />
+            </div>
         </div>
     </section>
 </template>

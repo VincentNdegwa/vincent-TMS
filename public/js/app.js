@@ -20434,16 +20434,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GroupComponets_EditGroup_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GroupComponets/EditGroup.vue */ "./resources/js/Pages/GroupComponets/EditGroup.vue");
 /* harmony import */ var _GroupComponets_ExitGroup_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./GroupComponets/ExitGroup.vue */ "./resources/js/Pages/GroupComponets/ExitGroup.vue");
 /* harmony import */ var _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/modules/SweetAlerts.vue */ "./resources/js/modules/SweetAlerts.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/vue3 */ "./node_modules/@inertiajs/vue3/dist/index.esm.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var timeago_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! timeago.js */ "./node_modules/timeago.js/esm/index.js");
+/* harmony import */ var _AddTaskComponents_addForm_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AddTaskComponents/addForm.vue */ "./resources/js/Pages/AddTaskComponents/addForm.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/vue3 */ "./node_modules/@inertiajs/vue3/dist/index.esm.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var timeago_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! timeago.js */ "./node_modules/timeago.js/esm/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -20477,7 +20479,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         left: 0
       },
       currentGroupMessages: [],
-      liveMessage: ""
+      liveMessage: "",
+      viewCreateTask: false,
+      showSelect: false,
+      form: {
+        name: "",
+        description: "",
+        user_id: "",
+        dueDate: "",
+        priority: 0,
+        unique_id: Date.now(),
+        taskFile: "",
+        group_id: ""
+      }
     };
   },
   components: {
@@ -20486,7 +20500,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     DeleteGroup: _GroupComponets_DeleteGroup_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     EditGroup: _GroupComponets_EditGroup_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     ExitGroup: _GroupComponets_ExitGroup_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    SweetAlerts: _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    SweetAlerts: _modules_SweetAlerts_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    addForm: _AddTaskComponents_addForm_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   methods: {
     showOptions: function showOptions(user, event) {
@@ -20497,21 +20512,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
     },
     convertTime: function convertTime(time) {
-      return (0,timeago_js__WEBPACK_IMPORTED_MODULE_9__.format)(time, 'en');
+      return (0,timeago_js__WEBPACK_IMPORTED_MODULE_10__.format)(time, 'en');
+    },
+    handleSending: function handleSending(_ref) {
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var name, description, dueDate, priority, unique_id, taskFile;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              name = _ref.name, description = _ref.description, dueDate = _ref.dueDate, priority = _ref.priority, unique_id = _ref.unique_id, taskFile = _ref.taskFile;
+              _this.showSelect = true;
+              _this.form = {
+                name: name,
+                description: description,
+                dueDate: dueDate,
+                priority: priority,
+                unique_id: unique_id,
+                taskFile: taskFile,
+                user_id: _this.form.user_id,
+                group_id: _this.form.group_id
+              };
+              _context.next = 5;
+              return _this.sendForm();
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    sendForm: function sendForm() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var formData, key, response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              formData = new FormData();
+              for (key in _this2.form) {
+                formData.append(key, _this2.form[key]);
+              }
+              _context2.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_7___default().post('/messages/task', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              });
+            case 5:
+              response = _context2.sent;
+              console.log(response.data);
+              _this2.$refs.SweetAlerts.showNotification("Task created");
+              _context2.next = 14;
+              break;
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](0);
+              _this2.$refs.SweetAlerts.showError();
+              console.error(_context2.t0);
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 10]]);
+      }))();
     },
     sendMessage: function sendMessage() {
-      var _this = this;
+      var _this3 = this;
       if (this.newMessage.trim() !== "") {
-        axios__WEBPACK_IMPORTED_MODULE_6___default().post('/messages/add', {
+        axios__WEBPACK_IMPORTED_MODULE_7___default().post('/messages/add', {
           "user_id": this.user_id,
           "group_id": this.groupId,
           'message': this.newMessage
         }).then(function (response) {
-          _this.newMessage = "";
+          _this3.newMessage = "";
           if (!response.data.error) {
             console.log(response.data.message);
-            _this.$nextTick(function () {
-              var container = _this.$refs.conversationContainer;
+            _this3.$nextTick(function () {
+              var container = _this3.$refs.conversationContainer;
               container.scrollTop = container.scrollHeight;
             });
           } else {
@@ -20533,9 +20612,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     groupFunctions: function groupFunctions() {
-      var _this2 = this;
+      var _this4 = this;
       var current_user = this.mainData.user_group.find(function (item) {
-        return item.users.id == _this2.user_id;
+        return item.users.id == _this4.user_id;
       });
       if (current_user.admin) {
         this.admin = true;
@@ -20548,6 +20627,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.ShowExitGroup = option === 'exit';
       this.ShowDeleteGroup = option === 'delete';
       this.ShowAddMember = option === 'addMember';
+      this.viewCreateTask = option === 'create_task';
       this.openOverlay = true;
     },
     closeDialog: function closeDialog(data) {
@@ -20557,94 +20637,94 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.mainData.group_description = data.group_description;
     },
     exitGroup: function exitGroup(status) {
-      var _this3 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+      var _this5 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
             case 0:
               if (!status) {
-                _context.next = 5;
+                _context3.next = 5;
                 break;
               }
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_6___default().post("/group/exit", {
-                "user_id": _this3.user_id,
-                "group_id": _this3.mainData.id
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_7___default().post("/group/exit", {
+                "user_id": _this5.user_id,
+                "group_id": _this5.mainData.id
               }).then(function (response) {
                 if (!response.data.error) {
-                  _this3.$refs.SweetAlerts.showNotification(response.data.message);
+                  _this5.$refs.SweetAlerts.showNotification(response.data.message);
                   setTimeout(function () {
-                    _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_7__.router.visit("/");
+                    _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_8__.router.visit("/");
                   }, 3000);
                 } else {
-                  _this3.$refs.SweetAlerts.showNotificationError(response.data.message);
+                  _this5.$refs.SweetAlerts.showNotificationError(response.data.message);
                 }
               })["catch"](function (err) {
-                _this3.$refs.SweetAlerts.showNotificationError(err);
+                _this5.$refs.SweetAlerts.showNotificationError(err);
               });
             case 3:
-              _context.next = 6;
+              _context3.next = 6;
               break;
             case 5:
-              _this3.openOverlay = false;
+              _this5.openOverlay = false;
             case 6:
             case "end":
-              return _context.stop();
+              return _context3.stop();
           }
-        }, _callee);
+        }, _callee3);
       }))();
     },
     deleteGroup: function deleteGroup(status) {
-      var _this4 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
+      var _this6 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
               if (!status) {
-                _context2.next = 5;
+                _context4.next = 5;
                 break;
               }
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_6___default().post("/group/delete", {
-                "user_id": _this4.user_id,
-                "group_id": _this4.mainData.id
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_7___default().post("/group/delete", {
+                "user_id": _this6.user_id,
+                "group_id": _this6.mainData.id
               }).then(function (response) {
                 if (!response.data.error) {
-                  _this4.$refs.SweetAlerts.showNotification(response.data.message);
+                  _this6.$refs.SweetAlerts.showNotification(response.data.message);
                   setTimeout(function () {
-                    _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_7__.router.visit("/");
+                    _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_8__.router.visit("/");
                   }, 3000);
                 } else {
-                  _this4.$refs.SweetAlerts.showNotificationError(response.data.message);
+                  _this6.$refs.SweetAlerts.showNotificationError(response.data.message);
                 }
               })["catch"](function (err) {
-                _this4.$refs.SweetAlerts.showNotificationError(err);
+                _this6.$refs.SweetAlerts.showNotificationError(err);
               });
             case 3:
-              _context2.next = 6;
+              _context4.next = 6;
               break;
             case 5:
-              _this4.openOverlay = false;
+              _this6.openOverlay = false;
             case 6:
             case "end":
-              return _context2.stop();
+              return _context4.stop();
           }
-        }, _callee2);
+        }, _callee4);
       }))();
     }
   },
   mounted: function mounted() {
-    var _this5 = this;
+    var _this7 = this;
     this.scrollToBottom();
     // Pusher.logToConsole = true;
 
-    var pusher = new (pusher_js__WEBPACK_IMPORTED_MODULE_8___default())('5d03bc74ebd65c06a7d0', {
+    var pusher = new (pusher_js__WEBPACK_IMPORTED_MODULE_9___default())('5d03bc74ebd65c06a7d0', {
       cluster: 'mt1'
     });
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function (data) {
       var jsonData = data.data;
-      _this5.liveMessage = JSON.parse(jsonData);
+      _this7.liveMessage = JSON.parse(jsonData);
       ;
     });
     if (!this.viewData.error) {
@@ -20652,11 +20732,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.group_icon = "/" + this.mainData.group_icon;
       this.user_id = this.viewData.user_id;
       this.groupId = this.mainData.id;
+      this.form.group_id = this.mainData.id;
+      this.form.user_id = this.viewData.user_id;
       this.currentGroupMessages = this.viewData.group_messages;
       console.log(this.viewData);
       this.groupFunctions();
       var currectUser = this.viewData.group_data.user_group.find(function (item) {
-        return item.user_id == _this5.user_id;
+        return item.user_id == _this7.user_id;
       });
       if (currectUser.admin == "true") {
         this.admin = true;
@@ -20669,11 +20751,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   watch: {
     liveMessage: function liveMessage(newVal, oldVal) {
-      var _this6 = this;
+      var _this8 = this;
       // console.log('liveMessage updated:', newVal);
       this.currentGroupMessages.push(newVal);
       this.$nextTick(function () {
-        var container = _this6.$refs.conversationContainer;
+        var container = _this8.$refs.conversationContainer;
         container.scrollTop = container.scrollHeight;
       });
     }
@@ -22654,9 +22736,10 @@ var _hoisted_7 = ["src"];
 var _hoisted_8 = {
   "class": "group_name"
 };
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_9 = {
+  key: 0,
   "class": "group_functions"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "Create Task")], -1 /* HOISTED */);
+};
 var _hoisted_10 = {
   "class": "converstaion_container",
   ref: "conversationContainer"
@@ -22738,6 +22821,10 @@ var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "bx bx-x-circle"
 }, null, -1 /* HOISTED */);
 var _hoisted_37 = [_hoisted_36];
+var _hoisted_38 = {
+  key: 0,
+  "class": "add_form_task"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_SweetAlerts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SweetAlerts");
   var _component_HeaderHome = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("HeaderHome");
@@ -22745,6 +22832,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ExitGroup = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ExitGroup");
   var _component_DeleteGroup = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DeleteGroup");
   var _component_EditGroup = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EditGroup");
+  var _component_addForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("addForm");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SweetAlerts, {
     ref: "SweetAlerts"
   }, null, 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_HeaderHome, {
@@ -22752,7 +22840,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8 /* PROPS */, ["userName"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.group_icon,
     alt: ""
-  }, null, 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.created_at), 1 /* TEXT */)]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currentGroupMessages, function (item, index) {
+  }, null, 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.created_at), 1 /* TEXT */)]), $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.handleOptionClick('create_task');
+    })
+  }, "Create Task")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currentGroupMessages, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
         'message-container': true,
@@ -22760,17 +22852,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }),
       key: index
     }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.message), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertTime(item.created_at)), 1 /* TEXT */)])], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"message-container current_user_message\">\n                            <img class=\"avatar\" src=\"../../../public/images/cool-background.png\" alt=\"User Avatar\">\n                            <div class=\"user-details\">\n                                <h3>User Name</h3>\n                                <p class=\"message\">This is a sample message. Lorem ipsum dolor sit amet.</p>\n                                <p class=\"date\">January 28, 2024</p>\n                            </div>\n                        </div> ")], 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.newMessage = $event;
     }),
-    onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+    onKeyup: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     }, ["enter"])),
     placeholder: "Type your message..."
   }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newMessage]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "bx bx-send",
-    onClick: _cache[2] || (_cache[2] = function () {
+    onClick: _cache[3] || (_cache[3] = function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     })
   })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -22778,24 +22870,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: "Profile Image"
   }, null, 8 /* PROPS */, _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_description), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    onClick: _cache[3] || (_cache[3] = function ($event) {
+    onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.handleOptionClick('edit');
     }),
     "class": "settings_item"
   }, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[4] || (_cache[4] = function ($event) {
+    onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.handleOptionClick('exit');
     }),
     "class": "settings_item"
   }, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Exit Group ")]), $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 1,
-    onClick: _cache[5] || (_cache[5] = function ($event) {
+    onClick: _cache[6] || (_cache[6] = function ($event) {
       return $options.handleOptionClick('delete');
     }),
     "class": "settings_item"
   }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    onClick: _cache[6] || (_cache[6] = function ($event) {
+    onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.handleOptionClick('addMember');
     }),
     "class": "settings_item"
@@ -22813,17 +22905,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($data.dialogStyle),
     ref: "optionsDialog"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[7] || (_cache[7] = function ($event) {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.removeUser($data.selectedUserOptions);
     })
   }, "Remove User")], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    onClick: _cache[8] || (_cache[8] = function () {
+    onClick: _cache[9] || (_cache[9] = function () {
       return $data.openOverlay = false;
     })
   }, _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
     ShowAddMember: _ctx.ShowAddMember,
     groupId: $data.groupId,
-    onCancelOverlay: _cache[9] || (_cache[9] = function () {
+    onCancelOverlay: _cache[10] || (_cache[10] = function () {
       return $data.openOverlay = false;
     })
   }, null, 8 /* PROPS */, ["ShowAddMember", "groupId"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ExitGroup, {
@@ -22838,7 +22930,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ShowEditGroup: _ctx.ShowEditGroup,
     mainData: $data.mainData,
     onCloseDialog: $options.closeDialog
-  }, null, 8 /* PROPS */, ["ShowEditGroup", "mainData", "onCloseDialog"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }, null, 8 /* PROPS */, ["ShowEditGroup", "mainData", "onCloseDialog"]), $data.viewCreateTask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_addForm, {
+    onSendingForm: $options.handleSending
+  }, null, 8 /* PROPS */, ["onSendingForm"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -25834,7 +25928,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #b6772f;\n    font-weight: bold;\n}\n.settings_item .bx-trash {\n    color: red;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n    position: relative;\n}\n.member-item .bxs-badge-check {\n    color: blue;\n    font-size: 2rem;\n    position: absolute;\n    right: 0.5rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n.group_overlay {\n    position: absolute;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    background: rgba(0, 0, 0, 0.7);\n}\n.group_overlay > span {\n    font-size: 2rem;\n    position: absolute;\n    right: 10%;\n    top: 10%;\n}\n.options-dialog {\n    position: absolute;\n    background-color: var(--light-dark);\n    border: 1px solid #ccc;\n    padding: 10px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.add_form_task {\n    background: var(--light-dark);\n    width: 900px !important;\n    padding: 2rem;\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #b6772f;\n    font-weight: bold;\n}\n.settings_item .bx-trash {\n    color: red;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n    position: relative;\n}\n.member-item .bxs-badge-check {\n    color: blue;\n    font-size: 2rem;\n    position: absolute;\n    right: 0.5rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n.group_overlay {\n    position: absolute;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    background: rgba(0, 0, 0, 0.7);\n}\n.group_overlay > span {\n    font-size: 2rem;\n    position: absolute;\n    right: 10%;\n    top: 10%;\n}\n.options-dialog {\n    position: absolute;\n    background-color: var(--light-dark);\n    border: 1px solid #ccc;\n    padding: 10px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n@media screen and (max-width: 900px) {\n    .add_form_task {\n        background: var(--light-dark);\n        width: 100% !important;\n        padding: 2rem;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

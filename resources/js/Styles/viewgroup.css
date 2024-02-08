@@ -96,6 +96,11 @@
         background-color: var(--dark);
     }
 }
+.add_form_task {
+    background: var(--light-dark);
+    width: 900px !important;
+    padding: 2rem;
+}
 .message-container {
     display: flex;
     align-items: flex-start;
@@ -334,4 +339,11 @@
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 900px) {
+    .add_form_task {
+        background: var(--light-dark);
+        width: 100% !important;
+        padding: 2rem;
+    }
 }
