@@ -22741,6 +22741,7 @@ var _hoisted_9 = {
   "class": "group_functions"
 };
 var _hoisted_10 = {
+  key: 0,
   "class": "converstaion_container",
   ref: "conversationContainer"
 };
@@ -22759,69 +22760,75 @@ var _hoisted_14 = {
   "class": "date"
 };
 var _hoisted_15 = {
+  key: 1,
+  "class": "no_chats converstaion_container"
+};
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, " No messages yet!", -1 /* HOISTED */);
+var _hoisted_17 = [_hoisted_16];
+var _hoisted_18 = {
   "class": "text_box"
 };
-var _hoisted_16 = {
+var _hoisted_19 = {
   "class": "input-container"
 };
-var _hoisted_17 = {
+var _hoisted_20 = {
   "class": "member_section"
 };
-var _hoisted_18 = {
+var _hoisted_21 = {
   "class": "group_details"
 };
-var _hoisted_19 = ["src"];
-var _hoisted_20 = {
+var _hoisted_22 = ["src"];
+var _hoisted_23 = {
   "class": "member_details"
 };
-var _hoisted_21 = {
+var _hoisted_24 = {
   "class": "settings_group"
 };
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Options", -1 /* HOISTED */);
-var _hoisted_23 = {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Options", -1 /* HOISTED */);
+var _hoisted_26 = {
   "class": "settlings_list"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-edit"
 }, null, -1 /* HOISTED */);
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-exit"
 }, null, -1 /* HOISTED */);
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-trash"
 }, null, -1 /* HOISTED */);
-var _hoisted_27 = {
+var _hoisted_30 = {
   "class": "members_list"
 };
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Members", -1 /* HOISTED */);
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Members", -1 /* HOISTED */);
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-plus-circle"
 }, null, -1 /* HOISTED */);
-var _hoisted_30 = {
+var _hoisted_33 = {
   "class": "member_scroll_list"
 };
-var _hoisted_31 = ["onClick"];
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_34 = ["onClick"];
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "avatar",
   src: _public_images_cool_background_png__WEBPACK_IMPORTED_MODULE_1__["default"],
   alt: "Member Avatar"
 }, null, -1 /* HOISTED */);
-var _hoisted_33 = {
+var _hoisted_36 = {
   "class": "member-details"
 };
-var _hoisted_34 = {
+var _hoisted_37 = {
   key: 0,
   "class": "bx bxs-badge-check"
 };
-var _hoisted_35 = {
+var _hoisted_38 = {
   key: 0,
   "class": "group_overlay"
 };
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-x-circle"
 }, null, -1 /* HOISTED */);
-var _hoisted_37 = [_hoisted_36];
-var _hoisted_38 = {
+var _hoisted_40 = [_hoisted_39];
+var _hoisted_41 = {
   key: 0,
   "class": "add_form_task"
 };
@@ -22844,7 +22851,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.handleOptionClick('create_task');
     })
-  }, "Create Task")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currentGroupMessages, function (item, index) {
+  }, "Create Task")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.currentGroupMessages.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currentGroupMessages, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
         'message-container': true,
@@ -22852,7 +22859,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }),
       key: index
     }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.message), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertTime(item.created_at)), 1 /* TEXT */)])], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, _hoisted_17)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.newMessage = $event;
     }),
@@ -22865,40 +22872,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     })
-  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.group_icon,
     alt: "Profile Image"
-  }, null, 8 /* PROPS */, _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_description), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, null, 8 /* PROPS */, _hoisted_22), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.mainData.group_description), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [$data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.handleOptionClick('edit');
     }),
     "class": "settings_item"
-  }, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.handleOptionClick('exit');
     }),
     "class": "settings_item"
-  }, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Exit Group ")]), $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Exit Group ")]), $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 1,
     onClick: _cache[6] || (_cache[6] = function ($event) {
       return $options.handleOptionClick('delete');
     }),
     "class": "settings_item"
-  }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  }, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete Group ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, $data.admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.handleOptionClick('addMember');
     }),
     "class": "settings_item"
-  }, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Member ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mainData.user_group, function (item, index) {
+  }, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Member ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mainData.user_group, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "member-item",
       key: index,
       onClick: function onClick($event) {
         return $options.showOptions(item, $event);
       }
-    }, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.email), 1 /* TEXT */)]), item.admin == 'true' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_34)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_31);
+    }, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.users.email), 1 /* TEXT */)]), item.admin == 'true' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_37)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_34);
   }), 128 /* KEYED_FRAGMENT */)), $data.selectedUserOptions ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     "class": "options-dialog",
@@ -22908,11 +22915,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.removeUser($data.selectedUserOptions);
     })
-  }, "Remove User")], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  }, "Remove User")], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]), $data.openOverlay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     onClick: _cache[9] || (_cache[9] = function () {
       return $data.openOverlay = false;
     })
-  }, _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
+  }, _hoisted_40), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddMember, {
     ShowAddMember: _ctx.ShowAddMember,
     groupId: $data.groupId,
     onCancelOverlay: _cache[10] || (_cache[10] = function () {
@@ -22930,7 +22937,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ShowEditGroup: _ctx.ShowEditGroup,
     mainData: $data.mainData,
     onCloseDialog: $options.closeDialog
-  }, null, 8 /* PROPS */, ["ShowEditGroup", "mainData", "onCloseDialog"]), $data.viewCreateTask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_addForm, {
+  }, null, 8 /* PROPS */, ["ShowEditGroup", "mainData", "onCloseDialog"]), $data.viewCreateTask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_addForm, {
     onSendingForm: $options.handleSending
   }, null, 8 /* PROPS */, ["onSendingForm"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
@@ -25928,7 +25935,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.add_form_task {\n    background: var(--light-dark);\n    width: 900px !important;\n    padding: 2rem;\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #b6772f;\n    font-weight: bold;\n}\n.settings_item .bx-trash {\n    color: red;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n    position: relative;\n}\n.member-item .bxs-badge-check {\n    color: blue;\n    font-size: 2rem;\n    position: absolute;\n    right: 0.5rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n.group_overlay {\n    position: absolute;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    background: rgba(0, 0, 0, 0.7);\n}\n.group_overlay > span {\n    font-size: 2rem;\n    position: absolute;\n    right: 10%;\n    top: 10%;\n}\n.options-dialog {\n    position: absolute;\n    background-color: var(--light-dark);\n    border: 1px solid #ccc;\n    padding: 10px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n@media screen and (max-width: 900px) {\n    .add_form_task {\n        background: var(--light-dark);\n        width: 100% !important;\n        padding: 2rem;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".group_container {\n    display: grid;\n    grid-template-columns: 100%;\n    place-items: center;\n    height: 90vh;\n}\n\n.main_screen {\n    background: var(--white);\n    width: 100%;\n    height: 100%;\n    max-width: 1400px;\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n    display: grid;\n    grid-template-columns: 70% calc(30% - 0.5rem);\n    gap: 0.5rem;\n}\n\n.conversation_section {\n    height: 100%;\n    display: grid;\n    grid-template-rows: 10vh calc(90vh - 20vh) 10vh;\n}\n\n.converstaion_container,\n.conversation_header,\n.text_box {\n    width: 100%;\n    height: 100%;\n    border: 1px solid;\n}\n\n.conversation_header {\n    display: grid;\n    grid-template-columns: 1fr 5fr 2fr;\n    align-items: center;\n    padding: 0.5rem;\n    background: var(--light-dark);\n}\n\n.group_avatar,\n.group_avatar > img {\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n}\n\n.group_name {\n    color: var(--white);\n}\n\n.group_name > p {\n    width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    text-wrap: nowrap;\n    font-size: 1.6rem;\n    font-weight: bold;\n}\n.group_functions > button {\n    background: var(--orange);\n    color: var(--white);\n    border: 1px solid var(--orange);\n    font-size: 1.4rem;\n    padding: 0.4rem;\n    border-radius: 0.8rem;\n}\n.group_functions > button:hover {\n    background: transparent;\n    color: var(--orange);\n    border: 1px solid var(--orange);\n    transition: all ease-in-out 0.5s;\n}\n/* message box */\n.converstaion_container {\n    overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n}\n.no_chats {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    place-items: center;\n    color: var(--dark);\n}\n.no_chats > h2 {\n    font-size: 3rem;\n}\n\n.converstaion_container {\n    /* Customize scrollbar */\n    scrollbar-color: var(--orange) var(--dark); /* Firefox */\n    scrollbar-width: thin; /* Firefox */\n\n    /* Customize WebKit (Chrome/Safari) scrollbar */\n    &::-webkit-scrollbar {\n        width: 8px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: var(--orange);\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: var(--dark);\n    }\n}\n.add_form_task {\n    background: var(--light-dark);\n    width: 900px !important;\n    padding: 2rem;\n}\n.message-container {\n    display: flex;\n    align-items: flex-start;\n    align-self: flex-start;\n    max-width: 400px;\n    margin: 10px;\n    border-radius: 10px;\n    background-color: var(--dark);\n    padding: 10px;\n}\n.current_user_message {\n    align-self: flex-end;\n    background: var(--light-dark);\n}\n\n.avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.user-details {\n    flex-grow: 1;\n}\n\n.user-details h3 {\n    margin: 0;\n    font-size: 16px;\n    color: var(--yellow);\n}\n\n.message {\n    margin: 5px 0;\n}\n\n.date {\n    font-size: 12px;\n    color: #777;\n}\n/* text input */\n.text_box {\n    display: flex;\n    align-items: center;\n    padding: 0.6rem;\n}\n.input-container {\n    display: flex;\n    align-items: center;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.input-container > input {\n    flex-grow: 1;\n    padding: 5px;\n    margin-right: 5px;\n    outline: none;\n    border: 0px;\n    color: var(--light-dark);\n    background: var(--white);\n    height: 70%;\n    width: 70% !important;\n    border-radius: 0.5rem;\n    text-indent: 1rem;\n    font-size: 1.4rem;\n}\n\n.input-container > i {\n    display: grid;\n    place-items: center;\n    cursor: pointer;\n    font-size: 3rem;\n    width: max-content;\n    background: var(--orange);\n    color: var(--light-dark);\n    text-align: center;\n    border-radius: 10%;\n}\n/* member_section */\n\n.member_section {\n    height: 90vh;\n    width: 100%;\n    display: grid;\n    grid-template-rows: 20vh calc(90vh - 20vh);\n}\n.group_details {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.5rem;\n    overflow-y: scroll;\n}\n.member_details {\n    /* background: yellow; */\n    overflow-y: scroll;\n}\n.member_details::-webkit-scrollbar,\n.group_details::-webkit-scrollbar {\n    display: none;\n}\n.group_details > img {\n    width: 100px;\n    height: 100px;\n    border: 1px solid var(--light-dark);\n    border-radius: 50%;\n}\n.group_details > h3 {\n    font-size: 1.3rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.group_details > p {\n    width: 100%;\n    /* height: calc(20vh - 2rem - 100px - 0.5rem); */\n    text-overflow: ellipsis;\n    text-align: center;\n    text-wrap: wrap;\n    color: var(--light-dark);\n}\n/* .member_details{\n    display: grid;\n    grid-template-rows: ;\n} */\n.settings_group {\n    height: max-content;\n    max-height: 20vh;\n    overflow-y: scroll;\n    padding: 0.5rem;\n}\n.settings_group::-webkit-scrollbar {\n    display: none;\n}\n.settings_group > small,\n.members_list > small {\n    font-size: 1.2rem;\n    color: var(--dark);\n    font-weight: bold;\n}\n.settlings_list {\n    display: block;\n}\n.settings_item {\n    padding: 0.5rem;\n    margin-top: 0.4rem;\n    font-size: 1.2rem;\n    border-radius: 1rem;\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    color: var(--light-dark);\n    transition: all ease-in-out 0.5s;\n}\n.settings_item:hover {\n    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);\n}\n.settings_item .bx-edit {\n    color: #43b443;\n    font-weight: bold;\n}\n.settings_item .bx-exit {\n    color: #b6772f;\n    font-weight: bold;\n}\n.settings_item .bx-trash {\n    color: red;\n}\n.settings_item .bx-plus-circle {\n    color: var(--orange);\n}\n\n.members_list {\n    padding: 0.5rem;\n}\n\n.member_scroll_list {\n    height: 42vh;\n    overflow-y: scroll;\n    margin-top: 10px;\n}\n.member_scroll_list::-webkit-scrollbar {\n    display: none;\n}\n.member-item {\n    display: flex;\n    align-items: center;\n    height: 50px;\n    border-bottom: 1px solid var(--light-dark);\n    padding: 0 10px;\n    margin-top: 0.2rem;\n    position: relative;\n}\n.member-item .bxs-badge-check {\n    color: blue;\n    font-size: 2rem;\n    position: absolute;\n    right: 0.5rem;\n}\n\n.member-item .avatar {\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.member-details {\n    flex-grow: 1;\n}\n\n.member-details h3,\n.member-details p {\n    margin: 0;\n    color: var(--light-dark);\n}\n.group_overlay {\n    position: absolute;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    display: grid;\n    place-items: center;\n    background: rgba(0, 0, 0, 0.7);\n}\n.group_overlay > span {\n    font-size: 2rem;\n    position: absolute;\n    right: 10%;\n    top: 10%;\n}\n.options-dialog {\n    position: absolute;\n    background-color: var(--light-dark);\n    border: 1px solid #ccc;\n    padding: 10px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n@media screen and (max-width: 900px) {\n    .add_form_task {\n        background: var(--light-dark);\n        width: 100% !important;\n        padding: 2rem;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

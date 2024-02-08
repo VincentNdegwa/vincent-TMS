@@ -77,6 +77,16 @@
     display: flex;
     flex-direction: column;
 }
+.no_chats {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--dark);
+}
+.no_chats > h2 {
+    font-size: 3rem;
+}
 
 .converstaion_container {
     /* Customize scrollbar */

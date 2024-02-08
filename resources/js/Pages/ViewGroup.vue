@@ -276,7 +276,7 @@ export default {
                             <button @click="handleOptionClick('create_task')">Create Task</button>
                         </div>
                     </div>
-                    <div class="converstaion_container" ref="conversationContainer">
+                    <div class="converstaion_container" ref="conversationContainer" v-if="currentGroupMessages.length > 0">
                         <div :class="{ 'message-container': true, 'current_user_message': item.user_id === user_id }"
                             v-for="(item, index) in currentGroupMessages" :key="index">
                             <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
@@ -287,6 +287,9 @@ export default {
                             </div>
                         </div>
 
+                    </div>
+                    <div class="no_chats converstaion_container" v-else>
+                        <h2> No messages yet!</h2>
                     </div>
                     <div class="text_box">
                         <div class="input-container">
