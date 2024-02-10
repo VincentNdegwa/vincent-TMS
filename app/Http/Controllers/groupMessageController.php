@@ -34,8 +34,5 @@ class groupMessageController extends Controller
         return response()->json(['error' => false, 'message' => "Message sent", "data" => $message]);
     }
 
-    function assignTaskGroup(Request $request)
-    {
-        return response()->json(['error' => false, 'message' => "Message sent", "data" => $request->all()]);
-    }
+
 }

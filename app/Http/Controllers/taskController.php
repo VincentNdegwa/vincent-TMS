@@ -167,4 +167,9 @@ class taskController extends Controller
             return Redirect::route('viewTasks');
         }
     }
+
+    function assignTaskGroup(Request $request)
+    {
+        return response()->json(['error' => false, 'message' => "Message sent", "data" => $request->all()]);
+    }
 }
