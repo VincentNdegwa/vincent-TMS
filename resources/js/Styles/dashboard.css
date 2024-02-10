@@ -113,11 +113,14 @@ nav > a {
     justify-content: flex-start;
     text-wrap: nowrap;
     text-overflow: ellipsis;
+    text-decoration: none;
 }
 
 nav > a:hover {
     background: var(--light-dark);
+    color: var(--orange);
     transition: all ease 2s;
+    text-decoration: none;
 }
 
 .main-container {

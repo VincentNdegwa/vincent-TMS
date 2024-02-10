@@ -12,6 +12,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class taskController extends Controller
 {
@@ -170,6 +171,53 @@ class taskController extends Controller
 
     function assignTaskGroup(Request $request)
     {
-        return response()->json(['error' => false, 'message' => "Message sent", "data" => $request->all()]);
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            'user_id' => 'required',
+            'dueDate' => 'required|date',
+            'name' => 'required',
+            'unique_id' => 'required',
+            'priority' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => true, 'message' => $validator->errors()->first()]);
+        }
+
+        try {
+            $dueDate = Carbon::parse($request->input('dueDate'));
+            $users = UserGroup::where('group_id', $request->input('group_id'))
+            ->where('user_id', '!=', $request->input('user_id'))
+            ->select('user_id')
+            ->get();
+
+            $tasks = [];
+
+            foreach ($users as $user) {
+                $taskData = [
+                    'name' => $request->input('name'),
+                    'unique_id' => $request->input('unique_id'),
+                    'assigner' => auth()->id(),
+                    'user_id' => $user->user_id,
+                    'priority' => $request->input('priority'),
+                    'due_date' => $dueDate->timestamp,
+                    'description' => $request->input('description'),
+                ];
+
+                if ($request->hasFile('taskFile')) {
+                    $file = $request->file('taskFile');
+                    $filename = $file->storeAs('taskFiles', $file->getClientOriginalName(), 'public');
+                    $taskData['taskFile'] = $filename;
+                }
+
+                $addedAssigning = Task::create($taskData);
+                $tasks[] = $addedAssigning;
+            }
+
+            return response()->json(['error' => false, 'message' => 'Tasks assigned successfully', 'tasks' => $tasks]);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => true, 'message' => $th->getMessage()]);
+        }
     }
 }

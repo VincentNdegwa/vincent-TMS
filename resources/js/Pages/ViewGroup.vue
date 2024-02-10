@@ -103,12 +103,16 @@ export default {
 
 
                 console.log(response.data);
-
-                this.$refs.SweetAlerts.showNotification("Task created");
+                if (response.data.error) {
+                    this.$refs.SweetAlerts.showNotificationError(response.data.message);
+                } else {
+                    this.$refs.SweetAlerts.showNotification("Task created");
+                }
             } catch (error) {
                 this.$refs.SweetAlerts.showError();
                 console.error(error);
             }
+            this.openOverlay = false
         },
 
         sendMessage() {
