@@ -19694,7 +19694,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log(this.groups);
     // Pusher.logToConsole = true;
 
     // var pusher = new Pusher('5d03bc74ebd65c06a7d0', {
@@ -19706,7 +19705,6 @@ __webpack_require__.r(__webpack_exports__);
     //     alert(JSON.stringify(data));
     // });
   },
-
   props: ['tasks', 'auth', 'assigner', 'assigningTasks', 'groups'],
   data: function data() {
     return {
@@ -22586,11 +22584,16 @@ var _hoisted_10 = ["src"];
 var _hoisted_11 = {
   "class": "group_name"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Larem", -1 /* HOISTED */);
+var _hoisted_12 = {
+  key: 0
+};
 var _hoisted_13 = {
-  "class": "group_time"
+  key: 1
 };
 var _hoisted_14 = {
+  "class": "group_time"
+};
+var _hoisted_15 = {
   key: 1,
   "class": "no_groups"
 };
@@ -22612,8 +22615,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: item.group_icon,
       alt: "group logo"
-    }, null, 8 /* PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.group_name), 1 /* TEXT */), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"notification_dot\">1000</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertTimestampToReadableTime(item.created_at)), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_9);
-  }), 128 /* KEYED_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, " You are not in any group yet! Click on the \"+\" button to add yourself into a new one. "))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AssigningTaskLIst, {
+    }, null, 8 /* PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.group_name), 1 /* TEXT */), item.user_name && item.first_message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.user_name) + ": " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.first_message), 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_13, "No Messages"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"notification_dot\">1000</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.message_time ? $options.convertTimestampToReadableTime(item.message_time) : $options.convertTimestampToReadableTime(item.created_at)), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_9);
+  }), 128 /* KEYED_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, " You are not in any group yet! Click on the \"+\" button to add yourself into a new one. "))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AssigningTaskLIst, {
     tasksAssigning: _ctx.tasksAssigning
   }, null, 8 /* PROPS */, ["tasksAssigning"])]);
 }

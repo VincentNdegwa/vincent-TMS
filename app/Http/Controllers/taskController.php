@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserGroup;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -113,14 +114,18 @@ class taskController extends Controller
     {
         // event(new GroupNotification("hello"));
         $loggedInId = auth()->id();
+
         return Inertia::render('Dashboard', [
             'tasks' => Task::where('user_id', $loggedInId)->orderBy("created_at", "DESC")->get(),
             'assigningTasks' => Task::where('assigner', $loggedInId)->orderBy("created_at", "DESC")->limit(9)->get(),
             "assigner" => count(Task::where('assigner', $loggedInId)->get()),
-            "groups" => UserGroup::where('user_id', auth()->id())
+            "groups" => UserGroup::where('user_id', $loggedInId)
                 ->join('groups', 'user_group.group_id', '=', 'groups.id')
+                ->select('groups.group_name', 'groups.created_at', 'groups.group_icon', 'groups.id')
+                ->addSelect(DB::raw("(SELECT gm.message FROM group_messages gm WHERE gm.group_id = groups.id ORDER BY gm.created_at DESC LIMIT 1) AS first_message"))
+                ->addSelect(DB::raw("(SELECT gm.created_at FROM group_messages gm WHERE gm.group_id = groups.id ORDER BY gm.created_at DESC LIMIT 1) AS message_time"))
+                ->addSelect(DB::raw("(SELECT u.name FROM group_messages gm JOIN users u ON u.id = gm.user_id WHERE gm.group_id = groups.id ORDER BY gm.created_at DESC LIMIT 1) AS user_name"))
                 ->get()
-
         ]);
     }
 
@@ -188,9 +193,9 @@ class taskController extends Controller
         try {
             $dueDate = Carbon::parse($request->input('dueDate'));
             $users = UserGroup::where('group_id', $request->input('group_id'))
-            ->where('user_id', '!=', $request->input('user_id'))
-            ->select('user_id')
-            ->get();
+                ->where('user_id', '!=', $request->input('user_id'))
+                ->select('user_id')
+                ->get();
 
             $tasks = [];
 

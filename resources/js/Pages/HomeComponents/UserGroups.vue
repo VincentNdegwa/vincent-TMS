@@ -69,11 +69,14 @@ export default {
                         <img :src="item.group_icon" alt="group logo">
                         <div class="group_name">
                             <p> {{ item.group_name }}</p>
-                            <small>Larem</small>
+                            <small v-if="item.user_name && item.first_message">{{ item.user_name }}: {{ item.first_message
+                            }}</small>
+                            <small v-else>No Messages</small>
                         </div>
                         <div class="group_time">
                             <!-- <div class="notification_dot">1000</div> -->
-                            <small>{{ convertTimestampToReadableTime(item.created_at) }}</small>
+                            <small>{{ item.message_time ? convertTimestampToReadableTime(item.message_time) :
+                                convertTimestampToReadableTime(item.created_at) }}</small>
                         </div>
                     </div>
                     <div v-else class="no_groups">

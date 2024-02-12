@@ -9,7 +9,6 @@ import AddGroup from './HomeComponents/AddGroup.vue';
 import Pusher from "pusher-js"
 export default {
     mounted() {
-        console.log(this.groups);
         // Pusher.logToConsole = true;
 
         // var pusher = new Pusher('5d03bc74ebd65c06a7d0', {
