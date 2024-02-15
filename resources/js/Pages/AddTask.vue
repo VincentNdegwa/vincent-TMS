@@ -91,7 +91,7 @@ export default {
     }, mounted() {
         this.assigningTasks.forEach(element => {
             this.assigningTasksArray.push(element)
-            console.log("mounted")
+            console.log(this.assigningTasksArray)
         });
     }
 

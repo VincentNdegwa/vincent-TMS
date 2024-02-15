@@ -102,16 +102,45 @@ textarea {
     overflow-y: scroll;
 }
 .display-item {
-    background: #ffba86;
+    /* background: #ffba86; */
+    background-color: var(--white);
     color: var(--dark);
     border-radius: 0.3em;
     padding: 0.5rem;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(1);
+    transition: all ease-in-out 1s;
+}
+.display-item:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 1s;
 }
 .display-item > p {
     overflow: hidden;
     width: calc(200px - 1rem);
     white-space: nowrap;
     text-overflow: ellipsis !important;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.display-item > * {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.display-item > span {
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    font-size: 0.7rem;
+}
+.display-item > span > p {
+    color: var(--orange);
+    font-size: 0.9rem;
+}
+.no-data {
+    display: grid;
+    place-items: center;
+    color: var(--light-dark);
 }
 /* ////////assignee select/////// */
 
@@ -139,6 +168,7 @@ textarea {
     gap: 4%;
     border-radius: 0.5rem;
 }
+
 .exit_button {
     background: var(--orange);
     color: var(--white);
@@ -171,6 +201,8 @@ textarea {
         display: flex;
         flex-direction: column-reverse;
         padding: 1rem;
+        height: 100%;
+        margin-top: -10vh;
     }
     .created-task-container {
         height: 900px;

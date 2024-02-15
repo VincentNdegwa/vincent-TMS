@@ -19235,7 +19235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this2 = this;
     this.assigningTasks.forEach(function (element) {
       _this2.assigningTasksArray.push(element);
-      console.log("mounted");
+      console.log(_this2.assigningTasksArray);
     });
   }
 });
@@ -19306,15 +19306,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/parseISO.mjs");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/format.mjs");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/formatDistanceToNow.mjs");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['assigningTasks'],
   data: function data() {
     return {
-      userCreatedTask: ""
+      useSubmitTask: this.assigningTasks.map(function (item) {
+        return item.completed == 1;
+      })
     };
   },
-  created: function created() {
-    console.log(this.assigningTasks);
+  mounted: function mounted() {},
+  methods: {
+    convertTimestampToReadableTime: function convertTimestampToReadableTime(timestamp) {
+      var currentDate = new Date();
+      var parsedTimestamp = (0,date_fns__WEBPACK_IMPORTED_MODULE_0__.parseISO)(timestamp);
+
+      // Check if the date is today
+      if (currentDate.getDate() === parsedTimestamp.getDate()) {
+        return (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.format)(parsedTimestamp, "h:mm a");
+      }
+
+      // Check if the date is yesterday
+      if (currentDate.getDate() - 1 === parsedTimestamp.getDate()) {
+        return "Yesterday";
+      }
+
+      // Check if the date is within the last week
+      if ((0,date_fns__WEBPACK_IMPORTED_MODULE_2__.formatDistanceToNow)(parsedTimestamp) < 7) {
+        return (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.format)(parsedTimestamp, "eeee");
+      }
+
+      // If none of the above, display the full date
+      return (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.format)(parsedTimestamp, "MM/dd/yyyy");
+    },
+    getStatus: function getStatus(timestamp) {
+      var currentDate = new Date();
+      var dueDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_0__.parseISO)(timestamp);
+      if (dueDate) {
+        if (currentDate > dueDate) {
+          return "Late";
+        } else {
+          return "Pending";
+        }
+      } else {
+        return "null";
+      }
+    }
   }
 });
 
@@ -21442,18 +21483,43 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "side-display"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Latest Tasks Created", -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Pending Latest Tasks Created", -1 /* HOISTED */);
 var _hoisted_4 = {
+  key: 0,
   "class": "display-container"
 };
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"side-display\"><h2>Latest User Submit</h2><div class=\"display-container\"><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div><div class=\"display-item\"><p>name</p></div></div></div>", 1);
+var _hoisted_5 = {
+  key: 1,
+  "class": "no-data"
+};
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "No Data Yet.", -1 /* HOISTED */);
+var _hoisted_7 = [_hoisted_6];
+var _hoisted_8 = {
+  "class": "side-display"
+};
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Latest User Submit", -1 /* HOISTED */);
+var _hoisted_10 = {
+  key: 0,
+  "class": "display-container"
+};
+var _hoisted_11 = {
+  key: 1,
+  "class": "no-data"
+};
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "No Data Yet.", -1 /* HOISTED */);
+var _hoisted_13 = [_hoisted_12];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.assigningTasks, function (item, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, $props.assigningTasks.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.assigningTasks, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: index,
       "class": "display-item"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */)]);
-  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_5]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name.toUpperCase()), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Status: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getStatus(item.due_date)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertTimestampToReadableTime(item.created_at)), 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, _hoisted_7))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, $data.useSubmitTask.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.useSubmitTask, function (item, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "display-item",
+      key: index
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name.toUpperCase()), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Status: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getStatus(item.due_date)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertTimestampToReadableTime(item.created_at)), 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, _hoisted_13))])]);
 }
 
 /***/ }),
@@ -25860,7 +25926,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https: //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n    display: grid;\n    grid-template-rows: 10% 90%;\n    color: white;\n}\n\nmain {\n    display: grid;\n    grid-template-columns: 40% 60%;\n    background-color: var(--light-dark);\n    height: 90vh;\n}\n\n.create-form-conatiner {\n    /* border: 1px solid; */\n    padding: 1em;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\nform > div,\nselect {\n    display: flex;\n    flex-direction: column;\n}\n\nform > div > input,\ntextarea {\n    color: black;\n    border-radius: 0.3em;\n    border: 0px solid var(--orange);\n    outline: none;\n}\n.form-label {\n    color: var(--orange);\n    font-size: 1.6rem;\n}\ntextarea {\n    min-height: 10rem !important;\n}\n.task_name_input {\n    height: 3.5rem;\n}\n.option,\n.form-select {\n    color: black;\n}\n.option:hover {\n    background: #acb1d6;\n}\n\n.form-control {\n    color: black;\n    border-radius: 0.3em !important;\n    border: 0px;\n    outline: none;\n}\n\n.submit-btn {\n    padding: 0.6em;\n    width: 100%;\n    border-radius: 0.3em;\n    background: var(--orange);\n}\n.created-task-container {\n    /* border: 1px solid; */\n    display: grid;\n    place-items: center;\n}\n.created-tasks-holder {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 90%;\n    display: grid;\n    gap: 3%;\n    grid-template-rows: repeat(2, 1fr);\n}\n.side-display {\n    border: 1px solid;\n    background: white;\n    border-radius: 0.3em;\n}\n.side-display > h2 {\n    color: var(--light-dark);\n    border-bottom: 1px solid;\n}\n.side-display {\n    display: grid;\n    grid-template-rows: 12% 88%;\n}\n.display-container {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: repeat(3, 1fr);\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 2%;\n    padding: 2%;\n    overflow-y: scroll;\n}\n.display-item {\n    background: #ffba86;\n    color: var(--dark);\n    border-radius: 0.3em;\n    padding: 0.5rem;\n}\n.display-item > p {\n    overflow: hidden;\n    width: calc(200px - 1rem);\n    white-space: nowrap;\n    text-overflow: ellipsis !important;\n}\n/* ////////assignee select/////// */\n\n.select-assingnee {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.9);\n    display: grid;\n    place-items: center;\n}\n.select-holder {\n    color: var(--white);\n    /* border: 1px solid; */\n    width: 50%;\n    height: 70%;\n    background-color: var(--light-dark);\n    padding: 1em;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    gap: 4%;\n    border-radius: 0.5rem;\n}\n.exit_button {\n    background: var(--orange);\n    color: var(--white);\n    position: absolute;\n    top: 15%;\n    right: 25%;\n    font-size: 1.4rem;\n    padding: 0.6rem;\n}\n.select-holder > select {\n    width: 100%;\n    border-radius: 0.3em;\n}\n.option-name {\n    color: black;\n}\n.select-holder > button {\n    color: var(--orange);\n    background-color: var(--dark);\n    /* margin-top: 5%; */\n    padding: 2%;\n    border-radius: 0.3em;\n}\n.select-holder > select {\n    background: var(--white);\n    color: var(--light-dark);\n}\n@media screen and (max-width: 960px) {\n    main {\n        display: flex;\n        flex-direction: column-reverse;\n        padding: 1rem;\n    }\n    .created-task-container {\n        height: 900px;\n        width: 100%;\n    }\n    .created-tasks-holder {\n        width: 100% !important;\n    }\n    .create-form-conatiner {\n        padding: 0;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n    display: grid;\n    grid-template-rows: 10% 90%;\n    color: white;\n}\n\nmain {\n    display: grid;\n    grid-template-columns: 40% 60%;\n    background-color: var(--light-dark);\n    height: 90vh;\n}\n\n.create-form-conatiner {\n    /* border: 1px solid; */\n    padding: 1em;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\nform > div,\nselect {\n    display: flex;\n    flex-direction: column;\n}\n\nform > div > input,\ntextarea {\n    color: black;\n    border-radius: 0.3em;\n    border: 0px solid var(--orange);\n    outline: none;\n}\n.form-label {\n    color: var(--orange);\n    font-size: 1.6rem;\n}\ntextarea {\n    min-height: 10rem !important;\n}\n.task_name_input {\n    height: 3.5rem;\n}\n.option,\n.form-select {\n    color: black;\n}\n.option:hover {\n    background: #acb1d6;\n}\n\n.form-control {\n    color: black;\n    border-radius: 0.3em !important;\n    border: 0px;\n    outline: none;\n}\n\n.submit-btn {\n    padding: 0.6em;\n    width: 100%;\n    border-radius: 0.3em;\n    background: var(--orange);\n}\n.created-task-container {\n    /* border: 1px solid; */\n    display: grid;\n    place-items: center;\n}\n.created-tasks-holder {\n    /* border: 1px solid; */\n    width: 90%;\n    height: 90%;\n    display: grid;\n    gap: 3%;\n    grid-template-rows: repeat(2, 1fr);\n}\n.side-display {\n    border: 1px solid;\n    background: white;\n    border-radius: 0.3em;\n}\n.side-display > h2 {\n    color: var(--light-dark);\n    border-bottom: 1px solid;\n}\n.side-display {\n    display: grid;\n    grid-template-rows: 12% 88%;\n}\n.display-container {\n    width: 100%;\n    height: 100%;\n    display: grid;\n    grid-template-rows: repeat(3, 1fr);\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 2%;\n    padding: 2%;\n    overflow-y: scroll;\n}\n.display-item {\n    /* background: #ffba86; */\n    background-color: var(--white);\n    color: var(--dark);\n    border-radius: 0.3em;\n    padding: 0.5rem;\n    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);\n    transform: scale(1);\n    transition: all ease-in-out 1s;\n}\n.display-item:hover {\n    transform: scale(1.05);\n    transition: all ease-in-out 1s;\n}\n.display-item > p {\n    overflow: hidden;\n    width: calc(200px - 1rem);\n    white-space: nowrap;\n    text-overflow: ellipsis !important;\n    font-weight: bold;\n    font-size: 1rem;\n}\n.display-item > * {\n    margin: 0 !important;\n    padding: 0 !important;\n}\n.display-item > span {\n    display: flex;\n    gap: 0.2rem;\n    align-items: center;\n    font-size: 0.7rem;\n}\n.display-item > span > p {\n    color: var(--orange);\n    font-size: 0.9rem;\n}\n.no-data {\n    display: grid;\n    place-items: center;\n    color: var(--light-dark);\n}\n/* ////////assignee select/////// */\n\n.select-assingnee {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    background-color: rgba(0, 0, 0, 0.9);\n    display: grid;\n    place-items: center;\n}\n.select-holder {\n    color: var(--white);\n    /* border: 1px solid; */\n    width: 50%;\n    height: 70%;\n    background-color: var(--light-dark);\n    padding: 1em;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    gap: 4%;\n    border-radius: 0.5rem;\n}\n\n.exit_button {\n    background: var(--orange);\n    color: var(--white);\n    position: absolute;\n    top: 15%;\n    right: 25%;\n    font-size: 1.4rem;\n    padding: 0.6rem;\n}\n.select-holder > select {\n    width: 100%;\n    border-radius: 0.3em;\n}\n.option-name {\n    color: black;\n}\n.select-holder > button {\n    color: var(--orange);\n    background-color: var(--dark);\n    /* margin-top: 5%; */\n    padding: 2%;\n    border-radius: 0.3em;\n}\n.select-holder > select {\n    background: var(--white);\n    color: var(--light-dark);\n}\n@media screen and (max-width: 960px) {\n    main {\n        display: flex;\n        flex-direction: column-reverse;\n        padding: 1rem;\n        height: 100%;\n        margin-top: -10vh;\n    }\n    .created-task-container {\n        height: 900px;\n        width: 100%;\n    }\n    .created-tasks-holder {\n        width: 100% !important;\n    }\n    .create-form-conatiner {\n        padding: 0;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
