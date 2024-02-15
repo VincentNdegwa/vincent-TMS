@@ -7,12 +7,11 @@ import { router } from '@inertiajs/vue3';
 import { watch, ref, reactive, computed } from 'vue';
 
 export default {
-    props: ["auth", "tasks", "taskAssigning", "taskSorted"],
+    props: ["auth", "tasks", "taskSorted"],
 
     components: {
         HeaderHome,
         LeftViewTask,
-        RightViewTask
     },
     data() {
         return {
@@ -79,7 +78,6 @@ export default {
         <HeaderHome :userName="auth.user.name" />
         <main class="view-task-display">
             <LeftViewTask :tasks="tasks" @customChange="displayTask" @filter="updateFilter" />
-            <RightViewTask :taskAssigning="taskAssigning" />
             <div class="display-task" v-if="display">
                 <div class="see-tasks">
                     <div class="header-with-cancel">

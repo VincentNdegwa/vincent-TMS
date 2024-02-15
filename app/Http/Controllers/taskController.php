@@ -30,9 +30,7 @@ class taskController extends Controller
                 ->where('user_id', auth()->id())
                 ->where('completed', 0)
                 ->get(),
-            "taskAssigning" => Task::where('assigner', auth()->id())
-                ->orderBy("created_at", "ASC")
-                ->get(),
+   
         ]);
     }
 

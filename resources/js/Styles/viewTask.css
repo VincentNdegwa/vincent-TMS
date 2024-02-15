@@ -1,30 +1,21 @@
 .view-task-display {
     width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 70% 30%;
+    height: calc(100vh - 10vh);
 }
 
-.left-task-display,
-.right-task-display {
-    /* border: 1px solid; */
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    color: #acb1d6;
-}
 /* left */
 .tasks-container {
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
     border-radius: 0.3em;
+    width: 100%;
+    max-width: 1000px;
 }
 .task-holder-display {
     width: 100%;
     background: white;
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 70px calc(90vh - 70px);
     /* background: #4E31AA; */
 }
 .tasks-header {
@@ -34,6 +25,15 @@
     align-items: center;
     background: var(--orange);
     color: var(--white);
+}
+.left-task-display {
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+.no-data {
+    display: grid;
+    place-items: center;
 }
 .tasks-header > select > option {
     background: var(--dark);
@@ -45,8 +45,6 @@
 }
 .tasks-body {
     height: 700px;
-    display: grid;
-    align-items: start;
     padding: 0.2em;
     overflow-y: scroll;
     background: var(--light-dark);
@@ -59,16 +57,15 @@
     color: var(--light-dark);
     background: var(--white);
     border-radius: 0.3em;
-    /* display: flex;
-    align-items: center; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     place-items: center;
-    /* color: #4E31AA; */
-    border: 1px solid #acb1d6;
+    margin-top: 0.3rem;
+    transition: all ease-in-out 1s;
 }
 .task-item-display:hover {
     background: var(--orange);
+    transition: all ease-in-out 1s;
 }
 /* right */
 
@@ -239,4 +236,11 @@ object {
     color: var(--dark);
     text-align: center;
     border-radius: 0.4em;
+}
+@media screen and (max-width: 900px) {
+    .add_form_task {
+        background: var(--light-dark);
+        width: 100% !important;
+        padding: 2rem;
+    }
 }

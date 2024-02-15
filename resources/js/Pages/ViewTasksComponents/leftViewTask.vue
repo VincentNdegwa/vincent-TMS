@@ -54,8 +54,8 @@ export default {
                     </div>
 
                 </div>
-                <div class="tasks-body" v-else>
-                    You have no task
+                <div class="tasks-body no-data" v-else>
+                    <h2>You Have No Task</h2>
                 </div>
             </div>
 
