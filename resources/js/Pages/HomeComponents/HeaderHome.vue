@@ -46,10 +46,8 @@ export default {
                 <a :href="route('createTask')">Task Create</a>
                 <a :href="route('viewTasks')">View Tasks</a>
                 <a :href="route('getPlayGround')">PlayGround</a>
-                <a href="">Home</a>
             </nav>
             <div class="left-nav dropdown">
-                <!-- <a :href="route('logout')">logout</a> -->
                 <button @click="toggleDropdown">
                     <h2><i class='bx bxs-user'></i></h2>
                 </button>
