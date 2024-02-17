@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(groupMessage::class);
     }
+
+    function user_task_comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
 }

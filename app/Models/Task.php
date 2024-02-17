@@ -44,4 +44,9 @@ class Task extends Model
     {
         return $this->hasMany(Comments::class);
     }
+
+    public function taskComments()
+    {
+        return $this->hasMany(Comments::class);
+    }
 }

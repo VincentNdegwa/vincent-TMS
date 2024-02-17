@@ -13,12 +13,17 @@ class Comments extends Model
     protected $fillable = [
         'text',
         'task_id',
-        'receiver_id',
         'sender_id',
     ];
 
     public function myTasks(): BelongsTo
     {
-        return $this->belongsTo(Task::class, 'task_id');
+        return $this->belongsTo(Task::class, 'task_id', 'id');
+    }
+
+
+    public function Sender()
+    {
+        return $this->belongsTo(User::class, "sender_id", "id");
     }
 }

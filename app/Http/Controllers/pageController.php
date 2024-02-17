@@ -12,12 +12,7 @@ class pageController extends Controller
 {
     public function getPlayGround()
     {
-        $conversation = Comments::
-            // ->where('receiver_id', auth()->id())
-            leftJoin('tasks', 'tasks.id', '=', 'comments.task_id')
-            ->where('tasks.user_id', auth()->id())
-            ->orWhere('tasks.assigner', auth()->id())
-            ->get();
+
         return Inertia::render(
             'Playground',
             [
@@ -36,8 +31,12 @@ class pageController extends Controller
                     ->where('completed', 1)
                     ->join('users', 'users.id', '=', 'tasks.assigner')
                     ->join('users as user', 'user.id', '=', 'tasks.user_id')
+                    ->with([
+                        "taskComments" => function ($query) {
+                            $query->with("Sender");
+                        }
+                    ])
                     ->get(),
-                'conversation' => $conversation,
                 'auth' => auth()->id()
             ]
 
