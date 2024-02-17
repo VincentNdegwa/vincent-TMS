@@ -31,9 +31,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dropForeign('tasks_assigner_foreign');
-        });
+        // Schema::table('tasks', function (Blueprint $table) {
+        //     $table->dropForeign('tasks_assigner_foreign');
+        // });
         Schema::dropIfExists('users');
     }
 }

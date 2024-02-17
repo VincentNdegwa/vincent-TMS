@@ -15,12 +15,11 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('task_id')->nullable()->constrained('tasks')->onDelete('cascade');
-            $table->integer('receiver_id')->nullable();
+            $table->unsignedBigInteger("task_id");
+            $table->foreign('task_id')->references("id")->on("tasks")->onDelete('cascade');
             $table->string('text');
-            $table->integer('sender_id')->nullable();
-            $table->string('assigner_name')->nullable();
-            $table->string('assignee_name')->nullable();
+            $table->unsignedBigInteger("sender_id");
+            $table->foreign('sender_id')->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
         });
     }
