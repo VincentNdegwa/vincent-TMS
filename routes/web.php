@@ -20,7 +20,10 @@ Route::get("/", [taskController::class, "getUserTasks"])->name('getUserTasks');
 Route::prefix("/")->group(function () {
     Route::get('createTask', [taskController::class, "storeUserTask"])->name('createTask');
     Route::get("viewTasks", [taskController::class, "getAllTask"])->name("viewTasks");
-    Route::get("PlayGround", [pageController::class, 'getPlayGround'])->name('getPlayGround');
+    Route::prefix("PlayGround")->group(function () {
+        Route::get("/", [pageController::class, 'getPlayGround'])->name('getPlayGround');
+        Route::get("/view/{id}", [pageController::class, "getComments"])->name("getComments");
+    });
 });
 
 // main data routes

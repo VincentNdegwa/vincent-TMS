@@ -1,5 +1,4 @@
 <script>
-import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import HeaderHome from "./HomeComponents/HeaderHome.vue";
 import TaskDisplay from "./HomeComponents/TaskDisplay.vue"
 import UserGroups from "./HomeComponents/UserGroups.vue";
@@ -36,7 +35,6 @@ export default {
         }
     },
     components: {
-        BreezeDropdownLink,
         HeaderHome,
         UserGroups,
         TaskDisplay,

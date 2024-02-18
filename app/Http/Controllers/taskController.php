@@ -30,7 +30,7 @@ class taskController extends Controller
                 ->where('user_id', auth()->id())
                 ->where('completed', 0)
                 ->get(),
-   
+
         ]);
     }
 
@@ -76,7 +76,7 @@ class taskController extends Controller
             $addedAsssigning = null;
             if ($request->hasFile('taskFile')) {
                 $file = $request->file('taskFile');
-                $filename = $file->storeAs('taskFiles', $file->getClientOriginalName(), 'public');
+                $filepath = $file->store('taskFiles', 'public');
                 $addedAsssigning = Task::create([
                     "name" => $request->input('name'),
                     "unique_id" => $request->input('unique_id'),
@@ -85,7 +85,7 @@ class taskController extends Controller
                     "priority" => $request->input('priority'),
                     "due_date" => $dueDate->timestamp,
                     'description' => $request->input("description"),
-                    'taskFile' => $filename,
+                    'taskFile' => $filepath,
                 ]);
             } else {
                 $addedAsssigning = Task::create([
@@ -143,6 +143,7 @@ class taskController extends Controller
     {
         $taskid = $request->input('id');
         $task = Task::find($taskid);
+        $date_submit = Carbon::createFromTimestamp($request->input("date_submit") / 1000); // Convert timestamp to datetime
 
         if ($request->hasFile('response_file')) {
             $file = $request->file('response_file');
@@ -150,24 +151,20 @@ class taskController extends Controller
             $update = [
                 "completed" => 1,
                 "task_reply" => $request->input("task_reply"),
-                "date_submit" => $request->input("date_submit"),
+                "date_submit" => $date_submit,
                 'response_file' => $filepath
             ];
             $task->update($update);
-            // return Inertia::render('AddTask', [
-            //     'tasks' => Task::where('user_id', auth()->id())->orderBy("created_at", "DESC")->get(),
-            // ]);
+
             return Redirect::route('viewTasks');
         } else {
             $update = [
                 "completed" => 1,
                 "task_reply" => $request->input("task_reply"),
-                "date_submit" => $request->input("date_submit"),
+                "date_submit" => $date_submit,
             ];
             $task->update($update);
-            // return Inertia::render('ViewTasks', [
-            //     'tasks' => Task::where('user_id', auth()->id())->orderBy("created_at", "DESC")->get(),
-            // ]);
+
             return Redirect::route('viewTasks');
         }
     }

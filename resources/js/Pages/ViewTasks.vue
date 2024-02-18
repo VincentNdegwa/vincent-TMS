@@ -86,13 +86,13 @@ export default {
                     </div>
                     <div class="see-task-main">
                         <div class="task-read">
-                            <p>Task description:</p>
+                            <p>Task Response:</p>
                             <h2>{{ taskData.description }}</h2>
                             <form @submit.prevent="submiTask" class="task-reply">
                                 <textarea class="form-control reply-textarea" v-model="form.task_reply"
                                     placeholder="Please enter your response..." required></textarea>
                                 <input type="file" name="response_file" id="" @input="handleFileResponse">
-                                <button type="submit">Submit</button>
+                                <button type="submit">Complete</button>
                             </form>
                         </div>
                         <div class="files-display">

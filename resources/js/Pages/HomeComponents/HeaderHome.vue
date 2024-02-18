@@ -1,6 +1,4 @@
 <script>
-import BreezeDropdownLink from '@/Components/DropdownLink.vue';
-import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
     data() {
@@ -12,7 +10,6 @@ export default {
         }
     },
     components: {
-        BreezeDropdownLink
     },
     props: ['userName'],
     methods: {
