@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <title>TMS</title>
- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
 <head>
     <meta charset="utf-8">
@@ -29,5 +29,13 @@
     <script src="http://localhost:8080/js/bundle.js"></script>
     @endenv
 </body>
+
+<script>
+    window.Laravel = {!! json_encode([
+        'appName' => config('app.name'),
+        'appEnv' => config('app.env'),
+        'appUrl' => config('app.url'),
+    ]) !!};
+</script>
 
 </html>

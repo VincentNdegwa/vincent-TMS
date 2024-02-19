@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+use Fpdf\Fpdf;
+use Illuminate\Support\Facades\File;
+
 class taskController extends Controller
 {
     function __construct()
@@ -69,14 +72,26 @@ class taskController extends Controller
 
     public function addTask(Request $request)
     {
-
         try {
             $dueDateInput = $request->input('dueDate');
             $dueDate = Carbon::parse($dueDateInput);
             $addedAsssigning = null;
+            $pdfFilePath = "";
             if ($request->hasFile('taskFile')) {
                 $file = $request->file('taskFile');
-                $filepath = $file->store('taskFiles', 'public');
+
+                if ($file->getMimeType() !== 'application/pdf') {
+                    $binaryData = file_get_contents($file->getPathname());
+                    $fileName = "response_file" . time() . ".pdf";
+
+                    Storage::disk("public")->put($fileName, $binaryData);
+
+                    $pdfFilePath = Storage::url($fileName);
+                } else {
+                    $pdfFilePath = $file->store('taskFiles', 'public');
+                }
+
+                // Create Task
                 $addedAsssigning = Task::create([
                     "name" => $request->input('name'),
                     "unique_id" => $request->input('unique_id'),
@@ -85,9 +100,10 @@ class taskController extends Controller
                     "priority" => $request->input('priority'),
                     "due_date" => $dueDate->timestamp,
                     'description' => $request->input("description"),
-                    'taskFile' => $filepath,
+                    'taskFile' => $pdfFilePath,
                 ]);
             } else {
+                // Create Task without file
                 $addedAsssigning = Task::create([
                     "name" => $request->input('name'),
                     "unique_id" => $request->input('unique_id'),
@@ -104,9 +120,14 @@ class taskController extends Controller
                 "task" => $addedAsssigning
             ]);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'error' => true,
+                'message' => $th->getMessage(),
+            ]);
         }
     }
+
+
 
     public function getUserTasks()
     {

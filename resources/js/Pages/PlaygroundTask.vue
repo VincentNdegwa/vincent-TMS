@@ -3,7 +3,7 @@ import PDFViewer from "pdf-viewer-vue"
 import { useForm, router } from '@inertiajs/vue3';
 
 export default {
-    props: ["allTasks", "auth"],
+    props: ["allTasks", "auth", "user"],
     setup() {
         const form = useForm({
             task_id: null,
@@ -36,9 +36,10 @@ export default {
             if (this.form.text === '' || this.form.task_id === null || this.form.sender === null) {
                 alert('Please fill in all required fields');
             } else {
+                let newMessageId = Date.now()
                 this.newMessage = {
-                    id: this.TaskData.id,
-                    task_id: this.TaskData.task_id,
+                    id: newMessageId,
+                    task_id: this.TaskData.id,
                     text: this.form.text,
                     sender_id: this.userSender.id,
                     created_at: Date.now(),
@@ -46,33 +47,54 @@ export default {
                 };
                 this.TaskMessages.push(this.newMessage)
                 console.log(this.TaskMessages)
-                // axios.post('/tasks/comment', {
-                //     text: this.form.text,
-                //     task_id: this.form.task_id,
-                //     sender: this.form.sender,
-                // })
-                //     .then(response => {
-                //         this.form.text = '';
+                axios.post('/tasks/comment', {
+                    text: this.form.text,
+                    task_id: this.form.task_id,
+                    sender: this.form.sender,
+                })
+                    .then(response => {
+                        this.form.text = '';
+                        console.log(response.data)
+                        let { text, task_id, sender_id, updated_at, created_at, id } = response.data.data;
+                        let latestMessage = {
+                            id: id,
+                            task_id: task_id,
+                            text: text,
+                            sender_id: sender_id,
+                            created_at: created_at,
+                            updated_at: updated_at,
+                            sender: this.userSender
+                        };
 
-                //     })
-                //     .catch(error => {
-                //         console.error('Error:', error);
-                //     });
+                        let index = this.TaskMessages.findIndex(message => message.id === this.newMessage.id);
+                        if (index != -1) {
+                            console.log("found index: " + index)
+                            this.TaskMessages.splice(index, 1, latestMessage);
+                        }
+                        console.log(this.TaskMessages)
+
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
                 event.preventDefault();
             }
         }, changeFilePath(file) {
-            let path = "../../../storage/" + file
-            console.log(path)
-            return path
-        }
-    }, mounted() {
+            let path = window.Laravel.appUrl + "storage/" + encodeURIComponent(file);
+            console.log(path);
+            return path;
+        }, generateGoogleDocsViewerUrl(filePath) {
+            return `https://docs.google.com/gview?url=${encodeURIComponent(filePath)}&embedded=true`;
+        },
+
+    }, created() {
         this.TaskData = this.allTasks[0]
         this.form.task_id = this.TaskData.id
         this.form.sender = this.auth
         this.TaskMessages = this.TaskData.task_comments
-        this.userSender = this.TaskMessages?.find(item => item.sender.id === this.auth)?.sender
+        this.userSender = this.user
 
-        console.log(this.TaskMessages)
+
     }
 }
 </script>
@@ -83,11 +105,18 @@ export default {
                 <div class="files-display">
                     Task File
                     <div class="pdf_viewer">
-                        <PDFViewer :source="changeFilePath(TaskData.response_file)" style="height: 45vh; width: 200px " />
+
+                        <!-- <PDFViewer :source="changeFilePath(TaskData.response_file)" style="height: 45vh; width: 200px " /> -->
+                        <iframe :src="changeFilePath(TaskData.response_file)" type="application/pdf" width="500px"
+                            height="400px"></iframe>
+                        <!-- <iframe :src="generateGoogleDocsViewerUrl(TaskData.response_file)" width="500px"
+                            height="400px"></iframe> -->
+
                     </div>
                     Response File
                     <div class="pdf_viewer">
-                        <PDFViewer :source="changeFilePath(TaskData.taskFile)" style="height: 45vh; width: 200px " />
+                        <iframe :src="changeFilePath(TaskData.taskFile)" type="application/pdf" width="500px"
+                            height="400px"></iframe>
                     </div>
 
                 </div>
@@ -99,9 +128,7 @@ export default {
         <div class="article_section_message">
             <div class="task_description_section">
                 <span>Description: </span>
-                <p>{{ TaskData.description }} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias labore
-                    accusantium rerum deserunt ab veniam totam numquam tempore corrupti, dignissimos, aliquid culpa dicta,
-                    fugiat quia fuga! Esse consequuntur fugiat laboriosam.</p>
+                <p>{{ TaskData.description }}</p>
             </div>
             <div class="header">
                 <p>{{ TaskData.name }} </p>

@@ -240,5 +240,7 @@
     font-size: 0.7em;
 }
 .task_description_section > p {
-    overflow: scroll;
+    overflow-y: scroll;
+    width: 100%;
+    text-wrap: wrap;
 }

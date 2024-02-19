@@ -64,15 +64,21 @@ export default {
                     },
                 });
 
-                this.addedTask = response.data.task;
-
-                this.showSelect = false;
-                this.$refs.SweetAlerts.showNotification("Task created");
-                console.log(this.addedTask)
-                if (this.addedTask) {
-                    this.assigningTasksArray.pop()
-                    this.assigningTasksArray.unshift(this.addedTask);
-                    console.log("added")
+                if (response.data.error) {
+                    this.$refs.SweetAlerts.showNotificationError(response.data.message);
+                    console.log(response.data.message)
+                } else {
+                    this.addedTask = response.data.task;
+    
+                    this.showSelect = false;
+                    this.$refs.SweetAlerts.showNotification("Task created");
+                    console.log(this.addedTask)
+                    if (this.addedTask) {
+                        this.assigningTasksArray.pop()
+                        this.assigningTasksArray.unshift(this.addedTask);
+                        console.log("added")
+                    }
+                    
                 }
             } catch (error) {
                 this.$refs.SweetAlerts.showError();

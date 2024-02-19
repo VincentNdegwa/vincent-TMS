@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comments;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -50,7 +51,7 @@ class pageController extends Controller
     function getComments(Request $request, $id)
     {
         if ($id) {
-
+            $userId = auth()->id();
             return Inertia::render("PlaygroundTask", [
                 'allTasks' => Task::where("tasks.id", $id)
                     ->select(
@@ -77,7 +78,8 @@ class pageController extends Controller
                         }
                     ])
                     ->get(),
-                'auth' => auth()->id()
+                'auth' => $userId,
+                "user" => User::where("id", $userId)->first()
             ]);
         }
     }

@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.9",
+        "@tato30/vue-pdf": "^1.9.4",
         "date-fns": "^3.3.1",
         "moment": "^2.29.4",
         "pdf-viewer-vue": "^0.2.7",

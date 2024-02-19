@@ -14,7 +14,6 @@ class commentController extends Controller
             'text' => $request->input('text'),
             'task_id' => $request->input('task_id'),
             'sender_id' => $request->input('sender'),
-            'receiver_id' => $request->input('receiver'),
         ]);
         return response()->json([
             "status" => "200",
