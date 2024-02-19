@@ -1,7 +1,6 @@
 <script>
 // import { useForm } from '@inertiajs/inertia-vue3';
 import { useForm } from "@inertiajs/vue3";
-import ValidationErrorsVue from "@/Components/ValidationErrors.vue";
 export default {
     setup() {
         const form = useForm({
@@ -21,9 +20,7 @@ export default {
             submit,
         }
     },
-    components: {
-        ValidationErrorsVue,
-    }
+
 }
 </script>
 
@@ -34,7 +31,6 @@ export default {
                 <p>Register To TMS</p>
                 <img src="../../../images/icon.jpg" alt="logo display">
             </div>
-            <ValidationErrorsVue class="mb-4" />
             <form action="" method="post" @submit.prevent="submit">
                 <div class="mb-3 input-holder">
                     <label for="exampleFormControlInput1" class="form-label">Name:</label>

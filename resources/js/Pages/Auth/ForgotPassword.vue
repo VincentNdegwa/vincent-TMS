@@ -1,9 +1,5 @@
 <script setup>
-import BreezeButton from '@/Components/Button.vue';
-import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/Components/Input.vue';
-import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
+
 import { Head, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -26,7 +22,6 @@ const submit = () => {
                 <p>Password Reset</p>
                 <img src="../../../images/icon.jpg" alt="logo display">
             </div>
-            <ValidationErrorsVue class="mb-4" />
             <form action="" method="post" @submit.prevent="submit">
 
                 <div class="mb-4 description-text">

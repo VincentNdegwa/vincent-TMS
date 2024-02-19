@@ -56,6 +56,7 @@ class pageController extends Controller
                     ->select(
                         'tasks.id',
                         'tasks.name',
+                        'tasks.description',
                         'tasks.assigner',
                         'tasks.user_id as assignee',
                         'tasks.created_at',
