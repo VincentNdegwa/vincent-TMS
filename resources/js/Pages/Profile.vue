@@ -1,56 +1,93 @@
 <template>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <!-- Profile Picture -->
-                <img :src="profilePic" alt="Profile" class="img-fluid rounded-circle mb-3" />
-
-                <!-- Change Profile Picture Button -->
-                <input type="file" @change="changeProfilePic" class="form-control mb-3" accept="image/*" />
-
-                <!-- Name -->
-                <label>Name:</label>
-                <input type="text" v-model="name" class="form-control mb-3" :readonly="true" />
-
-                <!-- Email -->
-                <label>Email:</label>
-                <input type="text" v-model="email" class="form-control mb-3" :readonly="true" />
-
-                <!-- Email Verification Status -->
-                <div v-if="!emailVerified">
-                    <span class="text-danger">Email not verified</span>
-                    <button @click="verifyEmail" class="btn btn-link p-0">Verify Email</button>
+    <section class="profile-section">
+        <HeaderHome :HeaderHome="HeaderHome"></HeaderHome>
+        <div class="container mt-4 profile-container">
+            <div class="row">
+                <div class="">
+                    <!-- Profile Picture -->
+                    <img :src="profilePic" alt="Profile" class="img-fluid profile-picture" />
+                    <input type="file" @change="changeProfilePic" class="file-input" accept="image/*" />
                 </div>
-                <div v-else>
-                    <span class="text-success">Email verified</span>
+                <div class="mt-4">
+                    <!-- Change Profile Picture Button -->
+
+                    <!-- Full Name -->
+                    <label class="label-text">Full Name:</label>
+                    <input type="text" v-model="fullName" class="input-field" :readonly="true" />
+
+                    <!-- Username -->
+                    <label class="label-text">Username:</label>
+                    <input type="text" v-model="username" class="input-field" :readonly="true" />
+
+                    <!-- Email -->
+                    <label class="label-text">Email:</label>
+                    <input type="text" v-model="email" class="input-field" :readonly="true" />
+
+                    <!-- Email Verification Status -->
+                    <div v-if="!emailVerified">
+                        <span class="verification-status text-danger">Email not verified</span>
+                        <button @click="verifyEmail" class="verify-email-btn">Verify Email</button>
+                    </div>
+                    <div v-else>
+                        <span class="verification-status text-success">Email verified</span>
+                    </div>
+
+                    <!-- Password -->
+                    <label class="label-text">Password:</label>
+                    <input type="password" v-model="password" class="input-field" :readonly="true" />
+
+                    <label class="label-text">New Password:
+                        <input type="text" v-model="newPassword" class="input-field" />
+                    </label>
+                    <button @click="changePassword" class="change-password-btn">Change Password</button>
+                    <!-- Time Created Account -->
+                    <label class="label-text">Time Created Account:</label>
+                    <input type="text" v-model="timeCreated" class="input-field" :readonly="true" />
+
+                    <!-- Change Password Button -->
+
+                    <!-- Hidden Fields -->
+
+                    <!-- Additional Content -->
+                    <!-- Add more content as needed -->
                 </div>
-
-                <!-- Password Change -->
-                <button @click="changePassword" class="btn btn-primary mt-3">Change Password</button>
-            </div>
-            <div class="col-md-8">
-                <!-- Hidden Fields -->
-                <input type="hidden" v-model="password" />
-                <input type="hidden" v-model="hiddenField" />
-
-                <!-- Additional Content -->
-                <!-- Add more content as needed -->
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
+import HeaderHome from './HomeComponents/HeaderHome.vue';
+import moment from 'moment';
 export default {
+
+    props: ["userData", "userName"],
     data() {
         return {
             profilePic: 'images/no_profile.png',
-            name: 'John Doe',
-            email: 'john@example.com',
+            fullName: '',
+            username: '',
+            email: '',
             emailVerified: false,
-            password: '********', // Dummy password, should be handled securely
-            hiddenField: '********', // Other hidden fields, if needed
+            password: '********',
+            timeCreated: '',
+            hiddenField: '********',
+            userName: "",
+            newPassword: ""
         };
+    },
+    mounted() {
+
+        this.profilePic = this.userData.profile_path ? window.Laravel.appUrl + "storage/" + this.userData.profile_path : 'images/no_profile.png';
+        this.fullName = this.userData.fullName || "John Doe";
+        this.username = this.userData.name;
+        this.email = this.userData.email;
+        this.timeCreated = moment(this.userData.created_at).fromNow().toLocaleUpperCase();
+        this.emailVerified = this.userData.user_verification ? this.userData.user_verification.emailStatus === 'true' : false;
+    },
+
+    components: {
+        HeaderHome
     },
     methods: {
         changeProfilePic(event) {
@@ -93,5 +130,95 @@ body {
     color: var(--white);
 }
 
-/* Add more styles as needed */
+.profile-section {
+    height: 100% !important;
+}
+
+input {
+    color: var(--black);
+}
+
+.profile-container {
+    background-color: var(--light-dark);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+    /* height: 85vh !important; */
+}
+
+
+.profile-container>.row {
+    display: grid;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    grid-template-columns: 5fr 8fr;
+}
+
+.col-md-4 img {
+    z-index: 0;
+    position: relative;
+}
+
+
+.profile-picture {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.file-input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.label-text {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.verification-status {
+    margin-right: 10px;
+}
+
+.verify-email-btn {
+    background-color: var(--yellow);
+    border: none;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+    color: var(--orange);
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.change-password-btn {
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.col-md-4,
+.col-md-8 {
+    position: relative !important;
+    z-index: 0 !important;
+}
+
+@media screen and (max-width: 767px) {
+    .profile-container {
+        height: 100% !important;
+    }
+
+    .profile-container>.row {
+        grid-template-columns: 1fr;
+    }
+}
 </style>

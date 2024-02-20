@@ -403,7 +403,7 @@ thead {
         display: block;
         position: fixed;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         top: 0;
         left: 0;
         transform: translateX(100%);
@@ -417,7 +417,7 @@ thead {
     .openMenu {
         transform: translateX(0);
         background-color: var(--light-dark) !important;
-        z-index: 10 !important;
+        z-index: 10000 !important;
         opacity: 1;
         transition: all ease-in-out 1s;
     }

@@ -86,6 +86,12 @@ class pageController extends Controller
 
     function getProfile()
     {
-        return Inertia::render("Profile", []);
+        $userData = User::where("id", auth()->id())
+            ->with("user_verification")
+            ->first();
+        return Inertia::render("Profile", [
+            "userData" => $userData,
+            "userName"=> $userData->name,
+        ]);
     }
 }

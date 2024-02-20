@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comments::class);
     }
+
+    function user_verification()
+    {
+        return $this->hasOne(userVerification::class);
+    }
 }

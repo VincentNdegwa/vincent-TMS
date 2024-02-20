@@ -19,4 +19,10 @@ class userVerification extends Model
         'expireVerification',
         'emailStatus',
     ];
+
+
+    function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', "id");
+    }
 }
