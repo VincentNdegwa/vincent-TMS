@@ -17,15 +17,18 @@ Route::get('/', function () {
 //navigation routes
 Route::get("/", [taskController::class, "getUserTasks"])->name('getUserTasks');
 
-Route::prefix("/")->group(function () {
-    Route::get('createTask', [taskController::class, "storeUserTask"])->name('createTask');
-    Route::get("viewTasks", [taskController::class, "getAllTask"])->name("viewTasks");
-    Route::prefix("PlayGround")->group(function () {
-        Route::get("/", [pageController::class, 'getPlayGround'])->name('getPlayGround');
-        Route::get("/view/{id}", [pageController::class, "getComments"])->name("getComments");
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix("/")->group(function () {
+        Route::get('createTask', [taskController::class, "storeUserTask"])->name('createTask');
+        Route::get("viewTasks", [taskController::class, "getAllTask"])->name("viewTasks");
+        Route::prefix("PlayGround")->group(function () {
+            Route::get("/", [pageController::class, 'getPlayGround'])->name('getPlayGround');
+            Route::get("/view/{id}", [pageController::class, "getComments"])->name("getComments");
+        });
+        Route::get("/Profile", [pageController::class, "getProfile"])->name("getProfile");
     });
 });
-
 // main data routes
 Route::prefix("/tasks")->group(function () {
     Route::post('/add', [taskController::class, "addTask"])->name('addTask');

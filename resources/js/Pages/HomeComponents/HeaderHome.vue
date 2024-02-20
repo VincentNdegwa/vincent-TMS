@@ -49,7 +49,7 @@ export default {
                     <h2><i class='bx bxs-user'></i></h2>
                 </button>
                 <div v-show="isDropdownVisible" class="dropdown-content">
-                    <a href="#">Profile</a>
+                    <a :href="route('getProfile')">Profile</a>
                     <a href="#">Settings</a>
                     <a :href="route('logout')">Logout</a>
                 </div>

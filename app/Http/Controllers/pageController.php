@@ -83,4 +83,9 @@ class pageController extends Controller
             ]);
         }
     }
+
+    function getProfile()
+    {
+        return Inertia::render("Profile", []);
+    }
 }

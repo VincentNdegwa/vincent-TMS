@@ -27,11 +27,12 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.9",
         "@tato30/vue-pdf": "^1.9.4",
+        "bootstrap": "^5.3.2",
         "date-fns": "^3.3.1",
         "moment": "^2.29.4",
         "pdf-viewer-vue": "^0.2.7",
         "pusher-js": "^8.4.0-rc2",
-        "sweetalert2": "^11.10.4",
+        "sweetalert2": "^11.10.5",
         "timeago.js": "^4.0.2",
         "vue-sweetalert2": "^5.0.5"
     }
