@@ -1,6 +1,7 @@
 <script>
 import { router } from '@inertiajs/vue3'
 import { useForm } from '@inertiajs/vue3'
+import SweetAlerts from '@/modules/SweetAlerts.vue';
 
 export default {
     props: [],
@@ -15,6 +16,9 @@ export default {
             taskFile: "",
         });
         return { form }
+    },
+    components: {
+        SweetAlerts
     },
     data() {
         return {
@@ -31,8 +35,20 @@ export default {
             this.form.user_id = ""
             this.form.dueDate = ""
         },
-        filechange(ev) {
-            this.form.taskFile = ev.target.files[0];
+        filechange(event) {
+
+            const fileInput = event.target;
+            const fileName = fileInput.value.split('\\').pop();
+            const fileExtension = fileName.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'docx' || fileExtension === 'pptx' || fileExtension === 'xlsx') {
+                this.$refs.SweetAlerts.ShowAlert('Sorry, .docx, .pptx, .xlsx files are not allowed at the moments. Please choose a different file.');
+                fileInput.value = '';
+            }
+            else {
+
+                this.form.taskFile = event.target.files[0];
+            }
         }
     }
 }
@@ -41,6 +57,7 @@ export default {
 
 <template>
     <form @submit.prevent="sendForm" class="form">
+        <SweetAlerts ref="SweetAlerts"></SweetAlerts>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Task name</label>
             <input type="text" v-model="form.name" class="form-control task_name_input" id="exampleInputEmail1"

@@ -80,17 +80,17 @@ class taskController extends Controller
             if ($request->hasFile('taskFile')) {
                 $file = $request->file('taskFile');
 
-                if ($file->getMimeType() !== 'application/pdf') {
-                    $binaryData = file_get_contents($file->getPathname());
-                    $fileName = "response_file" . time() . ".pdf";
+                // if ($file->getMimeType() !== 'application/pdf') {
+                //     $binaryData = file_get_contents($file->getPathname());
+                //     $fileName = "response_file" . time() . ".pdf";
 
-                    Storage::disk("public")->put($fileName, $binaryData);
+                //     Storage::disk("public")->put($fileName, $binaryData);
 
-                    $pdfFilePath = Storage::url($fileName);
-                } else {
-                    $pdfFilePath = $file->store('taskFiles', 'public');
-                }
-
+                //     $pdfFilePath = Storage::url($fileName);
+                // } else {
+                // }
+                
+                $pdfFilePath = $file->store('taskFiles', 'public');
                 // Create Task
                 $addedAsssigning = Task::create([
                     "name" => $request->input('name'),

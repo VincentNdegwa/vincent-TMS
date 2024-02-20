@@ -48,6 +48,9 @@ textarea {
 .form-select {
     color: black;
 }
+.form-control > input {
+    color: var(--white) !important;
+}
 .option:hover {
     background: #acb1d6;
 }
