@@ -141,7 +141,6 @@ input {
 .profile-container {
     background-color: var(--light-dark);
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
-    /* height: 85vh !important; */
 }
 
 
