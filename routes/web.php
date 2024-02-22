@@ -26,7 +26,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get("/", [pageController::class, 'getPlayGround'])->name('getPlayGround');
             Route::get("/view/{id}", [pageController::class, "getComments"])->name("getComments");
         });
-        Route::get("/Profile", [pageController::class, "getProfile"])->name("getProfile");
+
+        Route::prefix("/Profile")->group(function () {
+            Route::get("/", [pageController::class, "getProfile"])->name("getProfile");
+            Route::post("/update", [pageController::class, "updateProfile"])->name("updateProfile");
+        });
     });
 });
 // main data routes

@@ -38,7 +38,7 @@
                     <input type="password" v-model="user.password" class="input-field" :readonly="true" />
 
                     <label class="label-text">New Password:
-                        <input type="text" v-model="user.newPassword" class="input-field" />
+                        <input type="password" v-model="user.newPassword" class="input-field" />
                     </label>
                     <button @click="changeProfile" class="change-password-btn">Update Profile</button>
                     <!-- Time Created Account -->
@@ -81,8 +81,9 @@ export default {
         };
     },
     mounted() {
+        console.log(this.userData)
         this.user.profilePic = this.userData.profile_path ? window.Laravel.appUrl + "storage/" + this.userData.profile_path : 'images/no_profile.png';
-        this.user.fullName = this.userData.fullName || "John Doe";
+        this.user.fullName = this.userData.full_names || "John Doe";
         this.user.username = this.userData.name;
         this.user.email = this.userData.email;
         this.user.timeCreated = moment(this.userData.created_at).fromNow().toLocaleUpperCase();
@@ -117,13 +118,38 @@ export default {
                 fullName: this.user.fullName,
                 newPassword: this.user.newPassword,
                 updateprofile: this.user.updateprofile,
+                userId: this.userData.id
 
             }
-            // axios.post("/", newData)
-            //     .then((response) => { })
-            //     .catch((err) => {
-            //         this.$swal("Failed", "Please try again later.", "warning");
-            //     })
+            if (!newData.fullName || !newData.username) {
+                return this.$swal("Error", "Please fill out your username and fullnames", "error");
+            }
+            let formData = new FormData();
+            for (let key in newData) {
+                formData.append(key, newData[key])
+            }
+
+            axios.post("/Profile/update", formData)
+                .then((response) => {
+                    let res = response.data.data
+                    if (res.error) {
+                        this.$swal({
+                            title: "Error",
+                            text: res.message,
+                            icon: "error",
+                        });
+                    } else {
+                        this.$swal({
+                            title: "Success",
+                            text: res.message,
+                            icon: "success",
+                        });
+                    }
+                    this.user.newPassword = ""
+                })
+                .catch((err) => {
+                    this.$swal("Failed", "Please try again later.", "warning");
+                })
             // this.$swal('Info', 'Implement password change logic here!', 'info');
         },
     },

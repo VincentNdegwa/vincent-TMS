@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class pageController extends Controller
@@ -90,10 +93,64 @@ class pageController extends Controller
         $userData = User::where("id", auth()->id())
             ->with("user_verification")
             ->first();
-            
+
         return Inertia::render("Profile", [
             "userData" => $userData,
-            "userName"=> $userData->name,
+            "userName" => $userData->name,
         ]);
+    }
+    function updateProfile(Request $request)
+    {
+        try {
+            // $validator = Validator::make($request->all(), [
+            //     "name" => "required",
+            //     "full_names" => "required",
+            //     "userId" => "required",
+            // ]);
+            // if ($validator->fails()) {
+            //     return response()->json([
+            //         "error" => true,
+            //         "meesage" => $validator->errors()->first(),
+            //     ]);
+            // }
+            $filePath = "";
+            $newData = [
+                "name" => $request->input("username"),
+                "full_names" => $request->input("fullName"),
+            ];
+            if ($request->input("newPassword")) {
+                $newPass = Hash::make($request->input("newPassword"));
+                $newData["password"] = $newPass;
+            }
+            if ($request->file("updateprofile")) {
+                $file = $request->file("updateprofile");
+                $filePath = $file->store("profilePics", "public");
+                $newData["profile_path"] = $filePath;
+            }
+            $user = User::where("id", $request->input("userId"))->update($newData);
+            if ($user) {
+                Storage::disk("public")->delete($filePath);
+                return response()->json([
+                    "data" => User::where("id", auth()->id())->with("user_verification")->first(),
+                    "error" => false,
+                    "message" => "Profile Updated"
+                ]);
+            } else {
+                Storage::disk("public")->delete($filePath);
+
+                return response()->json([
+                    "error" => true,
+                    "message" => "Failed to update. Please try again later."
+                ]);
+            }
+        } catch (\Throwable $th) {
+            if (!empty($filePath)) {
+                Storage::disk("public")->delete($filePath);
+            }
+            return response()->json([
+                "error" => true,
+                "message" => $th->getMessage()
+            ]);
+        }
     }
 }
