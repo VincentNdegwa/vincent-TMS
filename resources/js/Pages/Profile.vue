@@ -5,26 +5,27 @@
             <div class="row">
                 <div class="">
                     <!-- Profile Picture -->
-                    <img :src="profilePic" alt="Profile" class="img-fluid profile-picture" />
+                    <img :src="user.profilePic" alt="Profile" class="img-fluid profile-picture" />
                     <input type="file" @change="changeProfilePic" class="file-input" accept="image/*" />
+                    <label class="label-text mb-4">Time Created Account: <small>{{ user.timeCreated }}</small></label>
                 </div>
                 <div class="mt-4">
                     <!-- Change Profile Picture Button -->
 
                     <!-- Full Name -->
                     <label class="label-text">Full Name:</label>
-                    <input type="text" v-model="fullName" class="input-field" :readonly="true" />
+                    <input type="text" v-model="user.fullName" class="input-field" />
 
                     <!-- Username -->
                     <label class="label-text">Username:</label>
-                    <input type="text" v-model="username" class="input-field" :readonly="true" />
+                    <input type="text" v-model="user.username" class="input-field" />
 
                     <!-- Email -->
                     <label class="label-text">Email:</label>
-                    <input type="text" v-model="email" class="input-field" :readonly="true" />
+                    <p>{{ user.email }}</p>
 
                     <!-- Email Verification Status -->
-                    <div v-if="!emailVerified">
+                    <div v-if="!user.emailVerified">
                         <span class="verification-status text-danger">Email not verified</span>
                         <button @click="verifyEmail" class="verify-email-btn">Verify Email</button>
                     </div>
@@ -34,15 +35,13 @@
 
                     <!-- Password -->
                     <label class="label-text">Password:</label>
-                    <input type="password" v-model="password" class="input-field" :readonly="true" />
+                    <input type="password" v-model="user.password" class="input-field" :readonly="true" />
 
                     <label class="label-text">New Password:
-                        <input type="text" v-model="newPassword" class="input-field" />
+                        <input type="text" v-model="user.newPassword" class="input-field" />
                     </label>
-                    <button @click="changePassword" class="change-password-btn">Change Password</button>
+                    <button @click="changeProfile" class="change-password-btn">Update Profile</button>
                     <!-- Time Created Account -->
-                    <label class="label-text">Time Created Account:</label>
-                    <input type="text" v-model="timeCreated" class="input-field" :readonly="true" />
 
                     <!-- Change Password Button -->
 
@@ -56,61 +55,76 @@
     </section>
 </template>
 
+
 <script>
+import axios from 'axios';
 import HeaderHome from './HomeComponents/HeaderHome.vue';
 import moment from 'moment';
-export default {
 
+export default {
     props: ["userData", "userName"],
     data() {
         return {
-            profilePic: 'images/no_profile.png',
-            fullName: '',
-            username: '',
-            email: '',
-            emailVerified: false,
-            password: '********',
-            timeCreated: '',
-            hiddenField: '********',
-            userName: "",
-            newPassword: ""
+            user: {
+                profilePic: 'images/no_profile.png',
+                fullName: '',
+                username: '',
+                email: '',
+                emailVerified: false,
+                password: '********',
+                timeCreated: '',
+                hiddenField: '********',
+                userName: "",
+                newPassword: "",
+                updateprofile: ""
+            }
         };
     },
     mounted() {
-
-        this.profilePic = this.userData.profile_path ? window.Laravel.appUrl + "storage/" + this.userData.profile_path : 'images/no_profile.png';
-        this.fullName = this.userData.fullName || "John Doe";
-        this.username = this.userData.name;
-        this.email = this.userData.email;
-        this.timeCreated = moment(this.userData.created_at).fromNow().toLocaleUpperCase();
-        this.emailVerified = this.userData.user_verification ? this.userData.user_verification.emailStatus === 'true' : false;
+        this.user.profilePic = this.userData.profile_path ? window.Laravel.appUrl + "storage/" + this.userData.profile_path : 'images/no_profile.png';
+        this.user.fullName = this.userData.fullName || "John Doe";
+        this.user.username = this.userData.name;
+        this.user.email = this.userData.email;
+        this.user.timeCreated = moment(this.userData.created_at).fromNow().toLocaleUpperCase();
+        this.user.emailVerified = this.userData.user_verification ? this.userData.user_verification.emailStatus === 'true' : false;
     },
-
     components: {
         HeaderHome
     },
     methods: {
         changeProfilePic(event) {
-            // Handle profile picture change
             const file = event.target.files[0];
             if (file) {
-                // Implement your logic to upload and update the profile picture
-                // For example, you might use FormData and send it to the server
-                // this.profilePic = 'path/to/new/profile-pic.jpg'; // Update the profile picture path
-                this.$swal('Success', 'Profile picture updated!', 'success');
+                let reader = new FileReader()
+
+                reader.onload = (e) => {
+                    this.user.profilePic = e.target.result;
+                }
+                reader.readAsDataURL(file);
+                this.user.updateprofile = file;
             }
         },
         verifyEmail() {
             // Implement your logic to send an email verification request
             // For example, you might send a request to the server
-            // and update this.emailVerified when the verification is successful
-            this.emailVerified = true;
+            // and update this.user.emailVerified when the verification is successful
+            this.user.emailVerified = true;
             this.$swal('Success', 'Email verified!', 'success');
         },
-        changePassword() {
-            // Implement your logic to handle password change
-            // For example, you might show a modal or redirect to a password change page
-            this.$swal('Info', 'Implement password change logic here!', 'info');
+        changeProfile() {
+            let newData = {
+                username: this.user.username,
+                fullName: this.user.fullName,
+                newPassword: this.user.newPassword,
+                updateprofile: this.user.updateprofile,
+
+            }
+            // axios.post("/", newData)
+            //     .then((response) => { })
+            //     .catch((err) => {
+            //         this.$swal("Failed", "Please try again later.", "warning");
+            //     })
+            // this.$swal('Info', 'Implement password change logic here!', 'info');
         },
     },
 };

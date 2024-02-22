@@ -786,9 +786,6 @@ select {
 .mt-4 {
   margin-top: 1rem;
 }
-.mt-5 {
-  margin-top: 1.25rem;
-}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -969,9 +966,6 @@ select {
 .fill-current {
   fill: currentColor;
 }
-.p-0 {
-  padding: 0px;
-}
 .p-2 {
   padding: 0.5rem;
 }
@@ -1130,10 +1124,6 @@ select {
 .ring-gray-300 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
-}
-.blur {
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);

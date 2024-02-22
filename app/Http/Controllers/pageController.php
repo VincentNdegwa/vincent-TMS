@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class pageController extends Controller
@@ -89,6 +90,7 @@ class pageController extends Controller
         $userData = User::where("id", auth()->id())
             ->with("user_verification")
             ->first();
+            
         return Inertia::render("Profile", [
             "userData" => $userData,
             "userName"=> $userData->name,
