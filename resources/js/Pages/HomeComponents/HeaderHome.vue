@@ -58,6 +58,7 @@ export default {
         <i class="bx bx-menu" @click="handleMenu"></i>
     </header>
 </template>
+
 <style>    
 @import url("../../Styles/dashboard.css");
 </style>
