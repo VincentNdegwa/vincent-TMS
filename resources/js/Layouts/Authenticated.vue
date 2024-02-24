@@ -9,7 +9,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
 </script>
-
+//this is the auth
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
