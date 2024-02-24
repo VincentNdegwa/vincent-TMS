@@ -59,5 +59,6 @@ export default {
     </header>
 </template>
 <style>
+    
 @import url("../../Styles/dashboard.css");
 </style>
