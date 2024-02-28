@@ -89,11 +89,9 @@
 }
 
 .converstaion_container {
-    /* Customize scrollbar */
     scrollbar-color: var(--orange) var(--dark); /* Firefox */
     scrollbar-width: thin; /* Firefox */
 
-    /* Customize WebKit (Chrome/Safari) scrollbar */
     &::-webkit-scrollbar {
         width: 8px;
     }
@@ -206,7 +204,6 @@
     overflow-y: scroll;
 }
 .member_details {
-    /* background: yellow; */
     overflow-y: scroll;
 }
 .member_details::-webkit-scrollbar,
@@ -226,16 +223,12 @@
 }
 .group_details > p {
     width: 100%;
-    /* height: calc(20vh - 2rem - 100px - 0.5rem); */
     text-overflow: ellipsis;
     text-align: center;
     text-wrap: wrap;
     color: var(--light-dark);
 }
-/* .member_details{
-    display: grid;
-    grid-template-rows: ;
-} */
+
 .settings_group {
     height: max-content;
     max-height: 20vh;
