@@ -1,6 +1,7 @@
 <script>
 import PDFViewer from "pdf-viewer-vue"
 import { useForm, router } from '@inertiajs/vue3';
+import { format } from "timeago.js";
 
 export default {
     props: ["allTasks", "auth", "user"],
@@ -85,6 +86,15 @@ export default {
             return path;
         }, generateGoogleDocsViewerUrl(filePath) {
             return `https://docs.google.com/gview?url=${encodeURIComponent(filePath)}&embedded=true`;
+        }, setIcon(image) {
+            if (image == null || image === '') {
+                return "/images/no_profile.png"
+            } else {
+                return window.Laravel.appUrl + "storage/" + image
+            }
+        },
+        convertTime(time) {
+            return format(time, 'en');
         },
 
     }, created() {
@@ -139,7 +149,16 @@ export default {
 
                 <div class="message-box" v-for="(item, index) in  TaskMessages " :key="index"
                     :class="{ 'message-box-owner ': item.sender_id === auth }">
-                    <p>{{ item.text }} </p>
+                    <!-- <p>{{ item.text }} </p> -->
+                    <img class="avatar" :src="setIcon(item.sender.profile_path)" alt="User Avatar">
+                    <div class="user-details">
+                        <h3>{{ item.sender.name }}</h3>
+                        <p class="message">{{ item.text }} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Tenetur, consequuntur nulla! Rerum, commodi laudantium animi pariatur magnam accusamus! Alias
+                            mollitia optio repellendus id. Repudiandae voluptatem voluptates asperiores totam ad recusandae!
+                        </p>
+                        <small class="date">{{ convertTime(item.created_at) }}</small>
+                    </div>
                 </div>
 
             </div>
@@ -162,5 +181,4 @@ export default {
 
 <style>
 @import url("../Styles/playGround.css");
-@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
-</style>
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');</style>

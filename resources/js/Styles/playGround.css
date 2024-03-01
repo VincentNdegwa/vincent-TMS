@@ -45,6 +45,15 @@
     position: relative;
     border-radius: 0.3em;
 }
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: fill;
+    object-position: center;
+}
+
 .task-h1 {
     font-weight: bold;
     font-size: 1.3em;
@@ -188,13 +197,28 @@
     margin-top: 0.3em;
     font-size: 0.8em;
     padding: 0.3em;
-    background: #593aa1;
+    background: var(--orange);
     /* background: linear-gradient(20deg, #4e31aa, #ffba86); */
     border-radius: 0.3em;
     color: white;
     font-weight: bold;
 }
+.message-box,
+.message-box-owner {
+    display: flex;
+    margin: 0;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
 
+    & > .user-details > h3 {
+        color: var(--dark);
+    }
+    & > .user-details > .message {
+        color: var(--white);
+    }
+    & > .user-details > small {
+        color: var(--light-dark);
+    }
+}
 .message-box > p {
     width: 100%;
     white-space: pre-wrap;
@@ -206,8 +230,7 @@
 .message-box-owner {
     align-self: flex-end;
     height: fit-content;
-    background: #ffba86;
-    color: #4e31aa;
+    background: var(--orange);
 }
 .like-diplay {
     display: flex;
