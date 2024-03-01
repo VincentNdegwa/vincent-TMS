@@ -153,9 +153,7 @@ export default {
                     <img class="avatar" :src="setIcon(item.sender.profile_path)" alt="User Avatar">
                     <div class="user-details">
                         <h3>{{ item.sender.name }}</h3>
-                        <p class="message">{{ item.text }} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Tenetur, consequuntur nulla! Rerum, commodi laudantium animi pariatur magnam accusamus! Alias
-                            mollitia optio repellendus id. Repudiandae voluptatem voluptates asperiores totam ad recusandae!
+                        <p class="message">{{ item.text }}
                         </p>
                         <small class="date">{{ convertTime(item.created_at) }}</small>
                     </div>
@@ -163,7 +161,7 @@ export default {
 
             </div>
             <form action="" class="reply-box" @keydown.enter="sendText">
-                <span>
+                <span class="like_button">
                     <small>{{ TaskData.likes }}</small>
                     <i class='bx bx-like'></i>
                 </span>
@@ -181,4 +179,5 @@ export default {
 
 <style>
 @import url("../Styles/playGround.css");
-@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');</style>
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+</style>
