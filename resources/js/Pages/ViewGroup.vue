@@ -211,6 +211,13 @@ export default {
             } else {
                 this.openOverlay = false
             }
+        },
+        setIcon(image) {
+            if (image == null || image === '') {
+                return "/images/no_profile.png"
+            } else {
+                return window.Laravel.appUrl + "storage/" + image
+            }
         }
     }, mounted() {
         this.scrollToBottom()
@@ -283,7 +290,7 @@ export default {
                     <div class="converstaion_container" ref="conversationContainer" v-if="currentGroupMessages.length > 0">
                         <div :class="{ 'message-container': true, 'current_user_message': item.user_id === user_id }"
                             v-for="(item, index) in currentGroupMessages" :key="index">
-                            <img class="avatar" src="../../../public/images/cool-background.png" alt="User Avatar">
+                            <img class="avatar" :src="setIcon(item.users.profile_path)" alt="User Avatar">
                             <div class="user-details">
                                 <h3>{{ item.users.name }}</h3>
                                 <p class="message">{{ item.message }}</p>
@@ -337,8 +344,7 @@ export default {
                             <div class="member_scroll_list">
                                 <div class="member-item" v-for="(   item, index   ) in    mainData.user_group   "
                                     :key="index" @click="showOptions(item, $event)">
-                                    <img class="avatar" src="../../../public/images/cool-background.png"
-                                        alt="Member Avatar">
+                                    <img class="avatar" :src="setIcon(item.users.profile_path)" alt="Member Avatar">
                                     <div class="member-details">
                                         <h3>{{ item.users.name }}</h3>
                                         <p>{{ item.users.email }}</p>
